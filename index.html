@@ -44,7 +44,7 @@
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/blog/blog">Home</a>
+          <a class="main-nav-link" href="/blog/">Home</a>
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
@@ -90,7 +90,8 @@
 <h3 id="部落格是怎麼製作的"><a href="#部落格是怎麼製作的" class="headerlink" title="部落格是怎麼製作的?"></a>部落格是怎麼製作的?</h3><p>爬了一下文，發現大部分的人都是使用’hexo’，所以就找了幾篇關於 hexo 的教學文來看</p>
 <h3 id="建置"><a href="#建置" class="headerlink" title="建置"></a>建置</h3><h4 id="1-開啟-VScode，在終端機中使用以下指令，將-hexo-套件建立在全域下。"><a href="#1-開啟-VScode，在終端機中使用以下指令，將-hexo-套件建立在全域下。" class="headerlink" title="1. 開啟 VScode，在終端機中使用以下指令，將 hexo 套件建立在全域下。"></a>1. 開啟 VScode，在終端機中使用以下指令，將 hexo 套件建立在全域下。</h4><pre><code>npm install -g hexo-cli</code></pre><h4 id="2-建立-hexo-專案"><a href="#2-建立-hexo-專案" class="headerlink" title="2. 建立 hexo 專案"></a>2. 建立 hexo 專案</h4><pre><code>hexo init &lt;資料夾名稱&gt;</code></pre><h4 id="3-進入資料夾並安裝"><a href="#3-進入資料夾並安裝" class="headerlink" title="3. 進入資料夾並安裝"></a>3. 進入資料夾並安裝</h4><pre><code>cd &lt;資料夾名稱&gt;
 npm install</code></pre><h4 id="4-產生靜態檔案"><a href="#4-產生靜態檔案" class="headerlink" title="4. 產生靜態檔案"></a>4. 產生靜態檔案</h4><pre><code>hexo g</code></pre><h4 id="5-將檔案-push-上去"><a href="#5-將檔案-push-上去" class="headerlink" title="5. 將檔案 push 上去"></a>5. 將檔案 push 上去</h4><pre><code>hexo d</code></pre><h4 id="啟動-Server"><a href="#啟動-Server" class="headerlink" title="啟動 Server"></a>啟動 Server</h4><pre><code>hexo s</code></pre><h4 id="新增文章"><a href="#新增文章" class="headerlink" title="新增文章"></a>新增文章</h4><p>layout -&gt; 選擇格式<br>title -&gt; 輸入標題<br>將新增一個 md 檔在 scaffolds 資料夾內</p>
-<pre><code>hexo new [layout] &lt;title&gt;</code></pre><p>參考: 文章參考於 IT 邦幫忙 - 六角學院<br><a href="https://ithelp.ithome.com.tw/articles/10207725" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10207725</a></p>
+<pre><code>hexo new [layout] &lt;title&gt;</code></pre><h4 id="修改配置檔"><a href="#修改配置檔" class="headerlink" title="修改配置檔"></a>修改配置檔</h4><p>__config.yml</p>
+<p>參考: 文章參考於 IT 邦幫忙 - 六角學院<br><a href="https://ithelp.ithome.com.tw/articles/10207725" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10207725</a></p>
 
       
     </div>
@@ -212,7 +213,7 @@ npm install</code></pre><h4 id="4-產生靜態檔案"><a href="#4-產生靜態�
     </div>
     <nav id="mobile-nav">
   
-    <a href="/blog/blog" class="mobile-nav-link">Home</a>
+    <a href="/blog/" class="mobile-nav-link">Home</a>
   
     <a href="/blog/archives" class="mobile-nav-link">Archives</a>
   
