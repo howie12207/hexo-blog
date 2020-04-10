@@ -64,6 +64,98 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-markdown" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2020/04/10/markdown/" class="article-date">
+  <time datetime="2020-04-10T14:30:41.000Z" itemprop="datePublished">2020-04-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2020/04/10/markdown/">Markdown 學習</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="為什麼要學習-markdown-呢"><a href="#為什麼要學習-markdown-呢" class="headerlink" title="為什麼要學習 markdown 呢 ?"></a>為什麼要學習 markdown 呢 ?</h3><p>主要是因為要寫這個 Hexo 部落格，另外 markdown 語法也在很多文件上也會使用到，像是 github 上的 readme.md 檔案。</p>
+<h4 id="標題使用"><a href="#標題使用" class="headerlink" title="標題使用"></a>標題使用</h4><pre><code># // 標題一
+## // 標題二
+...
+###### // 標題六</code></pre><h4 id="代碼區塊"><a href="#代碼區塊" class="headerlink" title="代碼區塊"></a>代碼區塊</h4><pre><code>使用四個空格產生代碼區塊</code></pre><h5 id="未完待續"><a href="#未完待續" class="headerlink" title="未完待續.."></a>未完待續..</h5><h5 id="最新更新日期-2020-4-10"><a href="#最新更新日期-2020-4-10" class="headerlink" title="最新更新日期 2020/4/10"></a>最新更新日期 2020/4/10</h5><p>參考: <a href="https://markdown.tw" target="_blank" rel="noopener">Markdown 文件</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/10/markdown/" data-id="ck8uai0t700002suj9h02bydu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/code/" rel="tag">code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/markdown/" rel="tag">markdown</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ssh" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2020/04/10/ssh/" class="article-date">
+  <time datetime="2020-04-10T13:59:32.000Z" itemprop="datePublished">2020-04-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2020/04/10/ssh/">設定 SSH</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="為什麼要使用-SSH"><a href="#為什麼要使用-SSH" class="headerlink" title="為什麼要使用 SSH ?"></a>為什麼要使用 SSH ?</h3><p>之前上傳到 github 都是透過 https 的方式，而這次製作 hexo 專案，要透過 SSH 將檔案上傳到 github 上，所以就需要知道如何使用 SSH。</p>
+<h2 id="1-開啟終端機"><a href="#1-開啟終端機" class="headerlink" title="1. 開啟終端機"></a>1. 開啟終端機</h2><pre><code>ssh-keygen -t rsa -b 4096 -C &quot;howie12207@gmail.com&quot;</code></pre><p>出現以下畫面</p>
+<pre><code>Generating public/private rsa key pair.
+Enter a file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
+Enter passphrase (empty for no passphrase): [Type a passphrase]
+Enter same passphrase again: [Type passphrase again]</code></pre><p>第二行是 存放 key 檔案的位置<br>第三行與第三行是 輸入密碼與確認密碼<br>若沒有特別需要，都按 Enter 直接過去即可</p>
+<h3 id="2-開啟-ssh-agent"><a href="#2-開啟-ssh-agent" class="headerlink" title="2. 開啟 ssh-agent"></a>2. 開啟 ssh-agent</h3><p>這裡奇怪的是我使用 VScode 的 powershell 無法正常操作<br>後來改成 git bash 就正常了</p>
+<pre><code>eval &quot;\$(ssh-agent -s)&quot;</code></pre><h3 id="3-將私鑰加入到-ssh-agent"><a href="#3-將私鑰加入到-ssh-agent" class="headerlink" title="3. 將私鑰加入到 ssh-agent"></a>3. 將私鑰加入到 ssh-agent</h3><pre><code>ssh-add -K ~/.ssh/id_rsa</code></pre><h4 id="4-上傳公鑰"><a href="#4-上傳公鑰" class="headerlink" title="4. 上傳公鑰"></a>4. 上傳公鑰</h4><p>將公鑰的內容打印出來並複製</p>
+<pre><code>cat ~/.ssh/id_rsa.pub</code></pre><p>到 Github 上 -&gt; setting -&gt; SSH andGPG keys -&gt; New SSH key</p>
+<p>將內容貼上，然後自己取名</p>
+<p>參考: <a href="https://ithelp.ithome.com.tw/articles/10205988" target="_blank" rel="noopener">IT 邦幫忙 - 六角學院 - 前端工具百寶箱</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/10/ssh/" data-id="ck8ua105m0005i0ujfy24erpb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/git/" rel="tag">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/ssh/" rel="tag">ssh</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-start-hexo" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/blog/2020/04/10/start-hexo/" class="article-date">
@@ -89,9 +181,30 @@
         <h3 id="為什麼開始使用-Blog"><a href="#為什麼開始使用-Blog" class="headerlink" title="為什麼開始使用 Blog?"></a>為什麼開始使用 Blog?</h3><p>在這學習程式語言的階段，有太多東西需要去學習，而記憶力就只有那麼一點，透過部落格的紀錄方式，方便自己以後回來查找，也可以記錄一些自己的生活。</p>
 <h3 id="部落格是怎麼製作的"><a href="#部落格是怎麼製作的" class="headerlink" title="部落格是怎麼製作的?"></a>部落格是怎麼製作的?</h3><p>爬了一下文，發現大部分的人都是使用’hexo’，所以就找了幾篇關於 hexo 的教學文來看</p>
 <h3 id="建置"><a href="#建置" class="headerlink" title="建置"></a>建置</h3><h4 id="1-開啟-VScode，在終端機中使用以下指令，將-hexo-套件建立在全域下。"><a href="#1-開啟-VScode，在終端機中使用以下指令，將-hexo-套件建立在全域下。" class="headerlink" title="1. 開啟 VScode，在終端機中使用以下指令，將 hexo 套件建立在全域下。"></a>1. 開啟 VScode，在終端機中使用以下指令，將 hexo 套件建立在全域下。</h4><pre><code>npm install -g hexo-cli</code></pre><h4 id="2-建立-hexo-專案"><a href="#2-建立-hexo-專案" class="headerlink" title="2. 建立 hexo 專案"></a>2. 建立 hexo 專案</h4><pre><code>hexo init &lt;資料夾名稱&gt;</code></pre><h4 id="3-進入資料夾並安裝"><a href="#3-進入資料夾並安裝" class="headerlink" title="3. 進入資料夾並安裝"></a>3. 進入資料夾並安裝</h4><pre><code>cd &lt;資料夾名稱&gt;
-npm install</code></pre><h4 id="4-產生靜態檔案"><a href="#4-產生靜態檔案" class="headerlink" title="4. 產生靜態檔案"></a>4. 產生靜態檔案</h4><pre><code>hexo g</code></pre><h4 id="5-將檔案-push-上去"><a href="#5-將檔案-push-上去" class="headerlink" title="5. 將檔案 push 上去"></a>5. 將檔案 push 上去</h4><pre><code>hexo d</code></pre><h4 id="啟動-Server"><a href="#啟動-Server" class="headerlink" title="啟動 Server"></a>啟動 Server</h4><pre><code>hexo s</code></pre><h4 id="新增文章"><a href="#新增文章" class="headerlink" title="新增文章"></a>新增文章</h4><p>layout -&gt; 選擇格式<br>title -&gt; 輸入標題<br>將新增一個 md 檔在 scaffolds 資料夾內</p>
-<pre><code>hexo new [layout] &lt;title&gt;</code></pre><h4 id="修改配置檔"><a href="#修改配置檔" class="headerlink" title="修改配置檔"></a>修改配置檔</h4><p>__config.yml</p>
-<p>參考: 文章參考於 IT 邦幫忙 - 六角學院<br><a href="https://ithelp.ithome.com.tw/articles/10207725" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10207725</a></p>
+npm install</code></pre><h4 id="4-產生靜態檔案"><a href="#4-產生靜態檔案" class="headerlink" title="4. 產生靜態檔案"></a>4. 產生靜態檔案</h4><pre><code>hexo g</code></pre><h4 id="5-建立-hexo-git-到-config-yml-更改配置"><a href="#5-建立-hexo-git-到-config-yml-更改配置" class="headerlink" title="5. 建立 hexo git (到_config.yml 更改配置)"></a>5. 建立 hexo git (到_config.yml 更改配置)</h4><pre><code>npm install hexo-deployer-git --save</code></pre><h4 id="6-將檔案-push-上去-如果沒有-SSH-可能會發生問題"><a href="#6-將檔案-push-上去-如果沒有-SSH-可能會發生問題" class="headerlink" title="6. 將檔案 push 上去 (如果沒有 SSH 可能會發生問題)"></a>6. 將檔案 push 上去 (如果沒有 SSH 可能會發生問題)</h4><pre><code>hexo d</code></pre><h4 id="啟動-Server"><a href="#啟動-Server" class="headerlink" title="啟動 Server"></a>啟動 Server</h4><pre><code>hexo s</code></pre><h4 id="新增文章"><a href="#新增文章" class="headerlink" title="新增文章"></a>新增文章</h4><p>layout -&gt; 選擇格式<br>title -&gt; 輸入標題<br>將新增一個 md 檔在 scaffolds 資料夾內</p>
+<pre><code>hexo new [layout] &lt;title&gt;</code></pre><h4 id="修改配置檔"><a href="#修改配置檔" class="headerlink" title="修改配置檔"></a>修改配置檔</h4><p>_config.yml</p>
+<pre><code>#Site
+
+title: Howie&apos;s blog // 標題
+subtitle: &quot;&quot; // 副標題
+description: &quot;&quot; // 描述
+keywords:
+author: Howie Chen // 作者
+language: en
+timezone: &quot;Asia/Taipei&quot; // 時區
+
+# URL
+
+## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;
+url: http://yoursite.com
+root: /blog/  // 將此區改為github的位置
+
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+type: git //使用方法
+repo: git@github.com:howie12207/blog.git //SSH連結
+branch: master //預設分支</code></pre><p>參考: <a href="https://ithelp.ithome.com.tw/articles/10207725" target="_blank" rel="noopener">IT 邦幫忙 - 六角學院 - 前端工具百寶箱</a></p>
 
       
     </div>
@@ -99,6 +212,8 @@ npm install</code></pre><h4 id="4-產生靜態檔案"><a href="#4-產生靜態�
       <a data-url="http://yoursite.com/2020/04/10/start-hexo/" data-id="ck8u6ynwd00008cujazow5zj5" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/blog/" rel="tag">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/hexo/" rel="tag">hexo</a></li></ul>
+
     </footer>
   </div>
   
@@ -165,9 +280,23 @@ npm install</code></pre><h4 id="4-產生靜態檔案"><a href="#4-產生靜態�
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ssh/" rel="tag">ssh</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/blog/" style="font-size: 10px;">blog</a> <a href="/blog/tags/code/" style="font-size: 10px;">code</a> <a href="/blog/tags/git/" style="font-size: 10px;">git</a> <a href="/blog/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blog/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/blog/tags/ssh/" style="font-size: 10px;">ssh</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
@@ -184,6 +313,14 @@ npm install</code></pre><h4 id="4-產生靜態檔案"><a href="#4-產生靜態�
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/blog/2020/04/10/markdown/">Markdown 學習</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/04/10/ssh/">設定 SSH</a>
+          </li>
         
           <li>
             <a href="/blog/2020/04/10/start-hexo/">開始使用 Hexo</a>
