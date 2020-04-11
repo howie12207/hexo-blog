@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="JS 中的正則表達式使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正則表達式">
+<meta property="og:url" content="http://yoursite.com/2020/04/11/regular-expression/index.html">
+<meta property="og:site_name" content="Howie&#39;s blog">
+<meta property="og:description" content="JS 中的正則表達式使用">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-11T08:52:28.000Z">
+<meta property="article:modified_time" content="2020-04-11T12:13:19.385Z">
+<meta property="article:author" content="Howie Chen">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="正則表達式">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/11/regular-expression/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>正則表達式 | Howie's blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163289150-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-163289150-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Howie's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/11/regular-expression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/me.jpg">
+      <meta itemprop="name" content="Howie Chen">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Howie's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          正則表達式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-11 16:52:28 / Modified: 20:13:19" itemprop="dateCreated datePublished" datetime="2020-04-11T16:52:28+08:00">2020-04-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="JS-中的正則表達式使用"><a href="#JS-中的正則表達式使用" class="headerlink" title="JS 中的正則表達式使用"></a>JS 中的正則表達式使用</h3><a id="more"></a>
+
+<h4 id="創建正則表達式"><a href="#創建正則表達式" class="headerlink" title="創建正則表達式"></a>創建正則表達式</h4><h5 id="利用字面量創建-推薦"><a href="#利用字面量創建-推薦" class="headerlink" title="利用字面量創建 (推薦)"></a>利用字面量創建 (推薦)</h5><pre><code>let reg = /123/
+console.log(reg)</code></pre><h5 id="利用-RegExp-對象創建"><a href="#利用-RegExp-對象創建" class="headerlink" title="利用 RegExp() 對象創建"></a>利用 RegExp() 對象創建</h5><pre><code>let reg = new RegExp(/123/)
+console.log(reg)</code></pre><h4 id="測試正則表達式-test"><a href="#測試正則表達式-test" class="headerlink" title="測試正則表達式 test()"></a>測試正則表達式 test()</h4><pre><code>let reg = /123/
+console.log(reg.test(123122)) // true
+console.log(reg.test(121122)) // false</code></pre><h3 id="正則表達式特殊符號"><a href="#正則表達式特殊符號" class="headerlink" title="正則表達式特殊符號"></a>正則表達式特殊符號</h3><h4 id="g-表全局匹配-i-表忽略大小寫"><a href="#g-表全局匹配-i-表忽略大小寫" class="headerlink" title="g 表全局匹配 i 表忽略大小寫"></a>g 表全局匹配 i 表忽略大小寫</h4><h4 id="邊界符-開頭-結尾"><a href="#邊界符-開頭-結尾" class="headerlink" title="邊界符 ^開頭 結尾$"></a>邊界符 ^開頭 結尾$</h4><pre><code>let reg = /abc/
+console.log(reg.test(&apos;abc&apos;)) // true
+console.log(reg.test(&apos;abcd&apos;)) // true
+console.log(reg.test(&apos;dabc&apos;)) // true
+
+let reg2 = /^abc/
+console.log(reg2.test(&apos;abc&apos;)) // true
+console.log(reg2.test(&apos;abcd&apos;)) // true
+console.log(reg2.test(&apos;dabc&apos;)) // false
+
+let reg3 = /abc$/
+console.log(reg3.test(&apos;abc&apos;)) // true
+console.log(reg3.test(&apos;abcd&apos;)) // false
+console.log(reg3.test(&apos;dabc&apos;)) // true
+
+let reg4 = /^abc$/
+console.log(reg4.test(&apos;abc&apos;)) // true
+console.log(reg4.test(&apos;abcd&apos;)) // false
+console.log(reg4.test(&apos;dabc&apos;)) // false
+console.log(reg4.test(&apos;abcabc&apos;)) // false</code></pre><h4 id="字符號-表示有一系列自符可供選擇，匹配其中一個即可"><a href="#字符號-表示有一系列自符可供選擇，匹配其中一個即可" class="headerlink" title="字符號 [] 表示有一系列自符可供選擇，匹配其中一個即可"></a>字符號 [] 表示有一系列自符可供選擇，匹配其中一個即可</h4><pre><code>let reg = /[abc]/
+console.log(reg.test(&apos;a&apos;)) // true
+console.log(reg.test(&apos;bd&apos;)) // true
+console.log(reg.test(&apos;d&apos;)) //
+
+let reg2 = /^[abc]$/   // 三選一 只能是a或b或c才返回true
+console.log(reg2.test(&apos;a&apos;)) // true
+console.log(reg2.test(&apos;b&apos;)) // true
+console.log(reg2.test(&apos;c&apos;)) // ture
+console.log(reg2.test(&apos;aa&apos;)) // false</code></pre><h5 id="a-z-表-26-個小寫英文字母"><a href="#a-z-表-26-個小寫英文字母" class="headerlink" title="[a-z] 表 26 個小寫英文字母"></a>[a-z] 表 26 個小寫英文字母</h5><h5 id="A-Z-表-26-個大寫英文字母"><a href="#A-Z-表-26-個大寫英文字母" class="headerlink" title="[A-Z] 表 26 個大寫英文字母"></a>[A-Z] 表 26 個大寫英文字母</h5><h5 id="a-zA-Z0-9-字符組合-表-26-個字母與數字"><a href="#a-zA-Z0-9-字符組合-表-26-個字母與數字" class="headerlink" title="[a-zA-Z0-9] 字符組合 表 26 個字母與數字"></a>[a-zA-Z0-9] 字符組合 表 26 個字母與數字</h5><h5 id="a-內的-表取反"><a href="#a-內的-表取反" class="headerlink" title="[^a] []內的^ 表取反"></a>[^a] []內的^ 表取反</h5><pre><code>let reg = /^[^a]/    // 表非a開頭
+console.log(reg.test(&apos;a&apos;)) // false
+console.log(reg.test(&apos;b&apos;)) // true
+console.log(reg.test(&apos;ba&apos;)) // true</code></pre><h4 id="預定義類"><a href="#預定義類" class="headerlink" title="預定義類"></a>預定義類</h4><pre><code>// 匹配0-9任意數字
+\d
+
+// 匹配0-9以為任意字符
+\D
+
+// 匹配任意字母、數字、底線
+\w
+
+// 匹配除任意字母、數字、底線以外字符
+\W
+
+// 匹配空格
+\s
+
+// 匹配非空格字符
+\S</code></pre><h4 id="量詞符"><a href="#量詞符" class="headerlink" title="量詞符"></a>量詞符</h4><h5 id="可出現-0-次或者多次-gt-0"><a href="#可出現-0-次或者多次-gt-0" class="headerlink" title="* 可出現 0 次或者多次 &gt;= 0"></a>* 可出現 0 次或者多次 &gt;= 0</h5><pre><code>let reg = /^a*$/
+console.log(reg.test(&apos;a&apos;)) // true</code></pre><h5 id="可出現-1-次或者多次-gt-1"><a href="#可出現-1-次或者多次-gt-1" class="headerlink" title="+ 可出現 1 次或者多次 &gt;= 1"></a>+ 可出現 1 次或者多次 &gt;= 1</h5><pre><code>let reg = /^a+$/
+console.log(reg.test(&apos;a&apos;)) // true
+console.log(reg.test(&apos;b&apos;)) // false</code></pre><h5 id="可出現-0-次或者-1-次-0-1"><a href="#可出現-0-次或者-1-次-0-1" class="headerlink" title="? 可出現 0 次或者 1 次 0 || 1"></a>? 可出現 0 次或者 1 次 0 || 1</h5><pre><code>let reg = /^a?$/
+console.log(reg.test(&apos;a&apos;)) // true
+console.log(reg.test(&apos;&apos;)) // true
+console.log(reg.test(&apos;b&apos;)) // false
+console.log(reg.test(&apos;aa&apos;)) // false</code></pre><h5 id="3-重複三次-3-中間不能有空格"><a href="#3-重複三次-3-中間不能有空格" class="headerlink" title="{3} 重複三次 = 3 ({} 中間不能有空格)"></a>{3} 重複三次 = 3 ({} 中間不能有空格)</h5><pre><code>let reg = /^a{3}$/
+console.log(reg.test(&apos;aaa&apos;)) // true
+console.log(reg.test(&apos;aaaa&apos;)) // false</code></pre><h5 id="3-大於等於三次-gt-3-中間不能有空格"><a href="#3-大於等於三次-gt-3-中間不能有空格" class="headerlink" title="{3,} 大於等於三次 &gt;= 3 ({} 中間不能有空格)"></a>{3,} 大於等於三次 &gt;= 3 ({} 中間不能有空格)</h5><pre><code>let reg = /^a{3,}$/
+console.log(reg.test(&apos;aaa&apos;)) // true
+console.log(reg.test(&apos;aaaa&apos;)) // true
+console.log(reg.test(&apos;aa&apos;)) // false</code></pre><h5 id="3-9-大於等於三次並小於等於九-gt-3-amp-amp-lt-9-中間不能有空格"><a href="#3-9-大於等於三次並小於等於九-gt-3-amp-amp-lt-9-中間不能有空格" class="headerlink" title="{3,9} 大於等於三次並小於等於九 &gt;= 3 &amp;&amp; &lt;= 9 ({} 中間不能有空格)"></a>{3,9} 大於等於三次並小於等於九 &gt;= 3 &amp;&amp; &lt;= 9 ({} 中間不能有空格)</h5><pre><code>let reg = /^a{3,9}$/
+console.log(reg.test(&apos;aaa&apos;)) // true
+console.log(reg.test(&apos;aaaa&apos;)) // true
+console.log(reg.test(&apos;aa&apos;)) // false
+console.log(reg.test(&apos;aaaaaaaaaaaaaaaaaaa&apos;)) // false</code></pre><h3 id="常用正則"><a href="#常用正則" class="headerlink" title="常用正則"></a>常用正則</h3><pre><code>// 限制只能以 字母 , 數字 , _ , - 內容6~16碼
+/^[a-zA-Z0-9_-]{6,16}$/
+
+// Email地址 以英文或數字或底線開頭一次或多次 (-或.再接英文或數字或底線一次或多次)0次或多次 @
+/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+
+// 二到八位中文字符
+/^[\u4e00-\u9fa5]{2,8}$/</code></pre>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/javascript/" rel="tag"># javascript</a>
+              <a href="/blog/tags/%E6%AD%A3%E5%89%87%E8%A1%A8%E9%81%94%E5%BC%8F/" rel="tag"># 正則表達式</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2020/04/11/javascript-copy/" rel="prev" title="JS 淺拷貝與深拷貝">
+      <i class="fa fa-chevron-left"></i> JS 淺拷貝與深拷貝
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JS-中的正則表達式使用"><span class="nav-number">1.</span> <span class="nav-text">JS 中的正則表達式使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#創建正則表達式"><span class="nav-number">1.1.</span> <span class="nav-text">創建正則表達式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#利用字面量創建-推薦"><span class="nav-number">1.1.1.</span> <span class="nav-text">利用字面量創建 (推薦)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#利用-RegExp-對象創建"><span class="nav-number">1.1.2.</span> <span class="nav-text">利用 RegExp() 對象創建</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#測試正則表達式-test"><span class="nav-number">1.2.</span> <span class="nav-text">測試正則表達式 test()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正則表達式特殊符號"><span class="nav-number">2.</span> <span class="nav-text">正則表達式特殊符號</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#g-表全局匹配-i-表忽略大小寫"><span class="nav-number">2.1.</span> <span class="nav-text">g 表全局匹配 i 表忽略大小寫</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#邊界符-開頭-結尾"><span class="nav-number">2.2.</span> <span class="nav-text">邊界符 ^開頭 結尾$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符號-表示有一系列自符可供選擇，匹配其中一個即可"><span class="nav-number">2.3.</span> <span class="nav-text">字符號 [] 表示有一系列自符可供選擇，匹配其中一個即可</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#a-z-表-26-個小寫英文字母"><span class="nav-number">2.3.1.</span> <span class="nav-text">[a-z] 表 26 個小寫英文字母</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#A-Z-表-26-個大寫英文字母"><span class="nav-number">2.3.2.</span> <span class="nav-text">[A-Z] 表 26 個大寫英文字母</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#a-zA-Z0-9-字符組合-表-26-個字母與數字"><span class="nav-number">2.3.3.</span> <span class="nav-text">[a-zA-Z0-9] 字符組合 表 26 個字母與數字</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#a-內的-表取反"><span class="nav-number">2.3.4.</span> <span class="nav-text">[^a] []內的^ 表取反</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#預定義類"><span class="nav-number">2.4.</span> <span class="nav-text">預定義類</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#量詞符"><span class="nav-number">2.5.</span> <span class="nav-text">量詞符</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#可出現-0-次或者多次-gt-0"><span class="nav-number">2.5.1.</span> <span class="nav-text">* 可出現 0 次或者多次 &gt;&#x3D; 0</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可出現-1-次或者多次-gt-1"><span class="nav-number">2.5.2.</span> <span class="nav-text">+ 可出現 1 次或者多次 &gt;&#x3D; 1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可出現-0-次或者-1-次-0-1"><span class="nav-number">2.5.3.</span> <span class="nav-text">? 可出現 0 次或者 1 次 0 || 1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-重複三次-3-中間不能有空格"><span class="nav-number">2.5.4.</span> <span class="nav-text">{3} 重複三次 &#x3D; 3 ({} 中間不能有空格)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-大於等於三次-gt-3-中間不能有空格"><span class="nav-number">2.5.5.</span> <span class="nav-text">{3,} 大於等於三次 &gt;&#x3D; 3 ({} 中間不能有空格)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-9-大於等於三次並小於等於九-gt-3-amp-amp-lt-9-中間不能有空格"><span class="nav-number">2.5.6.</span> <span class="nav-text">{3,9} 大於等於三次並小於等於九 &gt;&#x3D; 3 &amp;&amp; &lt;&#x3D; 9 ({} 中間不能有空格)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用正則"><span class="nav-number">3.</span> <span class="nav-text">常用正則</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Howie Chen"
+      src="/blog/images/me.jpg">
+  <p class="site-author-name" itemprop="name">Howie Chen</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/howie12207" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;howie12207" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:howie12207@gmail.com" title="E-Mail → mailto:howie12207@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/chy12207" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;chy12207" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Howie Chen</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/motion.js"></script>
+
+
+<script src="/blog/js/schemes/pisces.js"></script>
+
+
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
