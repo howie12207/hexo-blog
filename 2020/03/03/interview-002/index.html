@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="ssh,git," />
+  <meta name="keywords" content="interview," />
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="為什麼要使用 SSH ?之前上傳到 github 都是透過 https 的方式，而這次製作 hexo 專案，要透過 SSH 將檔案上傳到 github 上，所以就需要知道如何使用 SSH。">
+<meta name="description" content="公司名稱鼎羿科技有限公司">
 <meta property="og:type" content="article">
-<meta property="og:title" content="設定 SSH">
-<meta property="og:url" content="http://yoursite.com/2020/04/10/ssh/index.html">
+<meta property="og:title" content="面試 - 鼎羿">
+<meta property="og:url" content="http://yoursite.com/2020/03/03/interview-002/index.html">
 <meta property="og:site_name" content="Howie&#39;s blog">
-<meta property="og:description" content="為什麼要使用 SSH ?之前上傳到 github 都是透過 https 的方式，而這次製作 hexo 專案，要透過 SSH 將檔案上傳到 github 上，所以就需要知道如何使用 SSH。">
+<meta property="og:description" content="公司名稱鼎羿科技有限公司">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-10T13:59:32.000Z">
-<meta property="article:modified_time" content="2020-04-11T03:34:45.628Z">
+<meta property="article:published_time" content="2020-03-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-04-11T03:35:06.001Z">
 <meta property="article:author" content="Howie Chen">
-<meta property="article:tag" content="ssh">
-<meta property="article:tag" content="git">
+<meta property="article:tag" content="interview">
 <meta name="twitter:card" content="summary">
 
 
@@ -121,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/04/10/ssh/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/03/03/interview-002/"/>
 
 
 
 
 
-  <title>設定 SSH | Howie's blog</title>
+  <title>面試 - 鼎羿 | Howie's blog</title>
   
 
 
@@ -254,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2020/04/10/ssh/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2020/03/03/interview-002/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Howie Chen">
@@ -271,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">設定 SSH</h1>
+          <h1 class="post-title" itemprop="name headline">面試 - 鼎羿</h1>
         
 
         <div class="post-meta">
@@ -283,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-10T21:59:32+08:00">
-                2020-04-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-03T00:00:00+08:00">
+                2020-03-03
               </time>
             
 
@@ -306,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
+                  <a href="/blog/categories/interview/" itemprop="url" rel="index">
+                    <span itemprop="name">interview</span>
                   </a>
                 </span>
 
@@ -343,20 +342,97 @@
       
 
       
-        <h3 id="為什麼要使用-SSH"><a href="#為什麼要使用-SSH" class="headerlink" title="為什麼要使用 SSH ?"></a>為什麼要使用 SSH ?</h3><p>之前上傳到 github 都是透過 https 的方式，而這次製作 hexo 專案，要透過 SSH 將檔案上傳到 github 上，所以就需要知道如何使用 SSH。</p>
+        <h3 id="公司名稱"><a href="#公司名稱" class="headerlink" title="公司名稱"></a>公司名稱</h3><p>鼎羿科技有限公司</p>
 <a id="more"></a>
 
-<h3 id="開始設定-SSH"><a href="#開始設定-SSH" class="headerlink" title="開始設定 SSH"></a>開始設定 SSH</h3><h4 id="1-開啟終端機"><a href="#1-開啟終端機" class="headerlink" title="1. 開啟終端機"></a>1. 開啟終端機</h4><pre><code>ssh-keygen -t rsa -b 4096 -C &quot;howie12207@gmail.com&quot;</code></pre><p>出現以下畫面</p>
-<pre><code>Generating public/private rsa key pair.
-Enter a file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
-Enter passphrase (empty for no passphrase): [Type a passphrase]
-Enter same passphrase again: [Type passphrase again]</code></pre><p>第二行是 存放 key 檔案的位置<br>第三行與第三行是 輸入密碼與確認密碼<br>若沒有特別需要，都按 Enter 直接過去即可</p>
-<h4 id="2-開啟-ssh-agent"><a href="#2-開啟-ssh-agent" class="headerlink" title="2. 開啟 ssh-agent"></a>2. 開啟 ssh-agent</h4><p>這裡奇怪的是我使用 VScode 的 powershell 無法正常操作<br>後來改成 git bash 就正常了</p>
-<pre><code>eval &quot;\$(ssh-agent -s)&quot;</code></pre><h4 id="3-將私鑰加入到-ssh-agent"><a href="#3-將私鑰加入到-ssh-agent" class="headerlink" title="3. 將私鑰加入到 ssh-agent"></a>3. 將私鑰加入到 ssh-agent</h4><pre><code>ssh-add -K ~/.ssh/id_rsa</code></pre><h5 id="4-上傳公鑰"><a href="#4-上傳公鑰" class="headerlink" title="4. 上傳公鑰"></a>4. 上傳公鑰</h5><p>將公鑰的內容打印出來並複製</p>
-<pre><code>cat ~/.ssh/id_rsa.pub</code></pre><p>到 Github 上 -&gt; setting -&gt; SSH andGPG keys -&gt; New SSH key</p>
-<p>將內容貼上，然後自己取名</p>
-<h3 id="參考"><a href="#參考" class="headerlink" title="參考:"></a>參考:</h3><p><a href="https://ithelp.ithome.com.tw/articles/10205988" target="_blank" rel="noopener">IT 邦幫忙 前端工具百寶箱 - 六角學院</a></p>
+<h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p>台北市內湖區瑞光路 298 號 8 樓</p>
+<h3 id="應徵職位"><a href="#應徵職位" class="headerlink" title="應徵職位"></a>應徵職位</h3><p>前端工程師</p>
+<h3 id="面試日期"><a href="#面試日期" class="headerlink" title="面試日期"></a>面試日期</h3><p>2020/03/03 10:00</p>
+<h3 id="攜帶"><a href="#攜帶" class="headerlink" title="攜帶"></a>攜帶</h3><p>帶履歷表、筆電、作品</p>
+<h3 id="面試流程"><a href="#面試流程" class="headerlink" title="面試流程"></a>面試流程</h3><p>先由櫃台帶到會議室，並給了一份專業技能試卷 20 分鐘作答。</p>
+<h4 id="專業技能考題大概如下"><a href="#專業技能考題大概如下" class="headerlink" title="專業技能考題大概如下"></a>專業技能考題大概如下</h4><h5 id="let-與-var"><a href="#let-與-var" class="headerlink" title="let 與 var"></a>let 與 var</h5><pre><code>(1)
 
+for (var i = 1; i &lt;= 5; i++) {
+  setTimeout(() =&gt; {
+    console.log(i);
+  }, 0);
+}
+console.log(i);
+
+// 6
+// 6
+// 6
+// 6
+// 6
+// 6
+
+(2)
+
+for (let i = 1; i &lt;= 5; i++) {
+  setTimeout(() =&gt; {
+    console.log(i);
+  }, 0);
+}
+console.log(i);
+
+// i is not defined
+// 1
+// 2
+// 3
+// 4
+// 5</code></pre><h5 id="請寫出三種讓子元素於父元素裡置中的方法"><a href="#請寫出三種讓子元素於父元素裡置中的方法" class="headerlink" title="請寫出三種讓子元素於父元素裡置中的方法"></a>請寫出三種讓子元素於父元素裡置中的方法</h5><p>Ans:</p>
+<pre><code>(1) flex
+
+  .parent{
+    display:flex;
+    justify-content:center;
+  }
+
+   .child{}
+
+(2) position
+
+.parent{
+  position: relative;
+}
+
+.child{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+(3) margin
+
+.parent{
+}
+
+.child{
+  margin: 0 auto;
+}</code></pre><h5 id="用-async-await-寫出延遲一秒輸出-console-log-1"><a href="#用-async-await-寫出延遲一秒輸出-console-log-1" class="headerlink" title="用 async await 寫出延遲一秒輸出 console.log(1)"></a>用 async await 寫出延遲一秒輸出 console.log(1)</h5><p>Ans:</p>
+<pre><code>function delay(t) {
+  return new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+      resolve();
+    }, t);
+  });
+}
+(async function() {
+  await delay(1000);
+  console.log(&apos;1&apos;);
+})();</code></pre><h5 id="ary-1-2-3-…N-使用-ary-方法算出總和"><a href="#ary-1-2-3-…N-使用-ary-方法算出總和" class="headerlink" title="ary=[1,2,3,…N] 使用 ary 方法算出總和"></a>ary=[1,2,3,…N] 使用 ary 方法算出總和</h5><p>(1) reduce</p>
+<pre><code>let ary = [1, 2, 3, 4];
+let total = ary.reduce((prev, next) =&gt; prev + next, 0);
+console.log(total);</code></pre><p>(2) foreach</p>
+<pre><code>let ary = [1, 2, 3, 4];
+let total = 0;
+ary.forEach(item =&gt; (total += item));
+console.log(total);</code></pre><h5 id="還有一些題目忘記了"><a href="#還有一些題目忘記了" class="headerlink" title="還有一些題目忘記了"></a>還有一些題目忘記了</h5><h4 id="接著與技術長面談"><a href="#接著與技術長面談" class="headerlink" title="接著與技術長面談"></a>接著與技術長面談</h4><p>根據剛才的試卷作答探討，也請我自我介紹，展示自己的作品並做簡單的介紹，技術長也分享了自己的一些觀點。</p>
+<h4 id="再來與-HR-面談"><a href="#再來與-HR-面談" class="headerlink" title="再來與 HR 面談"></a>再來與 HR 面談</h4><p>HR 介紹了一下公司及環境，並了解為何離開前一間公司。</p>
+<h4 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h4><p>總時長約花 1.5 小時，是間博弈公司，公司強調工作環境的氣氛，上班期間都有音樂聽，大家也都會訂便當一起吃，也有懶骨頭中午可以睡，公司環境、氣氛不錯，與面試官也都聊得很開心。</p>
+<p>最後 offer get，也接受，至於後面的工作狀況又是另一個故事了。</p>
+<h3 id="4-11-補-PO-3-3-當天紀錄"><a href="#4-11-補-PO-3-3-當天紀錄" class="headerlink" title="4/11 補 PO 3/3 當天紀錄"></a>4/11 補 PO 3/3 當天紀錄</h3>
       
     </div>
     
@@ -373,9 +449,7 @@ Enter same passphrase again: [Type passphrase again]</code></pre><p>第二行是
       
         <div class="post-tags">
           
-            <a href="/blog/tags/ssh/" rel="tag"># ssh</a>
-          
-            <a href="/blog/tags/git/" rel="tag"># git</a>
+            <a href="/blog/tags/interview/" rel="tag"># interview</a>
           
         </div>
       
@@ -388,8 +462,8 @@ Enter same passphrase again: [Type passphrase again]</code></pre><p>第二行是
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2020/04/10/start-hexo/" rel="next" title="開始使用 Hexo">
-                <i class="fa fa-chevron-left"></i> 開始使用 Hexo
+              <a href="/blog/2020/02/25/interview-001/" rel="next" title="面試 - 鳳之梧">
+                <i class="fa fa-chevron-left"></i> 面試 - 鳳之梧
               </a>
             
           </div>
@@ -398,8 +472,8 @@ Enter same passphrase again: [Type passphrase again]</code></pre><p>第二行是
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2020/04/10/markdown/" rel="prev" title="Markdown 學習">
-                Markdown 學習 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2020/03/30/working-001/" rel="prev" title="結束兩個禮拜又一天的工作">
+                結束兩個禮拜又一天的工作 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -532,7 +606,7 @@ Enter same passphrase again: [Type passphrase again]</code></pre><p>第二行是
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#為什麼要使用-SSH"><span class="nav-number">1.</span> <span class="nav-text">為什麼要使用 SSH ?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#開始設定-SSH"><span class="nav-number">2.</span> <span class="nav-text">開始設定 SSH</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-開啟終端機"><span class="nav-number">2.1.</span> <span class="nav-text">1. 開啟終端機</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-開啟-ssh-agent"><span class="nav-number">2.2.</span> <span class="nav-text">2. 開啟 ssh-agent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-將私鑰加入到-ssh-agent"><span class="nav-number">2.3.</span> <span class="nav-text">3. 將私鑰加入到 ssh-agent</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-上傳公鑰"><span class="nav-number">2.3.1.</span> <span class="nav-text">4. 上傳公鑰</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考"><span class="nav-number">3.</span> <span class="nav-text">參考:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#公司名稱"><span class="nav-number">1.</span> <span class="nav-text">公司名稱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址"><span class="nav-number">2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#應徵職位"><span class="nav-number">3.</span> <span class="nav-text">應徵職位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面試日期"><span class="nav-number">4.</span> <span class="nav-text">面試日期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#攜帶"><span class="nav-number">5.</span> <span class="nav-text">攜帶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面試流程"><span class="nav-number">6.</span> <span class="nav-text">面試流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#專業技能考題大概如下"><span class="nav-number">6.1.</span> <span class="nav-text">專業技能考題大概如下</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#let-與-var"><span class="nav-number">6.1.1.</span> <span class="nav-text">let 與 var</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#請寫出三種讓子元素於父元素裡置中的方法"><span class="nav-number">6.1.2.</span> <span class="nav-text">請寫出三種讓子元素於父元素裡置中的方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用-async-await-寫出延遲一秒輸出-console-log-1"><span class="nav-number">6.1.3.</span> <span class="nav-text">用 async await 寫出延遲一秒輸出 console.log(1)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ary-1-2-3-…N-使用-ary-方法算出總和"><span class="nav-number">6.1.4.</span> <span class="nav-text">ary&#x3D;[1,2,3,…N] 使用 ary 方法算出總和</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#還有一些題目忘記了"><span class="nav-number">6.1.5.</span> <span class="nav-text">還有一些題目忘記了</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接著與技術長面談"><span class="nav-number">6.2.</span> <span class="nav-text">接著與技術長面談</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#再來與-HR-面談"><span class="nav-number">6.3.</span> <span class="nav-text">再來與 HR 面談</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小結"><span class="nav-number">6.4.</span> <span class="nav-text">小結</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-11-補-PO-3-3-當天紀錄"><span class="nav-number">7.</span> <span class="nav-text">4&#x2F;11 補 PO 3&#x2F;3 當天紀錄</span></a></li></ol></div>
             
 
           </div>
