@@ -20,14 +20,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="javascript-for">
+  <meta name="description" content="for…in 取得物件內的所有 key">
+<meta property="og:type" content="article">
+<meta property="og:title" content="for&#x2F;in &amp; for&#x2F;of">
 <meta property="og:url" content="http://yoursite.com/2020/04/13/javascript-for/index.html">
 <meta property="og:site_name" content="Howie&#39;s blog">
+<meta property="og:description" content="for…in 取得物件內的所有 key">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-13T04:11:12.000Z">
-<meta property="article:modified_time" content="2020-04-13T04:11:12.833Z">
+<meta property="article:modified_time" content="2020-04-13T06:02:03.977Z">
 <meta property="article:author" content="Howie Chen">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="for">
+<meta property="article:tag" content="for&#x2F;in">
+<meta property="article:tag" content="for&#x2F;of">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/04/13/javascript-for/">
@@ -43,7 +49,7 @@
   };
 </script>
 
-  <title>javascript-for | Howie's blog</title>
+  <title>for/in & for/of | Howie's blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163289150-1"></script>
     <script>
@@ -175,7 +181,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          javascript-for
+          for/in & for/of
         </h1>
 
         <div class="post-meta">
@@ -184,8 +190,18 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-04-13 12:11:12" itemprop="dateCreated datePublished" datetime="2020-04-13T12:11:12+08:00">2020-04-13</time>
+              <time title="Created: 2020-04-13 12:11:12 / Modified: 14:02:03" itemprop="dateCreated datePublished" datetime="2020-04-13T12:11:12+08:00">2020-04-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
             </span>
 
           
@@ -199,7 +215,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h4 id="for…in-取得物件內的所有-key"><a href="#for…in-取得物件內的所有-key" class="headerlink" title="for…in 取得物件內的所有 key"></a>for…in 取得<font color="#f00">物件</font>內的所有 key</h4><a id="more"></a>
+
+<pre><code>let person = {name:&apos;hulk&apos;, age:20};
+for (x in person){
+    console.log(x); // name, age
+}</code></pre><p>可再透過得到的 key 取得其值</p>
+<pre><code>for (x in person){
+    console.log(person[x]); // hulk, 20
+}</code></pre><h4 id="for…of-取得迭代型物件-陣列、Maps、Nodelists…等-，取出其值"><a href="#for…of-取得迭代型物件-陣列、Maps、Nodelists…等-，取出其值" class="headerlink" title="for…of 取得迭代型物件(陣列、Maps、Nodelists…等)，取出其值"></a>for…of 取得迭代型物件(<font color="#f00">陣列</font>、Maps、Nodelists…等)，取出其值</h4><pre><code>let cars = [&quot;asdf&quot;, &quot;qw&quot;, &quot;zz&quot;];
+for (x of cars) {
+  console.log(x); // asdf, qw, zz
+}</code></pre><h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://medium.com/itsems-frontend/w3hexschool-api-challenge-for-family-22e751023e9e" target="_blank" rel="noopener">六角學院鼠年全馬鐵人挑戰 API 查詢介面(下) — 搞清楚 for 家族：for/forEach/for…in/ for…of</a></p>
+
     </div>
 
     
@@ -207,6 +235,12 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/javascript/" rel="tag"># javascript</a>
+              <a href="/blog/tags/for/" rel="tag"># for</a>
+              <a href="/blog/tags/for-in/" rel="tag"># for/in</a>
+              <a href="/blog/tags/for-of/" rel="tag"># for/of</a>
+          </div>
 
         
 
@@ -217,7 +251,10 @@
     <a href="/blog/2020/04/13/javascript-restful-api/" rel="prev" title="API">
       <i class="fa fa-chevron-left"></i> API
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/blog/2020/04/13/javascript-class/" rel="next" title="class">
+      class <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -276,6 +313,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#for…in-取得物件內的所有-key"><span class="nav-number">1.</span> <span class="nav-text">for…in 取得物件內的所有 key</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#for…of-取得迭代型物件-陣列、Maps、Nodelists…等-，取出其值"><span class="nav-number">2.</span> <span class="nav-text">for…of 取得迭代型物件(陣列、Maps、Nodelists…等)，取出其值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考"><span class="nav-number"></span> <span class="nav-text">參考</span></a></div>
       </div>
       <!--/noindex-->
 
@@ -291,7 +329,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -303,7 +341,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
