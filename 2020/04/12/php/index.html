@@ -28,7 +28,7 @@
 <meta property="og:description" content="定義變數,打印">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-12T04:42:52.000Z">
-<meta property="article:modified_time" content="2020-04-12T14:44:19.585Z">
+<meta property="article:modified_time" content="2020-04-13T14:15:22.847Z">
 <meta property="article:author" content="Howie Chen">
 <meta property="article:tag" content="php">
 <meta name="twitter:card" content="summary">
@@ -187,10 +187,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-04-12 12:42:52 / Modified: 22:44:19" itemprop="dateCreated datePublished" datetime="2020-04-12T12:42:52+08:00">2020-04-12</time>
+              <time title="Created: 2020-04-12 12:42:52" itemprop="dateCreated datePublished" datetime="2020-04-12T12:42:52+08:00">2020-04-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-13 22:15:22" itemprop="dateModified" datetime="2020-04-13T22:15:22+08:00">2020-04-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -251,7 +257,57 @@ var_dump(is_float($b)); // true</code></pre><p>連接字符串 .</p>
 $b = &apos;banana&apos;;
 
 $a .= $b; // $a = $a . $b
-echo $a; //applebanana</code></pre><p>打印 php 資訊</p>
+echo $a; //applebanana</code></pre><p>funciton 一般傳值與引用傳值</p>
+<pre><code>$a = 2;
+$b = 3;</code></pre><p>一般傳值</p>
+<pre><code>function change($a, $b) {
+    $a = $a + $a;
+    $b = $b + $b;
+    echo $a,&apos;&lt;br/&gt;&apos;,$b,&apos;&lt;hr/&gt;&apos;; // 4, 6
+}
+change($a, $b);
+echo $a,&apos;&lt;br&gt;&apos;,$b; // 2, 3</code></pre><p>引用傳值</p>
+<pre><code>function change($a, &amp;$b) {
+    $a = $a + $a;
+    $b = $b + $b;
+    echo $a,&apos;&lt;br/&gt;&apos;,$b,&apos;&lt;hr/&gt;&apos;; // 4, 6
+}
+change($a, $b);
+echo $a,&apos;&lt;br&gt;&apos;,$b; // 2, 6</code></pre><p>全局變量無法在局部訪問 (與 JS 不同)</p>
+<pre><code>$out = 2;
+
+function see(){
+    echo $out; // 報錯，找不到out變數
+}
+echo $out; // 2
+see();</code></pre><p>使用 global 使全局變量能在局部訪問；局部變量，能在全局訪問</p>
+<pre><code>$out = 2;
+
+function see() {
+    global $out;
+    echo $out; // 2
+    global $inside;
+    $inside = 4;
+}
+see();
+echo $inside;</code></pre><p>靜態變量 static 跨函數共享數據(非不同函數，而是本體多次調用)</p>
+<pre><code>function see() {
+    $local = 1;
+    static $static = 1;
+    echo &apos;local:&apos;.$local++,&apos;&lt;br/&gt;&apos;,&apos;static:&apos;.$static++,&apos;&lt;hr/&gt;&apos;;
+}
+see(); // 1, 1
+see(); // 1, 2
+see(); // 1, 3</code></pre><p>函數內傳局部變量使用 use (就是將外部變量(局部)保留給內部使用)</p>
+<pre><code>function outF() {
+    $name = &apos;hulk&apos;;
+    $innerF = function() use($name) {
+        echo $name;
+    };
+    return $innerF();
+}
+
+$test = outF();</code></pre><p>打印 php 資訊</p>
 <pre><code>phpinfo()</code></pre><h3 id="未完待續"><a href="#未完待續" class="headerlink" title="未完待續.."></a>未完待續..</h3>
     </div>
 
