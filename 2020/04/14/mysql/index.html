@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -17,23 +17,23 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"howie12207.github.io","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":"enable","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="如何啟動 MySQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="學習 MySQL">
-<meta property="og:url" content="http://yoursite.com/2020/04/14/mysql/index.html">
+<meta property="og:url" content="http://howie12207.github.io/2020/04/14/mysql/index.html">
 <meta property="og:site_name" content="Howie&#39;s blog">
 <meta property="og:description" content="如何啟動 MySQL">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-04-14T05:45:33.000Z">
-<meta property="article:modified_time" content="2020-04-14T14:29:38.003Z">
+<meta property="article:modified_time" content="2020-04-16T02:55:41.872Z">
 <meta property="article:author" content="Howie Chen">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/04/14/mysql/">
+<link rel="canonical" href="http://howie12207.github.io/2020/04/14/mysql/">
 
 
 <script id="page-configurations">
@@ -42,7 +42,7 @@
     sidebar: "",
     isHome : false,
     isPost : true,
-    lang   : 'en'
+    lang   : 'zh-TW'
   };
 </script>
 
@@ -95,7 +95,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切換導航欄">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -113,6 +113,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -124,24 +125,51 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -164,8 +192,8 @@
     
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/14/mysql/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://howie12207.github.io/2020/04/14/mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/images/me.jpg">
@@ -186,16 +214,22 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
+              <span class="post-meta-item-text">發表於</span>
 
-              <time title="Created: 2020-04-14 13:45:33 / Modified: 22:29:38" itemprop="dateCreated datePublished" datetime="2020-04-14T13:45:33+08:00">2020-04-14</time>
+              <time title="創建時間：2020-04-14 13:45:33" itemprop="dateCreated datePublished" datetime="2020-04-14T13:45:33+08:00">2020-04-14</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-04-16 10:55:41" itemprop="dateModified" datetime="2020-04-16T10:55:41+08:00">2020-04-16</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/blog/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
                 </span>
@@ -220,7 +254,12 @@
 <h5 id="停止-MySQL-服務"><a href="#停止-MySQL-服務" class="headerlink" title="停止 MySQL 服務"></a>停止 MySQL 服務</h5><p>打開 cmd -&gt; 執行 net start mysql</p>
 <h4 id="登錄"><a href="#登錄" class="headerlink" title="登錄"></a>登錄</h4><p>打開 cmd -&gt; 執行 mysql -hlocalhost -P3306 -uroot -proot</p>
 <h4 id="退出"><a href="#退出" class="headerlink" title="退出"></a>退出</h4><p>\q</p>
-<h4 id="基本語法"><a href="#基本語法" class="headerlink" title="基本語法"></a>基本語法</h4><h5 id="創建"><a href="#創建" class="headerlink" title="創建"></a>創建</h5><pre><code>create database 數據庫名字 [庫選項]</code></pre><h5 id="顯示所有數據庫"><a href="#顯示所有數據庫" class="headerlink" title="顯示所有數據庫"></a>顯示所有數據庫</h5><pre><code>show databases;</code></pre><h5 id="選擇數據庫"><a href="#選擇數據庫" class="headerlink" title="選擇數據庫"></a>選擇數據庫</h5><pre><code>use 數據庫名字;</code></pre><h5 id="刪除數據庫"><a href="#刪除數據庫" class="headerlink" title="刪除數據庫"></a>刪除數據庫</h5><pre><code>drop database 數據庫名字;</code></pre><h5 id="創建數據表"><a href="#創建數據表" class="headerlink" title="創建數據表"></a>創建數據表</h5><pre><code>create table 數據庫名字.表名(字段名 字段類型 [字段屬性],字段名 字段類型 [字段屬性],...);</code></pre><h5 id="複製已有表結構-純結構，數據不複製"><a href="#複製已有表結構-純結構，數據不複製" class="headerlink" title="複製已有表結構(純結構，數據不複製)"></a>複製已有表結構(純結構，數據不複製)</h5><pre><code>create table 新表名 like 表名;</code></pre><h5 id="查看所有表"><a href="#查看所有表" class="headerlink" title="查看所有表"></a>查看所有表</h5><pre><code>show tables;</code></pre><h5 id="顯示表結構"><a href="#顯示表結構" class="headerlink" title="顯示表結構"></a>顯示表結構</h5><pre><code>desc 表名;</code></pre><h5 id="修改表名"><a href="#修改表名" class="headerlink" title="修改表名"></a>修改表名</h5><pre><code>rename table 表名 to 新表名;</code></pre><h5 id="修改表選項"><a href="#修改表選項" class="headerlink" title="修改表選項"></a>修改表選項</h5><pre><code>alter table 表名 表選項 [=] 值;</code></pre><h5 id="刪除表結構"><a href="#刪除表結構" class="headerlink" title="刪除表結構"></a>刪除表結構</h5><pre><code>drop table 表名[,表明2...];</code></pre><h5 id="增加字段"><a href="#增加字段" class="headerlink" title="增加字段"></a>增加字段</h5><pre><code>alter table 表名 add 字段名 字段類型;</code></pre><h5 id="修改字段名"><a href="#修改字段名" class="headerlink" title="修改字段名"></a>修改字段名</h5><pre><code>alter table 表名 change 舊字段名 新字段名 新字段類型;</code></pre><h5 id="修改字段類型"><a href="#修改字段類型" class="headerlink" title="修改字段類型"></a>修改字段類型</h5><pre><code>alter table 表名 modify 字段名 新類型 [新屬性] [新位置];</code></pre><h5 id="刪除字段"><a href="#刪除字段" class="headerlink" title="刪除字段"></a>刪除字段</h5><pre><code>alter table 表名 drop 字段名;</code></pre><h5 id="插入數據"><a href="#插入數據" class="headerlink" title="插入數據"></a>插入數據</h5><pre><code>insert into 表名 [(字段列表)] values (對應字段列表);</code></pre><h5 id="獲取所有數據"><a href="#獲取所有數據" class="headerlink" title="獲取所有數據"></a>獲取所有數據</h5><pre><code>select * from 表名;</code></pre><h5 id="獲取符合條件數據"><a href="#獲取符合條件數據" class="headerlink" title="獲取符合條件數據"></a>獲取符合條件數據</h5><pre><code>select 字段名 from 表名 where 字段名 = 值;</code></pre><h5 id="刪除數據-若沒填-where-條件，則刪除該表所有數據"><a href="#刪除數據-若沒填-where-條件，則刪除該表所有數據" class="headerlink" title="刪除數據 (若沒填 where 條件，則刪除該表所有數據)"></a>刪除數據 (若沒填 where 條件，則刪除該表所有數據)</h5><pre><code>delete from 表名 [where 條件];</code></pre><h5 id="更新數據-若沒填-where-條件，則更改該表所有數據"><a href="#更新數據-若沒填-where-條件，則更改該表所有數據" class="headerlink" title="更新數據 (若沒填 where 條件，則更改該表所有數據)"></a>更新數據 (若沒填 where 條件，則更改該表所有數據)</h5><pre><code>update 表名 set 字段名 = 新值 [where 條件]</code></pre><h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://blog.csdn.net/ermaner666/article/details/79096939" target="_blank" rel="noopener">cmd 中输入 net start mysql 提示：服务名无效或者 MySQL 正在启动 MySQL 无法启动</a></p>
+<h4 id="基本語法"><a href="#基本語法" class="headerlink" title="基本語法"></a>基本語法</h4><h5 id="創建"><a href="#創建" class="headerlink" title="創建"></a>創建</h5><pre><code>create database 數據庫名字 [庫選項]</code></pre><h5 id="顯示所有數據庫"><a href="#顯示所有數據庫" class="headerlink" title="顯示所有數據庫"></a>顯示所有數據庫</h5><pre><code>show databases;</code></pre><h5 id="選擇數據庫"><a href="#選擇數據庫" class="headerlink" title="選擇數據庫"></a>選擇數據庫</h5><pre><code>use 數據庫名字;</code></pre><h5 id="刪除數據庫"><a href="#刪除數據庫" class="headerlink" title="刪除數據庫"></a>刪除數據庫</h5><pre><code>drop database 數據庫名字;</code></pre><h5 id="創建數據表"><a href="#創建數據表" class="headerlink" title="創建數據表"></a>創建數據表</h5><pre><code>create table 數據庫名字.表名(字段名 字段類型 [字段屬性],字段名 字段類型 [字段屬性],...);</code></pre><h5 id="複製已有表結構-純結構，數據不複製"><a href="#複製已有表結構-純結構，數據不複製" class="headerlink" title="複製已有表結構(純結構，數據不複製)"></a>複製已有表結構(純結構，數據不複製)</h5><pre><code>create table 新表名 like 表名;</code></pre><h5 id="查看所有表"><a href="#查看所有表" class="headerlink" title="查看所有表"></a>查看所有表</h5><pre><code>show tables;</code></pre><h5 id="顯示表結構"><a href="#顯示表結構" class="headerlink" title="顯示表結構"></a>顯示表結構</h5><pre><code>desc 表名;</code></pre><h5 id="修改表名"><a href="#修改表名" class="headerlink" title="修改表名"></a>修改表名</h5><pre><code>rename table 表名 to 新表名;</code></pre><h5 id="修改表選項"><a href="#修改表選項" class="headerlink" title="修改表選項"></a>修改表選項</h5><pre><code>alter table 表名 表選項 [=] 值;</code></pre><h5 id="刪除表結構"><a href="#刪除表結構" class="headerlink" title="刪除表結構"></a>刪除表結構</h5><pre><code>drop table 表名[,表明2...];</code></pre><h5 id="增加字段"><a href="#增加字段" class="headerlink" title="增加字段"></a>增加字段</h5><pre><code>alter table 表名 add 字段名 字段類型;</code></pre><h5 id="修改字段名"><a href="#修改字段名" class="headerlink" title="修改字段名"></a>修改字段名</h5><pre><code>alter table 表名 change 舊字段名 新字段名 新字段類型;</code></pre><h5 id="修改字段類型"><a href="#修改字段類型" class="headerlink" title="修改字段類型"></a>修改字段類型</h5><pre><code>alter table 表名 modify 字段名 新類型 [新屬性] [新位置];</code></pre><h5 id="刪除字段"><a href="#刪除字段" class="headerlink" title="刪除字段"></a>刪除字段</h5><pre><code>alter table 表名 drop 字段名;</code></pre><h5 id="插入數據"><a href="#插入數據" class="headerlink" title="插入數據"></a>插入數據</h5><pre><code>insert into 表名 [(字段列表)] values (對應字段列表);</code></pre><h5 id="獲取所有數據"><a href="#獲取所有數據" class="headerlink" title="獲取所有數據"></a>獲取所有數據</h5><pre><code>select * from 表名;</code></pre><h5 id="獲取符合條件數據"><a href="#獲取符合條件數據" class="headerlink" title="獲取符合條件數據"></a>獲取符合條件數據</h5><pre><code>select 字段名 from 表名 where 字段名 = 值;</code></pre><h5 id="刪除數據-若沒填-where-條件，則刪除該表所有數據"><a href="#刪除數據-若沒填-where-條件，則刪除該表所有數據" class="headerlink" title="刪除數據 (若沒填 where 條件，則刪除該表所有數據)"></a>刪除數據 (若沒填 where 條件，則刪除該表所有數據)</h5><pre><code>delete from 表名 [where 條件];</code></pre><h5 id="更新數據-若沒填-where-條件，則更改該表所有數據"><a href="#更新數據-若沒填-where-條件，則更改該表所有數據" class="headerlink" title="更新數據 (若沒填 where 條件，則更改該表所有數據)"></a>更新數據 (若沒填 where 條件，則更改該表所有數據)</h5><pre><code>update 表名 set 字段名 = 新值 [where 條件]</code></pre><h4 id="列類型"><a href="#列類型" class="headerlink" title="列類型"></a>列類型</h4><h5 id="整數類型"><a href="#整數類型" class="headerlink" title="整數類型"></a>整數類型</h5><h6 id="Tinyint"><a href="#Tinyint" class="headerlink" title="Tinyint"></a>Tinyint</h6><p>迷你整型，一個字節 256</p>
+<h6 id="Smallint"><a href="#Smallint" class="headerlink" title="Smallint"></a>Smallint</h6><p>小整型，兩個字節 65536</p>
+<h6 id="Mediumint"><a href="#Mediumint" class="headerlink" title="Mediumint"></a>Mediumint</h6><p>中整型，三個字節 16777216</p>
+<h6 id="Int"><a href="#Int" class="headerlink" title="Int"></a>Int</h6><p>整型(標準整型)，四個字節</p>
+<h6 id="Bigint"><a href="#Bigint" class="headerlink" title="Bigint"></a>Bigint</h6><p>大整型，八個字節</p>
+<h3 id="未完待續…"><a href="#未完待續…" class="headerlink" title="未完待續…"></a>未完待續…</h3><h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://blog.csdn.net/ermaner666/article/details/79096939" target="_blank" rel="noopener">cmd 中输入 net start mysql 提示：服务名无效或者 MySQL 正在启动 MySQL 无法启动</a></p>
 
     </div>
 
@@ -242,7 +281,10 @@
     <a href="/blog/2020/04/13/javascript-class/" rel="prev" title="class">
       <i class="fa fa-chevron-left"></i> class
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/blog/2020/04/17/vue-sync/" rel="next" title="Vue 的 sync">
+      Vue 的 sync <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -292,16 +334,16 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目錄
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          本站概要
         </li>
       </ul>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何啟動-MySQL"><span class="nav-number">1.</span> <span class="nav-text">如何啟動 MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#先安裝-MySQL-服務"><span class="nav-number">1.1.</span> <span class="nav-text">先安裝 MySQL 服務</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#啟動-MySQL-服務"><span class="nav-number">1.2.</span> <span class="nav-text">啟動 MySQL 服務</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#若出現-MySQL-服務無法啟動"><span class="nav-number">1.2.1.</span> <span class="nav-text">若出現 MySQL 服務無法啟動</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#停止-MySQL-服務"><span class="nav-number">1.3.</span> <span class="nav-text">停止 MySQL 服務</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登錄"><span class="nav-number">2.</span> <span class="nav-text">登錄</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#退出"><span class="nav-number">3.</span> <span class="nav-text">退出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本語法"><span class="nav-number">4.</span> <span class="nav-text">基本語法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#創建"><span class="nav-number">4.1.</span> <span class="nav-text">創建</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#顯示所有數據庫"><span class="nav-number">4.2.</span> <span class="nav-text">顯示所有數據庫</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#選擇數據庫"><span class="nav-number">4.3.</span> <span class="nav-text">選擇數據庫</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#刪除數據庫"><span class="nav-number">4.4.</span> <span class="nav-text">刪除數據庫</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#創建數據表"><span class="nav-number">4.5.</span> <span class="nav-text">創建數據表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#複製已有表結構-純結構，數據不複製"><span class="nav-number">4.6.</span> <span class="nav-text">複製已有表結構(純結構，數據不複製)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查看所有表"><span class="nav-number">4.7.</span> <span class="nav-text">查看所有表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#顯示表結構"><span class="nav-number">4.8.</span> <span class="nav-text">顯示表結構</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修改表名"><span class="nav-number">4.9.</span> <span class="nav-text">修改表名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修改表選項"><span class="nav-number">4.10.</span> <span class="nav-text">修改表選項</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#刪除表結構"><span class="nav-number">4.11.</span> <span class="nav-text">刪除表結構</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#增加字段"><span class="nav-number">4.12.</span> <span class="nav-text">增加字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修改字段名"><span class="nav-number">4.13.</span> <span class="nav-text">修改字段名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修改字段類型"><span class="nav-number">4.14.</span> <span class="nav-text">修改字段類型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#刪除字段"><span class="nav-number">4.15.</span> <span class="nav-text">刪除字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#插入數據"><span class="nav-number">4.16.</span> <span class="nav-text">插入數據</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#獲取所有數據"><span class="nav-number">4.17.</span> <span class="nav-text">獲取所有數據</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#獲取符合條件數據"><span class="nav-number">4.18.</span> <span class="nav-text">獲取符合條件數據</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#刪除數據-若沒填-where-條件，則刪除該表所有數據"><span class="nav-number">4.19.</span> <span class="nav-text">刪除數據 (若沒填 where 條件，則刪除該表所有數據)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#更新數據-若沒填-where-條件，則更改該表所有數據"><span class="nav-number">4.20.</span> <span class="nav-text">更新數據 (若沒填 where 條件，則更改該表所有數據)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考"><span class="nav-number"></span> <span class="nav-text">參考</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何啟動-MySQL"><span class="nav-number">1.</span> <span class="nav-text">如何啟動 MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#先安裝-MySQL-服務"><span class="nav-number">1.1.</span> <span class="nav-text">先安裝 MySQL 服務</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#啟動-MySQL-服務"><span class="nav-number">1.2.</span> <span class="nav-text">啟動 MySQL 服務</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#若出現-MySQL-服務無法啟動"><span class="nav-number">1.2.1.</span> <span class="nav-text">若出現 MySQL 服務無法啟動</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#停止-MySQL-服務"><span class="nav-number">1.3.</span> <span class="nav-text">停止 MySQL 服務</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登錄"><span class="nav-number">2.</span> <span class="nav-text">登錄</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#退出"><span class="nav-number">3.</span> <span class="nav-text">退出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本語法"><span class="nav-number">4.</span> <span class="nav-text">基本語法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#創建"><span class="nav-number">4.1.</span> <span class="nav-text">創建</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#顯示所有數據庫"><span class="nav-number">4.2.</span> <span class="nav-text">顯示所有數據庫</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#選擇數據庫"><span class="nav-number">4.3.</span> <span class="nav-text">選擇數據庫</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#刪除數據庫"><span class="nav-number">4.4.</span> <span class="nav-text">刪除數據庫</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#創建數據表"><span class="nav-number">4.5.</span> <span class="nav-text">創建數據表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#複製已有表結構-純結構，數據不複製"><span class="nav-number">4.6.</span> <span class="nav-text">複製已有表結構(純結構，數據不複製)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查看所有表"><span class="nav-number">4.7.</span> <span class="nav-text">查看所有表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#顯示表結構"><span class="nav-number">4.8.</span> <span class="nav-text">顯示表結構</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修改表名"><span class="nav-number">4.9.</span> <span class="nav-text">修改表名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修改表選項"><span class="nav-number">4.10.</span> <span class="nav-text">修改表選項</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#刪除表結構"><span class="nav-number">4.11.</span> <span class="nav-text">刪除表結構</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#增加字段"><span class="nav-number">4.12.</span> <span class="nav-text">增加字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修改字段名"><span class="nav-number">4.13.</span> <span class="nav-text">修改字段名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修改字段類型"><span class="nav-number">4.14.</span> <span class="nav-text">修改字段類型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#刪除字段"><span class="nav-number">4.15.</span> <span class="nav-text">刪除字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#插入數據"><span class="nav-number">4.16.</span> <span class="nav-text">插入數據</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#獲取所有數據"><span class="nav-number">4.17.</span> <span class="nav-text">獲取所有數據</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#獲取符合條件數據"><span class="nav-number">4.18.</span> <span class="nav-text">獲取符合條件數據</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#刪除數據-若沒填-where-條件，則刪除該表所有數據"><span class="nav-number">4.19.</span> <span class="nav-text">刪除數據 (若沒填 where 條件，則刪除該表所有數據)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#更新數據-若沒填-where-條件，則更改該表所有數據"><span class="nav-number">4.20.</span> <span class="nav-text">更新數據 (若沒填 where 條件，則更改該表所有數據)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列類型"><span class="nav-number">5.</span> <span class="nav-text">列類型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#整數類型"><span class="nav-number">5.1.</span> <span class="nav-text">整數類型</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Tinyint"><span class="nav-number">5.1.1.</span> <span class="nav-text">Tinyint</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Smallint"><span class="nav-number">5.1.2.</span> <span class="nav-text">Smallint</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Mediumint"><span class="nav-number">5.1.3.</span> <span class="nav-text">Mediumint</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Int"><span class="nav-number">5.1.4.</span> <span class="nav-text">Int</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Bigint"><span class="nav-number">5.1.5.</span> <span class="nav-text">Bigint</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#未完待續…"><span class="nav-number"></span> <span class="nav-text">未完待續…</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考"><span class="nav-number"></span> <span class="nav-text">參考</span></a></div>
       </div>
       <!--/noindex-->
 
@@ -317,20 +359,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">22</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">10</span>
-        <span class="site-state-item-name">categories</span></a>
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
-        <span class="site-state-item-count">30</span>
-        <span class="site-state-item-name">tags</span></a>
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
 </div>
@@ -405,6 +447,10 @@
   
 
 
+
+
+  
+<script src="/blog/js/local-search.js"></script>
 
 
 

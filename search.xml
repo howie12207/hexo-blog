@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Vue的生命週期</title>
+      <link href="/blog/2020/04/22/vue-lifecycle/"/>
+      <url>/blog/2020/04/22/vue-lifecycle/</url>
+      
+        <content type="html"><![CDATA[<p>面試常常會被問到 Vue 的生命週期，知道大概但今天被詢問到 computed 與 watch 是在何時被調用的?回答不出來所以特別再深入了解一下。</p><a id="more"></a><p>從下面代碼來看一下</p><pre><code>&lt;div id=&quot;app&quot;&gt;  &lt;input type=&quot;number&quot; v-model=&quot;testhook&quot; /&gt;{{testhook}}  &lt;br /&gt;  &lt;input type=&quot;text&quot; v-model=&quot;testhook2&quot; /&gt;{{testhook2}}  &lt;br /&gt;  {{fullchange}}&lt;/div&gt;let vm = new Vue({  el: &quot;#app&quot;,  data: function () {    return {      testhook: 1,      testhook2: &quot;hello&quot;,    };  },  watch: {    testhook: function () {      console.log(&quot;watch監聽到了testhook的變化&quot;);    },    testhook2: function () {      console.log(&quot;watch監聽到了testhook2222的變化&quot;);    },  },  computed: {    fullchange: function () {      console.log(        &quot;computed監聽到了fullchange&quot; + this.testhook + &quot;,&quot; + this.testhook2      );      return this.testhook + &quot;,&quot; + this.testhook2;    },  },  beforeCreate: function () {    console.log(&quot;調用了beforeCreat鉤子函數&quot;);  },  created: function () {    console.log(&quot;調用了created鉤子函數&quot;);    console.log(this.$el);    console.log(this);  },  beforeMount: function () {    console.log(&quot;調用了beforeMount鉤子函數&quot;);  },  mounted: function () {    console.log(&quot;調用了mounted鉤子函數&quot;);    console.log(this.$el);    console.log(this);  },  beforeUpdate: function () {    console.log(&quot;調用了beforeUpdate鉤子函數&quot;);    console.log(this.$el);    console.log(this);  },  updated: function () {    console.log(&quot;調用了updated鉤子函數&quot;);  },});</code></pre><p>出現如下 console</p><p>調用了 beforeCreat 鉤子函數<br>調用了 created 鉤子函數<br>undefined<br>Vue {_uid: 0, _isVue: true, $options: {…}, _renderProxy: Proxy, _self: Vue, …}<br>調用了 beforeMount 鉤子函數<br>computed 監聽到了 fullchange1,undefined<br>調用了 mounted 鉤子函數</p><div id=​"app">​…​</div>​Vue {_uid: 0, _isVue: true, $options: {…}, \_renderProxy: Proxy, \_self: Vue, …}<p>beforeCreat<br>created<br>在 created hook 內還未綁定 el 所以回傳 undefined<br>Vue 實例在 created 已建立，所以返回 Vue<br>beforeMount<br>在 beforeMount 與 mounted 間執行 computed<br>mounted<br>已經掛載，返回綁定元素<br>已經建立，返回 Vue</p><p>接著改變值<br>watch<br>beforeUpdate<br>已經掛載，返回綁定元素<br>已經建立，返回 Vue<br>computed<br>updated</p><h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://www.itread01.com/content/1516881488.html" target="_blank" rel="noopener">vue 生命周期鉤子的理解 watch computed</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> vue </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>面試 - 萬聯</title>
+      <link href="/blog/2020/04/22/interview-004/"/>
+      <url>/blog/2020/04/22/interview-004/</url>
+      
+        <content type="html"><![CDATA[<h3 id="公司名稱"><a href="#公司名稱" class="headerlink" title="公司名稱"></a>公司名稱</h3><p>萬聯科技有限公司</p><a id="more"></a><h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p>無</p><h3 id="應徵職位"><a href="#應徵職位" class="headerlink" title="應徵職位"></a>應徵職位</h3><p>前端高級工程師</p><h3 id="面試日期"><a href="#面試日期" class="headerlink" title="面試日期"></a>面試日期</h3><p>2020/04/22 17:00</p><h3 id="攜帶"><a href="#攜帶" class="headerlink" title="攜帶"></a>攜帶</h3><p>無</p><h3 id="面試"><a href="#面試" class="headerlink" title="面試"></a>面試</h3><p>直接與技術長 Line 語音面試，簡單講了幾句後，聽出是個大陸人，介紹是個博弈公司，本部算是在菲律賓，現在要在台北擴編，接著問是否對 vue 熟悉?接著就問了幾個 vue 相關問題；詢問 JS 是寫 ES5 還是 ES6?接著問了 ES6 題目，最後是提問</p><p>Q: 目前台北前端人員有幾位?打算招聘幾位?<br>A: 沒有，目前都在菲律賓，因為業務量大，台北打算招 1X 個。</p><p>結束後表示有任何想問的，可以再人資了解。</p><h4 id="專業技能題"><a href="#專業技能題" class="headerlink" title="專業技能題"></a>專業技能題</h4><h5 id="computed-與-watch-差異"><a href="#computed-與-watch-差異" class="headerlink" title="computed 與 watch 差異"></a>computed 與 watch 差異</h5><h5 id="Vue-生命週期-computed-與-watch-在哪調用"><a href="#Vue-生命週期-computed-與-watch-在哪調用" class="headerlink" title="Vue 生命週期 computed 與 watch 在哪調用?"></a>Vue 生命週期 computed 與 watch 在哪調用?</h5><p>先說了生命週期的順序，然後 computed 與 watch 在哪調用答不出來。</p><h5 id="陣列值改變，但畫面未渲染，要如何處理"><a href="#陣列值改變，但畫面未渲染，要如何處理" class="headerlink" title="陣列值改變，但畫面未渲染，要如何處理?"></a>陣列值改變，但畫面未渲染，要如何處理?</h5><p>A: 透過 set<br>Q: 除了 set 還有什麼?<br>A: put 方法</p><p>但面試官表示 put 沒有辦法，所以這題答得不好。</p><h5 id="filter-與-some-與-map-差異"><a href="#filter-與-some-與-map-差異" class="headerlink" title="filter 與 some 與 map 差異"></a>filter 與 some 與 map 差異</h5><h5 id="組件如何封裝的"><a href="#組件如何封裝的" class="headerlink" title="組件如何封裝的?"></a>組件如何封裝的?</h5><h5 id="axios-阻擋"><a href="#axios-阻擋" class="headerlink" title="axios 阻擋"></a>axios 阻擋</h5><p>這題沒聽懂，答不出來。</p><h4 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h4><p>第一次使用 line 語音面試還蠻特別的，過程約 15 分鐘，因為不是以筆試寫，有時間可以想，直接問問題能想的時間較短，會感到比較緊迫，技術長問的題目也都蠻有水準的，不過聽到目前台北沒有前端工程師，就不考慮了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> interview </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> interview </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>面試 - 天盛遊戲</title>
+      <link href="/blog/2020/04/22/interview-003/"/>
+      <url>/blog/2020/04/22/interview-003/</url>
+      
+        <content type="html"><![CDATA[<h3 id="公司名稱"><a href="#公司名稱" class="headerlink" title="公司名稱"></a>公司名稱</h3><p>天盛遊戲股份有限公司</p><a id="more"></a><h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p>台北市信義區東興路 51 號 5 樓</p><h3 id="應徵職位"><a href="#應徵職位" class="headerlink" title="應徵職位"></a>應徵職位</h3><p>Web 前端工程師</p><h3 id="面試日期"><a href="#面試日期" class="headerlink" title="面試日期"></a>面試日期</h3><p>2020/04/22 15:00</p><h3 id="攜帶"><a href="#攜帶" class="headerlink" title="攜帶"></a>攜帶</h3><p>無</p><h3 id="面試流程"><a href="#面試流程" class="headerlink" title="面試流程"></a>面試流程</h3><p>到會議室，並給了一份專業技能試卷與人事資料填寫，專業技能都是有關 Vue 的，寫了一陣子後人資進來表示沒寫完沒關係，就先把專業技能試卷收走，接著繼續寫人事資料，接著也收走人事資料。</p><h4 id="專業技能考題大概如下"><a href="#專業技能考題大概如下" class="headerlink" title="專業技能考題大概如下"></a>專業技能考題大概如下</h4><h5 id="簡述-SPA-優缺點"><a href="#簡述-SPA-優缺點" class="headerlink" title="簡述 SPA 優缺點"></a>簡述 SPA 優缺點</h5><h5 id="v-if-與-v-show-差別"><a href="#v-if-與-v-show-差別" class="headerlink" title="v-if 與 v-show 差別"></a>v-if 與 v-show 差別</h5><h5 id="Class-與-Style-如何動態綁定"><a href="#Class-與-Style-如何動態綁定" class="headerlink" title="Class 與 Style 如何動態綁定"></a>Class 與 Style 如何動態綁定</h5><h5 id="Computed-與-Watched-用途"><a href="#Computed-與-Watched-用途" class="headerlink" title="Computed 與 Watched 用途"></a>Computed 與 Watched 用途</h5><h5 id="的作用"><a href="#的作用" class="headerlink" title="的作用"></a><keep-alive>的作用</h5><h5 id="hash-與-history-差異"><a href="#hash-與-history-差異" class="headerlink" title="hash 與 history 差異"></a>hash 與 history 差異</h5><h5 id="共-6-7-題-或許還有-1-題忘記了"><a href="#共-6-7-題-或許還有-1-題忘記了" class="headerlink" title="共 6,7 題 或許還有 1 題忘記了"></a>共 6,7 題 或許還有 1 題忘記了</h5><h4 id="接著與技術人員面談"><a href="#接著與技術人員面談" class="headerlink" title="接著與技術人員面談"></a>接著與技術人員面談</h4><p>開頭先表明了是博弈，若不接受就不用繼續談了，主要是遊戲平台部分，已經上線，目前需要前端繼續維護，可能就是製作不同的畫面讓後台套用，並依客戶新要求開發新功能。接著問是否有什麼想了解</p><p>Q: 前端人員共有幾位? 打算招聘到幾位<br>A: 目前共 2 位，再多找一個，共三個</p><p>Q: 前端人員大概都幾點下班?<br>A: 東西有按表操課，規定時間內有做完滿八小時就下班，但也是責任制。</p><p>結束後表示若有複試會再通知，並且在那時才會談薪。</p><h4 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h4><p>位置在南京三民站走路五到十分鐘，一開始到辦公室外面，沒看到招牌之類的，櫃檯也沒有人，好險剛好有人走出來，詢問才確定是在這。公司主要是開發平台，串接外面的遊戲，透過儲值讓用戶能使用，因產品已上線，目前大多為維護平台，看起來業務量比較不大，但聽到責任制還是會怕怕的。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> interview </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> interview </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Vue 的 provide &amp; inject</title>
+      <link href="/blog/2020/04/17/vue-provide-inject/"/>
+      <url>/blog/2020/04/17/vue-provide-inject/</url>
+      
+        <content type="html"><![CDATA[<p>當子組件需要用訪問父組件時，一般都是使用$parent或是$root 到根。</p><a id="more"></a><p>但如果中間有多層</p><pre><code>&lt;div id=&quot;app&quot;&gt;    &lt;number1&gt;        &lt;number2&gt;            &lt;number3&gt;                &lt;number4&gt;                &lt;/number4&gt;            &lt;/number3&gt;        &lt;/number2&gt;    &lt;/number1&gt;&lt;/div&gt;</code></pre><p>想從 number4 取得 number1 就必須寫成$parent.$parent.$parent</p><p>其實可以透過在父層定義 provide</p><pre><code>// 假設number1中有methods clickHandlermethods: {    clickHandler(){        xxx;    }},// 則在number1中添加provide: {        clickHandler: this.clickHandler;    }</code></pre><p>在需要的子層定義 inject</p><pre><code>inject: [&apos;clickHandler&apos;]</code></pre><h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://ithelp.ithome.com.tw/articles/10210583" target="_blank" rel="noopener">勇者鬥 Vue 龍系列 第 32 篇</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> vue </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Vue 的 sync</title>
+      <link href="/blog/2020/04/17/vue-sync/"/>
+      <url>/blog/2020/04/17/vue-sync/</url>
+      
+        <content type="html"><![CDATA[<p>原本要子傳值給父都會寫成以下</p><a id="more"></a><pre><code>&lt;body&gt;    &lt;div id=&quot;app&quot;&gt;        &lt;h2&gt;父&lt;/h2&gt;        &lt;input type=&quot;text&quot; v-model=&quot;fatherMessage&quot; /&gt;        &lt;p&gt;{{ fatherMessage }}&lt;/p&gt;        &lt;h2&gt;子&lt;/h2&gt;        &lt;child          :message=&quot;fatherMessage&quot;          @update:message=&quot;fatherMessage = $event&quot;        /&gt;    &lt;/div&gt;&lt;/body&gt;&lt;script&gt;  let child = {    template: `    &lt;div&gt;      &lt;input type=&quot;text&quot; v-model=&quot;childMessage&quot; /&gt;      &lt;p&gt;{{ childMessage }}&lt;/p&gt;    &lt;/div&gt;    `,    props: {      message: String,    },    computed: {      childMessage: {        get() {          return this.message;        },        set(value) {          this.$emit(&quot;update:message&quot;, value);        },      },    },  };  new Vue({  el: &quot;#app&quot;,  components: { child },  data() {    return {      fatherMessage: &quot;origin&quot;,    };  },});&lt;/script&gt;</code></pre><p>現在透過 sync 可以改成以下</p><pre><code>&lt;child :message.sync=&quot;fatherMessage&quot; /&gt;</code></pre><h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://ithelp.ithome.com.tw/articles/10225314" target="_blank" rel="noopener">前端新手筆記-Vue.js 系列 第 20 篇</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> vue </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>學習 MySQL</title>
+      <link href="/blog/2020/04/14/mysql/"/>
+      <url>/blog/2020/04/14/mysql/</url>
+      
+        <content type="html"><![CDATA[<h4 id="如何啟動-MySQL"><a href="#如何啟動-MySQL" class="headerlink" title="如何啟動 MySQL"></a>如何啟動 MySQL</h4><a id="more"></a><h5 id="先安裝-MySQL-服務"><a href="#先安裝-MySQL-服務" class="headerlink" title="先安裝 MySQL 服務"></a>先安裝 MySQL 服務</h5><p>打開 cmd -&gt; 開到 mysql 資料夾/bin -&gt; 執行 mysqld –install</p><h5 id="啟動-MySQL-服務"><a href="#啟動-MySQL-服務" class="headerlink" title="啟動 MySQL 服務"></a>啟動 MySQL 服務</h5><p>打開 cmd -&gt; 執行 net start mysql80</p><h6 id="若出現-MySQL-服務無法啟動"><a href="#若出現-MySQL-服務無法啟動" class="headerlink" title="若出現 MySQL 服務無法啟動"></a>若出現 MySQL 服務無法啟動</h6><p>刪除 mysql\data 資料夾 -&gt; 打開 cmd -&gt; 執行 mysqld –initialize -&gt; 再執行 net start mysql80</p><h5 id="停止-MySQL-服務"><a href="#停止-MySQL-服務" class="headerlink" title="停止 MySQL 服務"></a>停止 MySQL 服務</h5><p>打開 cmd -&gt; 執行 net start mysql</p><h4 id="登錄"><a href="#登錄" class="headerlink" title="登錄"></a>登錄</h4><p>打開 cmd -&gt; 執行 mysql -hlocalhost -P3306 -uroot -proot</p><h4 id="退出"><a href="#退出" class="headerlink" title="退出"></a>退出</h4><p>\q</p><h4 id="基本語法"><a href="#基本語法" class="headerlink" title="基本語法"></a>基本語法</h4><h5 id="創建"><a href="#創建" class="headerlink" title="創建"></a>創建</h5><pre><code>create database 數據庫名字 [庫選項]</code></pre><h5 id="顯示所有數據庫"><a href="#顯示所有數據庫" class="headerlink" title="顯示所有數據庫"></a>顯示所有數據庫</h5><pre><code>show databases;</code></pre><h5 id="選擇數據庫"><a href="#選擇數據庫" class="headerlink" title="選擇數據庫"></a>選擇數據庫</h5><pre><code>use 數據庫名字;</code></pre><h5 id="刪除數據庫"><a href="#刪除數據庫" class="headerlink" title="刪除數據庫"></a>刪除數據庫</h5><pre><code>drop database 數據庫名字;</code></pre><h5 id="創建數據表"><a href="#創建數據表" class="headerlink" title="創建數據表"></a>創建數據表</h5><pre><code>create table 數據庫名字.表名(字段名 字段類型 [字段屬性],字段名 字段類型 [字段屬性],...);</code></pre><h5 id="複製已有表結構-純結構，數據不複製"><a href="#複製已有表結構-純結構，數據不複製" class="headerlink" title="複製已有表結構(純結構，數據不複製)"></a>複製已有表結構(純結構，數據不複製)</h5><pre><code>create table 新表名 like 表名;</code></pre><h5 id="查看所有表"><a href="#查看所有表" class="headerlink" title="查看所有表"></a>查看所有表</h5><pre><code>show tables;</code></pre><h5 id="顯示表結構"><a href="#顯示表結構" class="headerlink" title="顯示表結構"></a>顯示表結構</h5><pre><code>desc 表名;</code></pre><h5 id="修改表名"><a href="#修改表名" class="headerlink" title="修改表名"></a>修改表名</h5><pre><code>rename table 表名 to 新表名;</code></pre><h5 id="修改表選項"><a href="#修改表選項" class="headerlink" title="修改表選項"></a>修改表選項</h5><pre><code>alter table 表名 表選項 [=] 值;</code></pre><h5 id="刪除表結構"><a href="#刪除表結構" class="headerlink" title="刪除表結構"></a>刪除表結構</h5><pre><code>drop table 表名[,表明2...];</code></pre><h5 id="增加字段"><a href="#增加字段" class="headerlink" title="增加字段"></a>增加字段</h5><pre><code>alter table 表名 add 字段名 字段類型;</code></pre><h5 id="修改字段名"><a href="#修改字段名" class="headerlink" title="修改字段名"></a>修改字段名</h5><pre><code>alter table 表名 change 舊字段名 新字段名 新字段類型;</code></pre><h5 id="修改字段類型"><a href="#修改字段類型" class="headerlink" title="修改字段類型"></a>修改字段類型</h5><pre><code>alter table 表名 modify 字段名 新類型 [新屬性] [新位置];</code></pre><h5 id="刪除字段"><a href="#刪除字段" class="headerlink" title="刪除字段"></a>刪除字段</h5><pre><code>alter table 表名 drop 字段名;</code></pre><h5 id="插入數據"><a href="#插入數據" class="headerlink" title="插入數據"></a>插入數據</h5><pre><code>insert into 表名 [(字段列表)] values (對應字段列表);</code></pre><h5 id="獲取所有數據"><a href="#獲取所有數據" class="headerlink" title="獲取所有數據"></a>獲取所有數據</h5><pre><code>select * from 表名;</code></pre><h5 id="獲取符合條件數據"><a href="#獲取符合條件數據" class="headerlink" title="獲取符合條件數據"></a>獲取符合條件數據</h5><pre><code>select 字段名 from 表名 where 字段名 = 值;</code></pre><h5 id="刪除數據-若沒填-where-條件，則刪除該表所有數據"><a href="#刪除數據-若沒填-where-條件，則刪除該表所有數據" class="headerlink" title="刪除數據 (若沒填 where 條件，則刪除該表所有數據)"></a>刪除數據 (若沒填 where 條件，則刪除該表所有數據)</h5><pre><code>delete from 表名 [where 條件];</code></pre><h5 id="更新數據-若沒填-where-條件，則更改該表所有數據"><a href="#更新數據-若沒填-where-條件，則更改該表所有數據" class="headerlink" title="更新數據 (若沒填 where 條件，則更改該表所有數據)"></a>更新數據 (若沒填 where 條件，則更改該表所有數據)</h5><pre><code>update 表名 set 字段名 = 新值 [where 條件]</code></pre><h4 id="列類型"><a href="#列類型" class="headerlink" title="列類型"></a>列類型</h4><h5 id="整數類型"><a href="#整數類型" class="headerlink" title="整數類型"></a>整數類型</h5><h6 id="Tinyint"><a href="#Tinyint" class="headerlink" title="Tinyint"></a>Tinyint</h6><p>迷你整型，一個字節 256</p><h6 id="Smallint"><a href="#Smallint" class="headerlink" title="Smallint"></a>Smallint</h6><p>小整型，兩個字節 65536</p><h6 id="Mediumint"><a href="#Mediumint" class="headerlink" title="Mediumint"></a>Mediumint</h6><p>中整型，三個字節 16777216</p><h6 id="Int"><a href="#Int" class="headerlink" title="Int"></a>Int</h6><p>整型(標準整型)，四個字節</p><h6 id="Bigint"><a href="#Bigint" class="headerlink" title="Bigint"></a>Bigint</h6><p>大整型，八個字節</p><h3 id="未完待續…"><a href="#未完待續…" class="headerlink" title="未完待續…"></a>未完待續…</h3><h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://blog.csdn.net/ermaner666/article/details/79096939" target="_blank" rel="noopener">cmd 中输入 net start mysql 提示：服务名无效或者 MySQL 正在启动 MySQL 无法启动</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> mysql </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>class</title>
+      <link href="/blog/2020/04/13/javascript-class/"/>
+      <url>/blog/2020/04/13/javascript-class/</url>
+      
+        <content type="html"><![CDATA[<h4 id="class-是做什麼的"><a href="#class-是做什麼的" class="headerlink" title="class 是做什麼的?"></a>class 是做什麼的?</h4><p>它是個建構式的語法糖</p><a id="more"></a><p>當我們要重複製作很多支不同手機，我們需要建立一個模板供使用</p><h5 id="錯誤寫法"><a href="#錯誤寫法" class="headerlink" title="錯誤寫法"></a>錯誤寫法</h5><pre><code>let phoneTemplate = {    brand: &apos;&apos;,    model: &apos;&apos;,    withCamera: false,    takePhoto: function () {        if (this.withCamera) {            console.log(&apos;照相&apos;);        } else {        console.log(&apos;這台沒有照相功能&apos;);        }    }};let phone1 = phoneTemplate;let phone2 = phoneTemplate;phone1.brand = &apos;asus&apos;;console.log(phoneTemplate.brand, phone1.brand, phone2.brand); // asus asus asus</code></pre><p>因為是傳址的關係，此時更改 phone1，會連 phoneTemplate 與 phone2 一起更改。</p><h5 id="建構式函數寫法"><a href="#建構式函數寫法" class="headerlink" title="建構式函數寫法"></a>建構式函數寫法</h5><pre><code>function PhoneTemplate(brand, model, withCamera){    this.brand = brand;    this.model = model;    this.withCamera = withCamera;    this.takePhoto = function() {        if (this.withCamera) {            console.log(&apos;照相&apos;);        } else {            console.log(&apos;這台沒有照相功能&apos;);        }    }}let phone1 = new PhoneTemplate(&apos;asus&apos;, &apos;zenphone&apos;, false);let phone2 = new PhoneTemplate(&apos;apple&apos;, &apos;iphone&apos;, true);console.log(phone1.brand, phone2.brand);</code></pre><p>phone1 與 phone2 資料個別獨立</p><h5 id="class-寫法"><a href="#class-寫法" class="headerlink" title="class 寫法"></a>class 寫法</h5><pre><code>class PhoneTemplate{    constructor (brand, model, withCamera){        this.brand = brand,        this.model = model,        this.withCamera = withCamera    }    takePhoto() {        if (this.withCamera) {            console.log(&apos;照相&apos;);        } else {            console.log(&apos;這台沒有照相功能&apos;);        }    }}let phone1 = new PhoneTemplate(&apos;asus&apos;, &apos;zenphone&apos;, false);let phone2 = new PhoneTemplate(&apos;apple&apos;, &apos;iphone&apos;, true);console.log(phone1.brand, phone2.brand);</code></pre><h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://ithelp.ithome.com.tw/articles/10192034" target="_blank" rel="noopener">JavaScript 建構式製作物件樣板</a><br><a href="https://ithelp.ithome.com.tw/articles/10195056" target="_blank" rel="noopener">ES6 建構式語法糖 - Class</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> javascript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> class </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>for/in &amp; for/of</title>
+      <link href="/blog/2020/04/13/javascript-for/"/>
+      <url>/blog/2020/04/13/javascript-for/</url>
+      
+        <content type="html"><![CDATA[<h4 id="for…in-取得物件內的所有-key"><a href="#for…in-取得物件內的所有-key" class="headerlink" title="for…in 取得物件內的所有 key"></a>for…in 取得<font color="#f00">物件</font>內的所有 key</h4><a id="more"></a><pre><code>let person = {name:&apos;hulk&apos;, age:20};for (x in person){    console.log(x); // name, age}</code></pre><p>可再透過得到的 key 取得其值</p><pre><code>for (x in person){    console.log(person[x]); // hulk, 20}</code></pre><h4 id="for…of-取得迭代型物件-陣列、Maps、Nodelists…等-，取出其值"><a href="#for…of-取得迭代型物件-陣列、Maps、Nodelists…等-，取出其值" class="headerlink" title="for…of 取得迭代型物件(陣列、Maps、Nodelists…等)，取出其值"></a>for…of 取得迭代型物件(<font color="#f00">陣列</font>、Maps、Nodelists…等)，取出其值</h4><pre><code>let cars = [&quot;asdf&quot;, &quot;qw&quot;, &quot;zz&quot;];for (x of cars) {  console.log(x); // asdf, qw, zz}</code></pre><h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://medium.com/itsems-frontend/w3hexschool-api-challenge-for-family-22e751023e9e" target="_blank" rel="noopener">六角學院鼠年全馬鐵人挑戰 API 查詢介面(下) — 搞清楚 for 家族：for/forEach/for…in/ for…of</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> javascript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> for/in </tag>
+            
+            <tag> for/of </tag>
+            
+            <tag> for </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>API</title>
+      <link href="/blog/2020/04/13/javascript-restful-api/"/>
+      <url>/blog/2020/04/13/javascript-restful-api/</url>
+      
+        <content type="html"><![CDATA[<h3 id="RESTful-API"><a href="#RESTful-API" class="headerlink" title="RESTful API"></a>RESTful API</h3><a id="more"></a><ul><li>唯一的 URL 表資源位置，統一 API 接口 (Uniform Interface)</li></ul><p>一般的 API</p><pre><code>獲得資料GET    /getData新增資料POST   /createData刪除資料DELETE /deleteData/1</code></pre><p>RESTful API</p><pre><code>獲得資料GET     /data新增資料POST    /data刪除資料DELETE  /data/1</code></pre><ul><li>無狀態 (Stateless)</li></ul><p>以下為有狀態的例子，每一個步驟都仰賴前一個步驟，若前面失敗，後續就無法操作。</p><p>查詢員工工資：<br>第一步：登錄系統。<br>第二步：進入查詢工資的頁面。<br>第三步：搜索該員工。<br>第四步：點擊姓名查看工資。</p><p>若直接入一個 URL 就可以取得特定員工工資，不須依賴其他資源或狀態，此為無狀態。<br>由一個 URL 與之對應可以通過 HTTP 中的 GET 方法得到資源，這就是典型的 RESTful 風格。</p><ul><li>可緩存 (Cacheability)</li></ul><p>在 server-side，GET 過的資源，如果沒有被變更過，可以利用 cache 機制減少 request。<br>在 client-side，透過 client 端 cache 紀錄 chahe 版本，若向 server 要求資源時發現 server 最新版與 cache 相同，則 client 端直接取用本地資源即可，不需要再做一次查詢。</p><ul><li><p>分層系統架構 (Layered System)</p></li><li><p>客戶端服務器分離 (Client-Server)</p></li><li><p>按需代碼 (Code-On-Demand)</p></li></ul><h3 id="狀態碼"><a href="#狀態碼" class="headerlink" title="狀態碼"></a>狀態碼</h3><ul><li>2xx = Success（成功）<ul><li>200 – OK (預設的)</li><li>201 – Created（已建立）</li><li>202 – Accepted (已接受：常用語刪除請求)</li></ul></li><li>3xx = Redirect（重定向）</li><li>4xx = User error（客戶端錯誤）<ul><li>400 –請求出錯（語法格式有誤或伺服器無法理解此請求）</li><li>401 – 未授權(需要登入)</li><li>404 – 找不到 (找不到所請求的檔案或指令碼)</li><li>405 – 不允許此方法(錯誤的 HTTP 方法)</li><li>409 – 衝突 (IE 嘗試以 PUT 請求建立相同的資源時)</li></ul></li><li>5xx = Server error（伺服器端錯誤）</li></ul><h3 id="http-method"><a href="#http-method" class="headerlink" title="http method"></a>http method</h3><ul><li>get<br>取得資料</li><li>post<br>新增資料</li><li>put<br>取代資料</li><li>delete<br>刪除資料</li><li>patch<br>修改資料</li><li>head<br>與 get 同，但沒有回應主體，只會取得 HTTP header 的資料</li><li>connect<br>建立連結</li><li>options<br>描述指定資源的溝通方法</li><li>trace<br>執行迴路返回測試</li></ul><h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://dotblogs.com.tw/jeffyang/2018/04/21/233001" target="_blank" rel="noopener">何謂 RESTful API？</a><br><a href="https://medium.com/itsems-frontend/api-%E6%98%AF%E4%BB%80%E9%BA%BC-restful-api-%E5%8F%88%E6%98%AF%E4%BB%80%E9%BA%BC-a001a85ab638" target="_blank" rel="noopener">API 是什麼? RESTful API 又是什麼?</a><br><a href="https://www.itread01.com/content/1544242329.html" target="_blank" rel="noopener">什麼是 REST API</a><br><a href="https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2" target="_blank" rel="noopener">wiki - 表現層狀態轉換</a><br><a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Methods" target="_blank" rel="noopener">MDN - HTTP 請求方法</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> javascript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> restful-api </tag>
+            
+            <tag> api </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>cookies, local storage, session storage</title>
+      <link href="/blog/2020/04/13/javascript-storage/"/>
+      <url>/blog/2020/04/13/javascript-storage/</url>
+      
+        <content type="html"><![CDATA[<h3 id="簡單比較下-cookies-local-storage-session-storage-三者差異"><a href="#簡單比較下-cookies-local-storage-session-storage-三者差異" class="headerlink" title="簡單比較下 cookies, local storage, session storage 三者差異"></a>簡單比較下 cookies, local storage, session storage 三者差異</h3><a id="more"></a><h4 id="cookies"><a href="#cookies" class="headerlink" title="cookies"></a>cookies</h4><ul><li>儲存量: 4kb</li><li>期限: 可透過手動設定期限</li><li>取得範圍: 任一視窗、瀏覽器</li><li>儲存位置: 瀏覽器及伺服器</li><li>是否隨著 http req/res: 是</li></ul><h4 id="local-storage"><a href="#local-storage" class="headerlink" title="local storage"></a>local storage</h4><ul><li>儲存量: 三者中最大</li><li>期限: 只有當使用者瀏覽器的快取/local stored data 才會消失</li><li>取得範圍: 任一視窗、瀏覽器</li><li>儲存位置: 瀏覽器</li><li>是否隨著 http req/res: 否</li></ul><h4 id="session-storage"><a href="#session-storage" class="headerlink" title="session storage"></a>session storage</h4><ul><li>儲存量: 至少 5MB</li><li>期限: 當分頁或瀏覽器被關閉，即消失</li><li>取得範圍: 需同分頁</li><li>儲存位置: 瀏覽器</li><li>是否隨著 http req/res: 否</li></ul><h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><ul><li><a href="https://scotch.io/@PratyushB/local-storage-vs-session-storage-vs-cookie" target="_blank" rel="noopener">https://scotch.io/@PratyushB/local-storage-vs-session-storage-vs-cookie</a></li><li><a href="https://medium.com/@brianwu291/cookie-sessionstorage-localstorage-and-cookie-based-token-based-authentication-da7af80ec00d" target="_blank" rel="noopener">https://medium.com/@brianwu291/cookie-sessionstorage-localstorage-and-cookie-based-token-based-authentication-da7af80ec00d</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> javascript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> cookies </tag>
+            
+            <tag> local storage </tag>
+            
+            <tag> session storage </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Event queue</title>
+      <link href="/blog/2020/04/13/javascript-event-queue/"/>
+      <url>/blog/2020/04/13/javascript-event-queue/</url>
+      
+        <content type="html"><![CDATA[<h4 id="以下列代碼作解說"><a href="#以下列代碼作解說" class="headerlink" title="以下列代碼作解說"></a>以下列代碼作解說</h4><a id="more"></a><pre><code>function a() {  console.log(&quot;a1&quot;);  console.log(&quot;a2&quot;);  console.log(&quot;a3&quot;);  b();  console.log(&quot;a4&quot;);  setTimeout(() =&gt; {    c();  }, 0);  console.log(&quot;a5&quot;);}function b() {  console.log(&quot;b1&quot;);  setTimeout(() =&gt; {    c();  }, 3000);  console.log(&quot;b2&quot;);  console.log(&quot;b3&quot;);  c();  console.log(&quot;b4&quot;);  console.log(&quot;b5&quot;);}function c() {  console.log(&quot;c1&quot;);  console.log(&quot;c2&quot;);  console.log(&quot;c3&quot;);  console.log(&quot;c4&quot;);  console.log(&quot;c5&quot;);}a();</code></pre><h5 id="結果會如下"><a href="#結果會如下" class="headerlink" title="結果會如下"></a>結果會如下</h5><p>執行 a()</p><pre><code>stack                      queuefunction a</code></pre><p>打印 a1<br>打印 a2<br>打印 a3<br>執行 b() // function a 未執行完，先執行 function b</p><pre><code>stack                      queuefunction bfunction a</code></pre><p>打印 b1<br>遇到非同步將其放置 queue</p><pre><code>stack                      queuefunction b                 setTimeout(() =&gt; c(), 3000)function a</code></pre><p>打印 b2<br>打印 b3<br>執行 c() // function b 未執行完，先執行 function c</p><pre><code>stack                      queuefunction c                 setTimeout(() =&gt; c(), 3000)function bfunction a</code></pre><p>打印 c1~c5<br>function c 完成抽掉</p><pre><code>stack                      queuefunction b                 setTimeout(() =&gt; c(), 3000)function a</code></pre><p>回來執行未完成的 function b<br>打印 b4<br>打印 b5<br>function b 完成抽掉</p><pre><code>stack                      queuefunction a                 setTimeout(() =&gt; c(), 3000)</code></pre><p>回來執行未完成的 function a<br>打印 a4<br>遇到非同步將其放置 queue</p><pre><code>stack                      queuefunction a                 setTimeout(() =&gt; c(), 3000)                           setTimeout(() =&gt; c(), 0)</code></pre><p>打印 a5<br>function a 完成抽掉</p><pre><code>stack                      queue                           setTimeout(() =&gt; c(), 3000)                           setTimeout(() =&gt; c(), 0)</code></pre><p>stack 做完執行 queue<br>執行 setTimeout(() =&gt; c(), 3000)</p><pre><code>stack                      queuec()                        setTimeout(() =&gt; c(), 0)</code></pre><p>打印 c1~c5<br>function c 完成抽掉</p><pre><code>stack                      queue                           setTimeout(() =&gt; c(), 0)</code></pre><p>stack 做完執行 queue<br>執行 setTimeout(() =&gt; c(), 0)</p><pre><code>stack                      queuec()</code></pre><p>打印 c1~c5<br>function c 完成抽掉<br>完成</p><pre><code>stack                      queue</code></pre><h4 id="JS-是逐行執行的，函數內遇到另一函數會先將另一函數執行完再回來，先進後出；遇到非同步的會放到-queue-佇列，待-stack-清空後再逐一執行，先進先出。"><a href="#JS-是逐行執行的，函數內遇到另一函數會先將另一函數執行完再回來，先進後出；遇到非同步的會放到-queue-佇列，待-stack-清空後再逐一執行，先進先出。" class="headerlink" title="JS 是逐行執行的，函數內遇到另一函數會先將另一函數執行完再回來，先進後出；遇到非同步的會放到 queue 佇列，待 stack 清空後再逐一執行，先進先出。"></a>JS 是逐行執行的，函數內遇到另一函數會先將另一函數執行完再回來，<font color="#f00">先進後出</font>；遇到非同步的會放到 queue 佇列，待 stack 清空後再逐一執行，<font color="#f00">先進先出</font>。</h4>]]></content>
+      
+      
+      <categories>
+          
+          <category> javascript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> event-queue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>陣列的各種方法</title>
+      <link href="/blog/2020/04/12/javascript-array/"/>
+      <url>/blog/2020/04/12/javascript-array/</url>
+      
+        <content type="html"><![CDATA[<h3 id="常常忘記陣列的操作方法，所以以自己好懂的方法紀錄一下。"><a href="#常常忘記陣列的操作方法，所以以自己好懂的方法紀錄一下。" class="headerlink" title="常常忘記陣列的操作方法，所以以自己好懂的方法紀錄一下。"></a>常常忘記陣列的操作方法，所以以自己好懂的方法紀錄一下。</h3><a id="more"></a><h4 id="Array-prototype-filter-將符合的元素返回新陣列。"><a href="#Array-prototype-filter-將符合的元素返回新陣列。" class="headerlink" title="Array.prototype.filter() 將符合的元素返回新陣列。"></a>Array.prototype.<font color="#dd0000">filter()</font> 將符合的<font color="#dd0000">元素返回新陣列</font>。</h4><pre><code>const arr = [1, 30, 39, 29, 10, 13];let newAry = arr.filter(item =&gt; item &lt; 20);console.log(newAry); // [1, 10, 13]</code></pre><h4 id="Array-prototype-reduce-將一個累加器及陣列每個元素傳入，返回為單一值。"><a href="#Array-prototype-reduce-將一個累加器及陣列每個元素傳入，返回為單一值。" class="headerlink" title="Array.prototype.reduce() 將一個累加器及陣列每個元素傳入，返回為單一值。"></a>Array.prototype.<font color="#dd0000">reduce()</font> 將一個累加器及陣列每個元素傳入，<font color="#dd0000">返回為單一值</font>。</h4><pre><code>const ary = [1, 3, 5, 7];let result = ary.reduce((prev, next) =&gt; prev + next, 0);console.log(result); // 16</code></pre><h4 id="Array-prototype-every-是否陣列內所有元素都符合，返回-true-or-false。"><a href="#Array-prototype-every-是否陣列內所有元素都符合，返回-true-or-false。" class="headerlink" title="Array.prototype.every() 是否陣列內所有元素都符合，返回 true or false。"></a>Array.prototype.<font color="#dd0000">every()</font> 是否陣列內<font color="#dd0000">所有</font>元素都符合，<font color="#dd0000">返回 true or false</font>。</h4><pre><code>const arr = [1, 30, 39, 29, 10, 13];let result1 = arr.every(item =&gt; item &lt; 50); // truelet result2 = arr.every(item =&gt; item &lt; 20); // false</code></pre><h4 id="Array-prototype-some-是否陣列內有任一-元素符合，返回-true-or-false。"><a href="#Array-prototype-some-是否陣列內有任一-元素符合，返回-true-or-false。" class="headerlink" title="Array.prototype.some() 是否陣列內有任一 元素符合，返回 true or false。"></a>Array.prototype.<font color="#dd0000">some()</font> 是否陣列內有<font color="#dd0000">任一</font> 元素符合，<font color="#dd0000">返回 true or false</font>。</h4><pre><code>const arr = [1, 30, 39, 29, 10, 13];let result1 = arr.some(item =&gt; item &lt; 50); // truelet result2 = arr.some(item =&gt; item &lt; 20); // true</code></pre><h4 id="Array-prototype-find-返回第一個符合的元素。"><a href="#Array-prototype-find-返回第一個符合的元素。" class="headerlink" title="Array.prototype.find() 返回第一個符合的元素。"></a>Array.prototype.<font color="#dd0000">find()</font> <font color="#dd0000">返回第一個</font>符合的元素。</h4><pre><code>const arr1 = [1, 30, 39, 29, 10, 13];let result1 = arr1.find(item =&gt; item &gt; 20);console.log(result1); // 30const ary2 = [  { name: &quot;hulk&quot;, age: 20 },  { name: &quot;howie&quot;, age: 30 },];let result2 = ary2.find((item) =&gt; item.age === 20);console.log(result2); // { name: &quot;hulk&quot;, age: 20 }</code></pre><h4 id="Array-prototype-includes-是否陣列內有符合的元素，返回-true-or-false。"><a href="#Array-prototype-includes-是否陣列內有符合的元素，返回-true-or-false。" class="headerlink" title="Array.prototype.includes() 是否陣列內有符合的元素，返回 true or false。"></a>Array.prototype.<font color="#dd0000">includes()</font> 是否陣列內有符合的元素，<font color="#dd0000">返回 true or false</font>。</h4><pre><code>const arr = [1, 30, 39, 29, 10, 13];let result = arr.includes(30);console.log(result); // true</code></pre><h4 id="Array-prototype-map-對陣列內每個元素操作，返回一個新陣列。"><a href="#Array-prototype-map-對陣列內每個元素操作，返回一個新陣列。" class="headerlink" title="Array.prototype.map() 對陣列內每個元素操作，返回一個新陣列。"></a>Array.prototype.<font color="#dd0000">map()</font> 對陣列內每個元素操作，<font color="#dd0000">返回一個新陣列</font>。</h4><pre><code>const ary = [1, 4, 9, 16];const newAry = ary.map(x =&gt; x * 2);console.log(newAry); // [2, 8, 18, 32]</code></pre><h4 id="Array-prototype-forEach-對陣列內每個元素操作。"><a href="#Array-prototype-forEach-對陣列內每個元素操作。" class="headerlink" title="Array.prototype.forEach() 對陣列內每個元素操作。"></a>Array.prototype.<font color="#dd0000">forEach()</font> 對陣列內每個元素操作。</h4><pre><code>const array1 = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];array1.forEach(element =&gt; console.log(element)); // a, b, c</code></pre><h4 id="Array-prototype-join-將陣列中的所有元素以某字符或空-預設-串成字串，返回此字串。"><a href="#Array-prototype-join-將陣列中的所有元素以某字符或空-預設-串成字串，返回此字串。" class="headerlink" title="Array.prototype.join() 將陣列中的所有元素以某字符或空(預設,)串成字串，返回此字串。"></a>Array.prototype.<font color="#dd0000">join()</font> 將陣列中的所有元素以某字符或空(預設,)串成字串，返回此字串。</h4><pre><code>const elements = [&apos;Fire&apos;, &apos;Air&apos;, &apos;Water&apos;];let result1 = elements.join();console.log(result1) // Fire,Air,Waterlet result2 = elements.join(&apos;&apos;);console.log(result2) // FireAirWaterlet result3 = elements.join(&apos;*-*&apos;);console.log(result3) // Fire*-*Air*-*Water</code></pre><h4 id="Array-prototype-splice-增、刪原陣列內容。"><a href="#Array-prototype-splice-增、刪原陣列內容。" class="headerlink" title="Array.prototype.splice() 增、刪原陣列內容。"></a>Array.prototype.<font color="#dd0000">splice()</font> 增、刪<font color="#dd0000">原陣列</font>內容。</h4><h5 id="array-splice-start-deleteCount-item1-item2-…"><a href="#array-splice-start-deleteCount-item1-item2-…" class="headerlink" title="array.splice(start[, deleteCount[, item1[, item2[, …]]]])"></a>array.splice(start[, deleteCount[, item1[, item2[, …]]]])</h5><p>start 開始的位置，起始為 0 ，-1 為倒數第一個，只填此處表從此位置(包含)後面全刪<br>deleteCount 表刪除的數量，0 表示不刪除<br>item1, item2 表添加的內容</p><pre><code>let ary1 = [1, 3, 5];ary1.splice(1, 0, 2);console.log(ary1); // [1, 2, 3, 5]let ary2 = [1, 2, 3, 4, 5]ary2.splice(2, 2);console.log(ary2); // [1, 2, 5]let ary3 = [1, 2, 3, 4, 5]ary4 = ary3.splice(2);console.log(ary3); // [1, 2]console.log(ary4); // [3, 4, 5]</code></pre><h4 id="Array-prototype-slice-將選擇範圍的內容返回新陣列，原陣列內容不變。"><a href="#Array-prototype-slice-將選擇範圍的內容返回新陣列，原陣列內容不變。" class="headerlink" title="Array.prototype.slice() 將選擇範圍的內容返回新陣列，原陣列內容不變。"></a>Array.prototype.<font color="#dd0000">slice()</font> 將選擇範圍的內容<font color="#dd0000">返回新陣列</font>，原陣列內容不變。</h4><h5 id="arr-slice-begin-end"><a href="#arr-slice-begin-end" class="headerlink" title="arr.slice([begin[, end]])"></a>arr.slice([begin[, end]])</h5><p>begin 開始的位置，起始為 0，-1 為倒數第一個，只填此處表從此位置(包含)後面全保留<br>end 至哪個位置(不包含)</p><pre><code>let ary1 = [1, 2, 3, 4, 5];let newAry1 = ary1.slice(1, 3);console.log(newAry1); // [2, 3]let newAry2 = ary1.slice(2);console.log(newAry2); // [3, 4, 5]</code></pre><h4 id="Array-prototype-sort-將陣列內所有元素排序，覆寫此陣列。"><a href="#Array-prototype-sort-將陣列內所有元素排序，覆寫此陣列。" class="headerlink" title="Array.prototype.sort() 將陣列內所有元素排序，覆寫此陣列。"></a>Array.prototype.<font color="#dd0000">sort()</font> 將陣列內所有元素<font color="#dd0000">排序</font>，<font color="#dd0000">覆寫此陣列</font>。</h4><pre><code>const array1 = [1, 30, 4, 21, 100000];array1.sort();console.log(array1); // [1, 100000, 21, 30, 4]const ary2 = [1, 30, 4, 21, 100000];ary2.sort((a,b) =&gt; a - b);console.log(ary2); // [1, 4, 21, 30, 100000]</code></pre><h4 id="Array-from-將類陣列或可迭代物件轉成陣列。"><a href="#Array-from-將類陣列或可迭代物件轉成陣列。" class="headerlink" title="Array.from() 將類陣列或可迭代物件轉成陣列。"></a>Array.from() 將類陣列或可迭代物件轉成陣列。</h4><pre><code>console.log(Array.from(&apos;foo&apos;)); // [&apos;f&apos;, &apos;o&apos;, &apos;o&apos;]console.log(Array.from([1,2,3], x =&gt; x + x)); // [2, 4, 6]</code></pre><h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/from" target="_blank" rel="noopener">MDN Array</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> javascript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> array </tag>
+            
+            <tag> javascript </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>學習 PHP</title>
+      <link href="/blog/2020/04/12/php/"/>
+      <url>/blog/2020/04/12/php/</url>
+      
+        <content type="html"><![CDATA[<p>定義變數,打印</p><a id="more"></a><pre><code>&lt;?php  $message = &apos;hello world&apos;;  echo $message;  // hello world  $message = &apos;hello&apos;;  echo &apos;&lt;hr/&gt;&apos;,$message; // hello&gt;</code></pre><p>刪除變量</p><pre><code>unset($message);echo $message; // 報錯</code></pre><p>一般值傳遞</p><pre><code>$a = 1;$b = $a;$b = 5;echo $a,&apos; &apos;,$b; // 1 5</code></pre><p>*引用傳遞</p><pre><code>$c = 1;$d = &amp;$c;$d = 5;echo $c,&apos; &apos;,$d; // 5 5</code></pre><p>使用函數定異常量</p><pre><code>define(&apos;PI&apos;,3.14);echo PI;</code></pre><p>使用 const 常量定義</p><pre><code>const PI = 3.14;echo PI;</code></pre><p>算數+運算, 系統先轉換成數值類型(整數型或浮點數型), 然後運算</p><pre><code>$a = &apos;1.5&apos;;$b = 3.1;echo $a + $b; // 4.6// 強制轉換echo (float)$a,&apos; &apos;,(float)$b; // 1.5 3.1// 判斷類型var_dump(is_string($a)); // truevar_dump(is_int($b)); // falesvar_dump(is_float($b)); // true</code></pre><p>連接字符串 .</p><pre><code>$a = &apos;apple&apos;;$b = &apos;banana&apos;;$a .= $b; // $a = $a . $becho $a; //applebanana</code></pre><p>funciton 一般傳值與引用傳值</p><pre><code>$a = 2;$b = 3;</code></pre><p>一般傳值</p><pre><code>function change($a, $b) {    $a = $a + $a;    $b = $b + $b;    echo $a,&apos;&lt;br/&gt;&apos;,$b,&apos;&lt;hr/&gt;&apos;; // 4, 6}change($a, $b);echo $a,&apos;&lt;br&gt;&apos;,$b; // 2, 3</code></pre><p>引用傳值</p><pre><code>function change($a, &amp;$b) {    $a = $a + $a;    $b = $b + $b;    echo $a,&apos;&lt;br/&gt;&apos;,$b,&apos;&lt;hr/&gt;&apos;; // 4, 6}change($a, $b);echo $a,&apos;&lt;br&gt;&apos;,$b; // 2, 6</code></pre><p>全局變量無法在局部訪問 (與 JS 不同)</p><pre><code>$out = 2;function see(){    echo $out; // 報錯，找不到out變數}echo $out; // 2see();</code></pre><p>使用 global 使全局變量能在局部訪問；局部變量，能在全局訪問</p><pre><code>$out = 2;function see() {    global $out;    echo $out; // 2    global $inside;    $inside = 4;}see();echo $inside;</code></pre><p>靜態變量 static 跨函數共享數據(非不同函數，而是本體多次調用)</p><pre><code>function see() {    $local = 1;    static $static = 1;    echo &apos;local:&apos;.$local++,&apos;&lt;br/&gt;&apos;,&apos;static:&apos;.$static++,&apos;&lt;hr/&gt;&apos;;}see(); // 1, 1see(); // 1, 2see(); // 1, 3</code></pre><p>函數內傳局部變量使用 use (就是將外部變量(局部)保留給內部使用)</p><pre><code>function outF() {    $name = &apos;hulk&apos;;    $innerF = function() use($name) {        echo $name;    };    return $innerF();}$test = outF();</code></pre><p>結構化定義</p><pre><code>// heredoc結構$str3 = &lt;&lt;&lt;EOD    hello        worldEOD;// nowdoc結構$str4 = &lt;&lt;&lt;&apos;EOD&apos;    hello        worldEOD;var_dump($str3, $str4);</code></pre><p>foreach 遍歷</p><pre><code>$ary = [1,2,3,4,5,6,7,8,9,10];foreach ($ary as $value) {    echo $value,&apos;&lt;br/&gt;&apos;; // 1, 2 ,3 ,... ,10};foreach ($ary as $key =&gt; $value) {    echo &apos;key: &apos;,$key,&apos; = value: &apos;,$value,&apos;&lt;br/&gt;&apos;; // key: 0 = value: 1, key: 1 = value: 2 ...};</code></pre><p>遞迴函數</p><pre><code>function recursion($num) {    if ($num === 1 || $num === 2) return 1;    $f[1] = 1;    $f[2] = 1;    return recursion($num-1) + recursion($num-2);}echo recursion(6); // 8</code></pre><p>檢測是否設置 isset</p><pre><code>$a = &apos;&apos;;var_dump(isset($a)); //true$a = &quot;test&quot;;var_dump(isset($a)); //true$a = NULL;var_dump(isset($a)); // FALSEunset ($a);var_dump(isset($a)); // FALSE</code></pre><h4 id="PHP-操作-mysql"><a href="#PHP-操作-mysql" class="headerlink" title="PHP 操作 mysql"></a>PHP 操作 mysql</h4><pre><code>// 建立連結 (主機, 帳號, 密碼)$link = mysqli_connect(&apos;localhost:3306&apos;,&apos;root&apos;,&apos;root&apos;);// 設定字符集mysqli_query($link, &apos;set names utf8&apos;);// 選擇數據庫 (數據庫名稱)mysqli_query($link, &apos;use mydatabase&apos;);/ 關閉連結mysqli_close($link);</code></pre><h5 id="新增數據-insert-into-表名-values-值"><a href="#新增數據-insert-into-表名-values-值" class="headerlink" title="新增數據 insert into 表名 values(值);"></a>新增數據 insert into 表名 values(值);</h5><pre><code>// 組織SQL指令$pub_time = time();$sql = &quot;insert into n_news values(null,&apos;標題&apos;,     1,&apos;內容不錯唷&apos;,&apos;Hulk2&apos;, $pub_time)&quot;;// 執行SQL指令if(mysqli_query($link, $sql)){    // 成功    echo &apos;success&apos;;}else {    // 失敗    echo &apos;fail&apos;;}</code></pre><h5 id="修改數據-update-表名-set-選項-值-where-條件"><a href="#修改數據-update-表名-set-選項-值-where-條件" class="headerlink" title="修改數據 update 表名 set 選項 = 值 where 條件;"></a>修改數據 update 表名 set 選項 = 值 where 條件;</h5><pre><code>// 組織SQL指令$sql = &quot;update n_news set publisher = &apos;Howie&apos;      where id = 2&quot;;// 執行SQL指令if(mysqli_query($link, $sql)){    // 成功    echo &apos;success&apos;;}else {    // 失敗    echo &apos;fail&apos;;}</code></pre><h5 id="刪除數據-delete-from-表名-where-條件"><a href="#刪除數據-delete-from-表名-where-條件" class="headerlink" title="刪除數據 delete from 表名 where 條件;"></a>刪除數據 delete from 表名 where 條件;</h5><pre><code>// 組織SQL指令$sql = &quot;delete from n_news where id = 2&quot;;// 執行SQL指令if(mysqli_query($link, $sql)){    // 成功    echo &apos;success&apos;;}else {    // 失敗    echo &apos;fail&apos;;}</code></pre><h5 id="查詢"><a href="#查詢" class="headerlink" title="查詢"></a>查詢</h5><pre><code>// 組織SQL指令$sql = &quot;select * from n_news&quot;;// 執行SQL指令$res = mysqli_query($link, $sql);var_dump($res)</code></pre><h5 id="獲取結果集行數"><a href="#獲取結果集行數" class="headerlink" title="獲取結果集行數"></a>獲取結果集行數</h5><pre><code>// 組織SQL指令$sql = &quot;select * from n_news&quot;;// 執行SQL指令$res = mysqli_query($link, $sql);echo mysqli_num_rows($res);</code></pre><h5 id="解析結果集"><a href="#解析結果集" class="headerlink" title="解析結果集"></a>解析結果集</h5><h6 id="獲取關聯數組-字段為數組下標-元素值為數組元素值"><a href="#獲取關聯數組-字段為數組下標-元素值為數組元素值" class="headerlink" title="獲取關聯數組, 字段為數組下標, 元素值為數組元素值"></a>獲取關聯數組, 字段為數組下標, 元素值為數組元素值</h6><pre><code>// 組織SQL指令$sql = &quot;select * from n_news&quot;;// 執行SQL指令$res = mysqli_query($link, $sql);$row = mysqli_fetch_assoc($res);echo &apos;&lt;pre&gt;&apos;;print_r($row);</code></pre><h6 id="獲取索引數組-下標從-0-開始-元素值為數組元素值"><a href="#獲取索引數組-下標從-0-開始-元素值為數組元素值" class="headerlink" title="獲取索引數組, 下標從 0 開始, 元素值為數組元素值"></a>獲取索引數組, 下標從 0 開始, 元素值為數組元素值</h6><pre><code>// 組織SQL指令$sql = &quot;select * from n_news&quot;;// 執行SQL指令$res = mysqli_query($link, $sql);$row = mysqli_fetch_row($res);echo &apos;&lt;pre&gt;&apos;;print_r($row);</code></pre><h6 id="統合"><a href="#統合" class="headerlink" title="統合"></a>統合</h6><pre><code>// 組織SQL指令$sql = &quot;select * from n_news&quot;;// 執行SQL指令$res = mysqli_query($link, $sql);// 預設 (獲取兩種)$row = mysqli_fetch_array($res);echo &apos;&lt;pre&gt;&apos;;print_r($row);// 獲取兩種$row = mysqli_fetch_array($res,MYSQLI_BOTH);echo &apos;&lt;pre&gt;&apos;;print_r($row);// 獲取關聯$row = mysqli_fetch_array($res,MYSQLI_ASSOC);echo &apos;&lt;pre&gt;&apos;;print_r($row);// 獲取索引$row = mysqli_fetch_array($res,MYSQLI_NUM);echo &apos;&lt;pre&gt;&apos;;print_r($row);</code></pre><h5 id="有關字段信息"><a href="#有關字段信息" class="headerlink" title="有關字段信息"></a>有關字段信息</h5><h6 id="mysqli-num-fields-獲取一個指定結果集中所有的字段數"><a href="#mysqli-num-fields-獲取一個指定結果集中所有的字段數" class="headerlink" title="mysqli_num_fields() 獲取一個指定結果集中所有的字段數"></a>mysqli_num_fields() 獲取一個指定結果集中所有的字段數</h6><pre><code>// 組織SQL指令$sql = &quot;select * from n_news&quot;;// 執行SQL指令$res = mysqli_query($link, $sql);echo mysqli_num_fields($res);</code></pre><p>打印 php 資訊</p><pre><code>phpinfo()</code></pre><h3 id="未完待續"><a href="#未完待續" class="headerlink" title="未完待續.."></a>未完待續..</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> php </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> php </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>閉包</title>
+      <link href="/blog/2020/04/12/javascript-closure/"/>
+      <url>/blog/2020/04/12/javascript-closure/</url>
+      
+        <content type="html"><![CDATA[<h3 id="何謂閉包"><a href="#何謂閉包" class="headerlink" title="何謂閉包?"></a>何謂閉包?</h3><p>我自己的解釋會是，一個函數(外部函數)內的局部變量，是無法從外面直接取得，但可以透過在此函數(外部函數)內在建一個函數(內部函數)，而此內部函數可以返回外部函數的值。所以可以透過呼叫內部函數返回外部函數的值，並將此值重複使用。</p><a id="more"></a><p>以下兩變數 myFunc1 與 myFunc2 的值會不同</p><pre><code>function makeFunc() {  let ran = Math.random();  return ran;}let myFunc1 = makeFunc();let myFunc2 = makeFunc();console.log(myFunc1);console.log(myFunc2);</code></pre><h4 id="為什麼會這樣"><a href="#為什麼會這樣" class="headerlink" title="為什麼會這樣?"></a>為什麼會這樣?</h4><h4 id="先了解此代碼的運作流程"><a href="#先了解此代碼的運作流程" class="headerlink" title="先了解此代碼的運作流程"></a>先了解此代碼的運作流程</h4><p>1.執行 makeFunc()並賦值給 myFunc1 變數</p><pre><code>let myFunc1 = makeFunc();</code></pre><p>2.執行 makeFunc()並賦值給 myFunc2 變數</p><pre><code>let myFunc2 = makeFunc();</code></pre><p>3.4 打印 myFunc1 與 myFunc2 變數</p><pre><code>console.log(myFunc1);console.log(myFunc2);</code></pre><p>由此可知因為每次執行 makeFunc()，產生的 Math.randon()值會不同，所以變數 myFunc1 與 myFunc2 值會不同。</p><h4 id="那要怎麼讓這兩變數值相等呢"><a href="#那要怎麼讓這兩變數值相等呢" class="headerlink" title="那要怎麼讓這兩變數值相等呢?"></a>那要怎麼讓這兩變數值相等呢?</h4><pre><code>function makeFunc() {  let ran = Math.random();  function insideFunc() {    return ran;  }  return insideFunc;}let f = makeFunc();let myFunc1 = f();let myFunc2 = f();console.log(myFunc1);console.log(myFunc2);</code></pre><p>此時兩次變數的值就會相等</p><h4 id="來了解一下他的運行方式"><a href="#來了解一下他的運行方式" class="headerlink" title="來了解一下他的運行方式"></a>來了解一下他的運行方式</h4><p>1.執行 makeFunc()</p><pre><code>let f = makeFunc();</code></pre><p>2.makeFunc()就是執行以下代碼</p><pre><code>let ran = Math.random();return insideFunc;</code></pre><p>3.執行 f()，並賦值給 myFunc1 變數</p><pre><code>let myFunc1 = f();</code></pre><p>4.f()就是執行以下代碼</p><pre><code>return ran;</code></pre><p>5.執行 f()，並賦值給 myFunc2 變數</p><pre><code>let myFunc1 = f();</code></pre><p>6.f()就是執行以下代碼</p><pre><code>return ran;</code></pre><p>7.打印 myFunc1 與 myFunc2 變數</p><pre><code>console.log(myFunc1);console.log(myFunc2);</code></pre><p>由此可知，Math.random()只被執行一次，所以 randon 值只產生一次<br>而 f()即是 makeFunc()()，當時 makeFunc()已返回 insideFunc<br>就變成執行 insideFunc()<br>而返回值 ran 在內部函數沒有所以在向外部函數查找</p><h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://www.youtube.com/watch?v=Mh0t6t2Myak" target="_blank" rel="noopener">閉包的概念與返回函數</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> javascript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> 閉包 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>正則表達式</title>
+      <link href="/blog/2020/04/11/regular-expression/"/>
+      <url>/blog/2020/04/11/regular-expression/</url>
+      
+        <content type="html"><![CDATA[<h3 id="JS-中的正則表達式使用"><a href="#JS-中的正則表達式使用" class="headerlink" title="JS 中的正則表達式使用"></a>JS 中的正則表達式使用</h3><a id="more"></a><h4 id="創建正則表達式"><a href="#創建正則表達式" class="headerlink" title="創建正則表達式"></a>創建正則表達式</h4><h5 id="利用字面量創建-推薦"><a href="#利用字面量創建-推薦" class="headerlink" title="利用字面量創建 (推薦)"></a>利用字面量創建 (推薦)</h5><pre><code>let reg = /123/console.log(reg)</code></pre><h5 id="利用-RegExp-對象創建"><a href="#利用-RegExp-對象創建" class="headerlink" title="利用 RegExp() 對象創建"></a>利用 RegExp() 對象創建</h5><pre><code>let reg = new RegExp(/123/)console.log(reg)</code></pre><h4 id="測試正則表達式-test"><a href="#測試正則表達式-test" class="headerlink" title="測試正則表達式 test()"></a>測試正則表達式 test()</h4><pre><code>let reg = /123/console.log(reg.test(123122)) // trueconsole.log(reg.test(121122)) // false</code></pre><h3 id="正則表達式特殊符號"><a href="#正則表達式特殊符號" class="headerlink" title="正則表達式特殊符號"></a>正則表達式特殊符號</h3><h4 id="g-表全局匹配-i-表忽略大小寫"><a href="#g-表全局匹配-i-表忽略大小寫" class="headerlink" title="g 表全局匹配 i 表忽略大小寫"></a>g 表全局匹配 i 表忽略大小寫</h4><h4 id="邊界符-開頭-結尾"><a href="#邊界符-開頭-結尾" class="headerlink" title="邊界符 ^開頭 結尾$"></a>邊界符 ^開頭 結尾$</h4><pre><code>let reg = /abc/console.log(reg.test(&apos;abc&apos;)) // trueconsole.log(reg.test(&apos;abcd&apos;)) // trueconsole.log(reg.test(&apos;dabc&apos;)) // truelet reg2 = /^abc/console.log(reg2.test(&apos;abc&apos;)) // trueconsole.log(reg2.test(&apos;abcd&apos;)) // trueconsole.log(reg2.test(&apos;dabc&apos;)) // falselet reg3 = /abc$/console.log(reg3.test(&apos;abc&apos;)) // trueconsole.log(reg3.test(&apos;abcd&apos;)) // falseconsole.log(reg3.test(&apos;dabc&apos;)) // truelet reg4 = /^abc$/console.log(reg4.test(&apos;abc&apos;)) // trueconsole.log(reg4.test(&apos;abcd&apos;)) // falseconsole.log(reg4.test(&apos;dabc&apos;)) // falseconsole.log(reg4.test(&apos;abcabc&apos;)) // false</code></pre><h4 id="字符號-表示有一系列自符可供選擇，匹配其中一個即可"><a href="#字符號-表示有一系列自符可供選擇，匹配其中一個即可" class="headerlink" title="字符號 [] 表示有一系列自符可供選擇，匹配其中一個即可"></a>字符號 [] 表示有一系列自符可供選擇，匹配其中一個即可</h4><pre><code>let reg = /[abc]/console.log(reg.test(&apos;a&apos;)) // trueconsole.log(reg.test(&apos;bd&apos;)) // trueconsole.log(reg.test(&apos;d&apos;)) //let reg2 = /^[abc]$/   // 三選一 只能是a或b或c才返回trueconsole.log(reg2.test(&apos;a&apos;)) // trueconsole.log(reg2.test(&apos;b&apos;)) // trueconsole.log(reg2.test(&apos;c&apos;)) // tureconsole.log(reg2.test(&apos;aa&apos;)) // false</code></pre><h5 id="a-z-表-26-個小寫英文字母"><a href="#a-z-表-26-個小寫英文字母" class="headerlink" title="[a-z] 表 26 個小寫英文字母"></a>[a-z] 表 26 個小寫英文字母</h5><h5 id="A-Z-表-26-個大寫英文字母"><a href="#A-Z-表-26-個大寫英文字母" class="headerlink" title="[A-Z] 表 26 個大寫英文字母"></a>[A-Z] 表 26 個大寫英文字母</h5><h5 id="a-zA-Z0-9-字符組合-表-26-個字母與數字"><a href="#a-zA-Z0-9-字符組合-表-26-個字母與數字" class="headerlink" title="[a-zA-Z0-9] 字符組合 表 26 個字母與數字"></a>[a-zA-Z0-9] 字符組合 表 26 個字母與數字</h5><h5 id="a-內的-表取反"><a href="#a-內的-表取反" class="headerlink" title="[^a] []內的^ 表取反"></a>[^a] []內的^ 表取反</h5><pre><code>let reg = /^[^a]/    // 表非a開頭console.log(reg.test(&apos;a&apos;)) // falseconsole.log(reg.test(&apos;b&apos;)) // trueconsole.log(reg.test(&apos;ba&apos;)) // true</code></pre><h4 id="預定義類"><a href="#預定義類" class="headerlink" title="預定義類"></a>預定義類</h4><pre><code>// 匹配0-9任意數字\d// 匹配0-9以為任意字符\D// 匹配任意字母、數字、底線\w// 匹配除任意字母、數字、底線以外字符\W// 匹配空格\s// 匹配非空格字符\S</code></pre><h4 id="量詞符"><a href="#量詞符" class="headerlink" title="量詞符"></a>量詞符</h4><h5 id="可出現-0-次或者多次-gt-0"><a href="#可出現-0-次或者多次-gt-0" class="headerlink" title="* 可出現 0 次或者多次 &gt;= 0"></a>* 可出現 0 次或者多次 &gt;= 0</h5><pre><code>let reg = /^a*$/console.log(reg.test(&apos;a&apos;)) // true</code></pre><h5 id="可出現-1-次或者多次-gt-1"><a href="#可出現-1-次或者多次-gt-1" class="headerlink" title="+ 可出現 1 次或者多次 &gt;= 1"></a>+ 可出現 1 次或者多次 &gt;= 1</h5><pre><code>let reg = /^a+$/console.log(reg.test(&apos;a&apos;)) // trueconsole.log(reg.test(&apos;b&apos;)) // false</code></pre><h5 id="可出現-0-次或者-1-次-0-1"><a href="#可出現-0-次或者-1-次-0-1" class="headerlink" title="? 可出現 0 次或者 1 次 0 || 1"></a>? 可出現 0 次或者 1 次 0 || 1</h5><pre><code>let reg = /^a?$/console.log(reg.test(&apos;a&apos;)) // trueconsole.log(reg.test(&apos;&apos;)) // trueconsole.log(reg.test(&apos;b&apos;)) // falseconsole.log(reg.test(&apos;aa&apos;)) // false</code></pre><h5 id="3-重複三次-3-中間不能有空格"><a href="#3-重複三次-3-中間不能有空格" class="headerlink" title="{3} 重複三次 = 3 ({} 中間不能有空格)"></a>{3} 重複三次 = 3 ({} 中間不能有空格)</h5><pre><code>let reg = /^a{3}$/console.log(reg.test(&apos;aaa&apos;)) // trueconsole.log(reg.test(&apos;aaaa&apos;)) // false</code></pre><h5 id="3-大於等於三次-gt-3-中間不能有空格"><a href="#3-大於等於三次-gt-3-中間不能有空格" class="headerlink" title="{3,} 大於等於三次 &gt;= 3 ({} 中間不能有空格)"></a>{3,} 大於等於三次 &gt;= 3 ({} 中間不能有空格)</h5><pre><code>let reg = /^a{3,}$/console.log(reg.test(&apos;aaa&apos;)) // trueconsole.log(reg.test(&apos;aaaa&apos;)) // trueconsole.log(reg.test(&apos;aa&apos;)) // false</code></pre><h5 id="3-9-大於等於三次並小於等於九-gt-3-amp-amp-lt-9-中間不能有空格"><a href="#3-9-大於等於三次並小於等於九-gt-3-amp-amp-lt-9-中間不能有空格" class="headerlink" title="{3,9} 大於等於三次並小於等於九 &gt;= 3 &amp;&amp; &lt;= 9 ({} 中間不能有空格)"></a>{3,9} 大於等於三次並小於等於九 &gt;= 3 &amp;&amp; &lt;= 9 ({} 中間不能有空格)</h5><pre><code>let reg = /^a{3,9}$/console.log(reg.test(&apos;aaa&apos;)) // trueconsole.log(reg.test(&apos;aaaa&apos;)) // trueconsole.log(reg.test(&apos;aa&apos;)) // falseconsole.log(reg.test(&apos;aaaaaaaaaaaaaaaaaaa&apos;)) // false</code></pre><h3 id="常用正則"><a href="#常用正則" class="headerlink" title="常用正則"></a>常用正則</h3><pre><code>// 限制只能以 字母 , 數字 , _ , - 內容6~16碼/^[a-zA-Z0-9_-]{6,16}$/// Email地址 以英文或數字或底線開頭一次或多次 (-或.再接英文或數字或底線一次或多次)0次或多次 @/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/// 二到八位中文字符/^[\u4e00-\u9fa5]{2,8}$/</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> javascript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> 正則表達式 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>JS 淺拷貝與深拷貝</title>
+      <link href="/blog/2020/04/11/javascript-copy/"/>
+      <url>/blog/2020/04/11/javascript-copy/</url>
+      
+        <content type="html"><![CDATA[<h3 id="對以下物件做拷貝"><a href="#對以下物件做拷貝" class="headerlink" title="對以下物件做拷貝"></a>對以下物件做拷貝</h3><a id="more"></a><pre><code>let obj = {    id: 1,    name: &apos;Howie&apos;,    msg: {        age: 30    },    color: [&apos;blue&apos;, &apos;red&apos;]}</code></pre><h4 id="淺拷貝"><a href="#淺拷貝" class="headerlink" title="淺拷貝"></a>淺拷貝</h4><p>此時 msg 內為地址，非純值，若修改 o 內的 msg 值會修改到 obj 內的 msg 值</p><h5 id="舊方法-for-in"><a href="#舊方法-for-in" class="headerlink" title="舊方法 for in"></a>舊方法 for in</h5><pre><code>let o = {}for (let i in obj){    o[i] = obj[i]}console.log(o)</code></pre><h5 id="ES6-Object-assgin"><a href="#ES6-Object-assgin" class="headerlink" title="ES6 Object.assgin"></a>ES6 Object.assgin</h5><pre><code>let o = Object.assign({}, obj)console.log(o)</code></pre><h4 id="深拷貝"><a href="#深拷貝" class="headerlink" title="深拷貝"></a>深拷貝</h4><p>此時彼此的值不會互相影響</p><h5 id="使用遞迴函數拷貝"><a href="#使用遞迴函數拷貝" class="headerlink" title="使用遞迴函數拷貝"></a>使用遞迴函數拷貝</h5><pre><code>let o = {}// 封裝函數function deepCopy(newobj, oldobj){    for (let i in oldobj){        // 判斷屬性值屬於哪種數據類型        // 1. 獲取屬性值 oldobj[i]        let item = oldobj[i]        // 2. 判斷這個值是否是陣列 (必須先判斷陣列，因為陣列也是屬於Object)        if (item instanceof Array){            newobj[i] = []            deepCopy(newobj[i], item)        // 3. 判斷這個值是否是對象        } else if (item instanceof Object){            newobj[i] = {}            deepCopy(newobj[i], item)        // 4. 屬於簡單數據類型        } else{            newobj[i] = item        }    }}deepCopy(o, obj)console.log(o)</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> javascript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> 淺拷貝 </tag>
+            
+            <tag> 深拷貝 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>遞迴函數</title>
+      <link href="/blog/2020/04/11/javascript-recursion/"/>
+      <url>/blog/2020/04/11/javascript-recursion/</url>
+      
+        <content type="html"><![CDATA[<h3 id="遞迴函數"><a href="#遞迴函數" class="headerlink" title="遞迴函數"></a>遞迴函數</h3><p>函數呼叫函數自己的行為，稱為 recursion(遞迴 or 遞規)。需要 return 否則會死遞迴。</p><a id="more"></a><pre><code>// 階乘function factorial(n) {  if (n === 0) {    return 1;  }  return n * factorial(n - 1);}console.log(factorial(5));// 費波那契數 1,1,2,3,5,8function fibonacci(n){  if (n === 1 || n === 2){    return 1;  }  return fibonacci(n-2) + fibonacci(n-1)}console.log(fibonacci(6))</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> javascript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> 遞迴函數 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>在Hexo中載入Google-Analytics</title>
+      <link href="/blog/2020/04/11/google-analytics/"/>
+      <url>/blog/2020/04/11/google-analytics/</url>
+      
+        <content type="html"><![CDATA[<h4 id="註冊-GA"><a href="#註冊-GA" class="headerlink" title="註冊 GA"></a>註冊 GA</h4><p>先到 <a href="https://analytics.google.com/analytics/web/provision/?authuser=0#/provision" target="_blank" rel="noopener">Google Analytics</a> 註冊</p><a id="more"></a><h4 id="取得-ID"><a href="#取得-ID" class="headerlink" title="取得 ID"></a>取得 ID</h4><p>在 管理 -&gt; 追蹤資訊 -&gt; 追蹤程式碼 -&gt; 追蹤 ID</p><h4 id="添加到-Hexo-中"><a href="#添加到-Hexo-中" class="headerlink" title="添加到 Hexo 中"></a>添加到 Hexo 中</h4><p>themes/_config.yml 更改 ID</p><pre><code>google_analytics:  tracking_id: UA-163289150-1</code></pre><h4 id="未完待續"><a href="#未完待續" class="headerlink" title="未完待續.."></a>未完待續..</h4><h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://ithelp.ithome.com.tw/articles/10208619" target="_blank" rel="noopener">IT 邦幫忙 前端工具百寶箱 - 六角學院</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> google-analytics </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> google-analytics </tag>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo的主題</title>
+      <link href="/blog/2020/04/10/hexo-theme/"/>
+      <url>/blog/2020/04/10/hexo-theme/</url>
+      
+        <content type="html"><![CDATA[<h4 id="將想要的主題-clone-下來-這裡使用-Next"><a href="#將想要的主題-clone-下來-這裡使用-Next" class="headerlink" title="將想要的主題 clone 下來 (這裡使用 Next)"></a>將想要的主題 clone 下來 (這裡使用 Next)</h4><pre><code>cd 專案git clone https://github.com/theme-next/hexo-theme-next themes/next</code></pre><a id="more"></a><h4 id="啟用主題"><a href="#啟用主題" class="headerlink" title="啟用主題"></a>啟用主題</h4><p>修改配置文件 _config.yml</p><pre><code>theme: next</code></pre><h4 id="Scheme-Settings"><a href="#Scheme-Settings" class="headerlink" title="Scheme Settings"></a>Scheme Settings</h4><p>切換下面來更改主題外觀</p><pre><code>#Schemes#scheme: Muse#scheme: Mist#scheme: Piscesscheme: Gemini</code></pre><h4 id="設置菜單"><a href="#設置菜單" class="headerlink" title="設置菜單"></a>設置菜單</h4><pre><code>menu:home: / || fa fa-home#about: /about/ || fa fa-usertags: /tags/ || fa fa-tagscategories: /categories/ || fa fa-tharchives: /archives/ || fa fa-archive#schedule: /schedule/ || fa fa-calendar#sitemap: /sitemap.xml || fa fa-sitemap#commonweal: /404/ || fa fa-heartbeat</code></pre><h4 id="加入大頭貼"><a href="#加入大頭貼" class="headerlink" title="加入大頭貼"></a>加入大頭貼</h4><h5 id="在-source-下創建一個資料夾-images"><a href="#在-source-下創建一個資料夾-images" class="headerlink" title="在 source 下創建一個資料夾 images"></a>在 source 下創建一個資料夾 images</h5><h5 id="將圖片放進去-只有在首頁起作用"><a href="#將圖片放進去-只有在首頁起作用" class="headerlink" title="將圖片放進去 (只有在首頁起作用)"></a>將圖片放進去 (只有在首頁起作用)</h5><h5 id="修改-themes-next-config-yml"><a href="#修改-themes-next-config-yml" class="headerlink" title="修改 themes/next/_config.yml"></a>修改 themes/next/_config.yml</h5><pre><code>avatar:#Replace the default image and set the url here.url: /images/me.jpg#If true, the avatar will be dispalyed in circle.rounded: true</code></pre><h3 id="參考"><a href="#參考" class="headerlink" title="參考:"></a>參考:</h3><p><a href="https://ithelp.ithome.com.tw/articles/10207997" target="_blank" rel="noopener">IT 邦幫忙 前端工具百寶箱 - 六角學院</a><br><a href="https://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">next</a><br><a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">next Github</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>學習 Markdown</title>
+      <link href="/blog/2020/04/10/markdown/"/>
+      <url>/blog/2020/04/10/markdown/</url>
+      
+        <content type="html"><![CDATA[<h3 id="為什麼要學習-markdown-呢"><a href="#為什麼要學習-markdown-呢" class="headerlink" title="為什麼要學習 markdown 呢 ?"></a>為什麼要學習 markdown 呢 ?</h3><p>主要是因為要寫這個 Hexo 部落格，另外 markdown 語法也在很多文件上也會使用到，像是 github 上的 readme.md 檔案。</p><a id="more"></a><h3 id="開始學習-Markdown-語法"><a href="#開始學習-Markdown-語法" class="headerlink" title="開始學習 Markdown 語法"></a>開始學習 Markdown 語法</h3><h4 id="標題使用"><a href="#標題使用" class="headerlink" title="標題使用"></a>標題使用</h4><pre><code># // 標題一## // 標題二...###### // 標題六</code></pre><h4 id="代碼區塊"><a href="#代碼區塊" class="headerlink" title="代碼區塊"></a>代碼區塊</h4><pre><code>使用四個空格產生代碼區塊</code></pre><h4 id="清單"><a href="#清單" class="headerlink" title="清單"></a>清單</h4><pre><code>- 1- 2  - 2-1  - 2-2- 3</code></pre><h4 id="設置主畫面顯示文章內容"><a href="#設置主畫面顯示文章內容" class="headerlink" title="設置主畫面顯示文章內容"></a>設置主畫面顯示文章內容</h4><p>在文章中使用語法</p><pre><code>&lt;!-- more --&gt;</code></pre><h3 id="未完待續"><a href="#未完待續" class="headerlink" title="未完待續.."></a>未完待續..</h3><h3 id="參考"><a href="#參考" class="headerlink" title="參考:"></a>參考:</h3><p><a href="https://markdown.tw" target="_blank" rel="noopener">Markdown 文件</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> markdown </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> markdown </tag>
+            
+            <tag> code </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>設定 SSH</title>
+      <link href="/blog/2020/04/10/ssh/"/>
+      <url>/blog/2020/04/10/ssh/</url>
+      
+        <content type="html"><![CDATA[<h3 id="為什麼要使用-SSH"><a href="#為什麼要使用-SSH" class="headerlink" title="為什麼要使用 SSH ?"></a>為什麼要使用 SSH ?</h3><p>之前上傳到 github 都是透過 https 的方式，而這次製作 hexo 專案，要透過 SSH 將檔案上傳到 github 上，所以就需要知道如何使用 SSH。</p><a id="more"></a><h3 id="開始設定-SSH"><a href="#開始設定-SSH" class="headerlink" title="開始設定 SSH"></a>開始設定 SSH</h3><h4 id="1-開啟終端機"><a href="#1-開啟終端機" class="headerlink" title="1. 開啟終端機"></a>1. 開啟終端機</h4><pre><code>ssh-keygen -t rsa -b 4096 -C &quot;howie12207@gmail.com&quot;</code></pre><p>出現以下畫面</p><pre><code>Generating public/private rsa key pair.Enter a file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]Enter passphrase (empty for no passphrase): [Type a passphrase]Enter same passphrase again: [Type passphrase again]</code></pre><p>第二行是 存放 key 檔案的位置<br>第三行與第三行是 輸入密碼與確認密碼<br>若沒有特別需要，都按 Enter 直接過去即可</p><h4 id="2-開啟-ssh-agent"><a href="#2-開啟-ssh-agent" class="headerlink" title="2. 開啟 ssh-agent"></a>2. 開啟 ssh-agent</h4><p>這裡奇怪的是我使用 VScode 的 powershell 無法正常操作<br>後來改成 git bash 就正常了</p><pre><code>eval &quot;\$(ssh-agent -s)&quot;</code></pre><h4 id="3-將私鑰加入到-ssh-agent"><a href="#3-將私鑰加入到-ssh-agent" class="headerlink" title="3. 將私鑰加入到 ssh-agent"></a>3. 將私鑰加入到 ssh-agent</h4><pre><code>ssh-add -K ~/.ssh/id_rsa</code></pre><h5 id="4-上傳公鑰"><a href="#4-上傳公鑰" class="headerlink" title="4. 上傳公鑰"></a>4. 上傳公鑰</h5><p>將公鑰的內容打印出來並複製</p><pre><code>cat ~/.ssh/id_rsa.pub</code></pre><p>到 Github 上 -&gt; setting -&gt; SSH andGPG keys -&gt; New SSH key</p><p>將內容貼上，然後自己取名</p><h3 id="參考"><a href="#參考" class="headerlink" title="參考:"></a>參考:</h3><p><a href="https://ithelp.ithome.com.tw/articles/10205988" target="_blank" rel="noopener">IT 邦幫忙 前端工具百寶箱 - 六角學院</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> git </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ssh </tag>
+            
+            <tag> git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>開始使用 Hexo</title>
+      <link href="/blog/2020/04/10/start-hexo/"/>
+      <url>/blog/2020/04/10/start-hexo/</url>
+      
+        <content type="html"><![CDATA[<h3 id="為什麼開始使用-Blog"><a href="#為什麼開始使用-Blog" class="headerlink" title="為什麼開始使用 Blog?"></a>為什麼開始使用 Blog?</h3><p>在這學習程式語言的階段，有太多東西需要去學習，而記憶力就只有那麼一點，透過部落格的紀錄方式，方便自己以後回來查找，也可以記錄一些自己的生活。</p><a id="more"></a><h3 id="部落格是怎麼製作的"><a href="#部落格是怎麼製作的" class="headerlink" title="部落格是怎麼製作的?"></a>部落格是怎麼製作的?</h3><p>爬了一下文，發現大部分的人都是使用’hexo’，所以就找了幾篇關於 hexo 的教學文來看</p><h3 id="建置"><a href="#建置" class="headerlink" title="建置"></a>建置</h3><h4 id="1-開啟-VScode，在終端機中使用以下指令，將-hexo-套件建立在全域下。"><a href="#1-開啟-VScode，在終端機中使用以下指令，將-hexo-套件建立在全域下。" class="headerlink" title="1. 開啟 VScode，在終端機中使用以下指令，將 hexo 套件建立在全域下。"></a>1. 開啟 VScode，在終端機中使用以下指令，將 hexo 套件建立在全域下。</h4><pre><code>npm install -g hexo-cli</code></pre><h4 id="2-建立-hexo-專案"><a href="#2-建立-hexo-專案" class="headerlink" title="2. 建立 hexo 專案"></a>2. 建立 hexo 專案</h4><pre><code>hexo init &lt;資料夾名稱&gt;</code></pre><h4 id="3-進入資料夾並安裝"><a href="#3-進入資料夾並安裝" class="headerlink" title="3. 進入資料夾並安裝"></a>3. 進入資料夾並安裝</h4><pre><code>cd &lt;資料夾名稱&gt;npm install</code></pre><h4 id="4-產生靜態檔案"><a href="#4-產生靜態檔案" class="headerlink" title="4. 產生靜態檔案"></a>4. 產生靜態檔案</h4><pre><code>hexo g</code></pre><h4 id="5-建立-hexo-git-到-config-yml-更改配置"><a href="#5-建立-hexo-git-到-config-yml-更改配置" class="headerlink" title="5. 建立 hexo git (到_config.yml 更改配置)"></a>5. 建立 hexo git (到_config.yml 更改配置)</h4><pre><code>npm install hexo-deployer-git --save</code></pre><h4 id="6-將檔案-push-上去-如果沒有-SSH-可能會發生問題"><a href="#6-將檔案-push-上去-如果沒有-SSH-可能會發生問題" class="headerlink" title="6. 將檔案 push 上去 (如果沒有 SSH 可能會發生問題)"></a>6. 將檔案 push 上去 (如果沒有 SSH 可能會發生問題)</h4><pre><code>hexo d</code></pre><h4 id="啟動-Server"><a href="#啟動-Server" class="headerlink" title="啟動 Server"></a>啟動 Server</h4><pre><code>hexo s</code></pre><h4 id="新增文章"><a href="#新增文章" class="headerlink" title="新增文章"></a>新增文章</h4><p>layout -&gt; 選擇格式<br>title -&gt; 輸入標題<br>將新增一個 md 檔在 scaffolds 資料夾內</p><pre><code>hexo new [layout] &lt;title&gt;</code></pre><h4 id="修改配置檔"><a href="#修改配置檔" class="headerlink" title="修改配置檔"></a>修改配置檔</h4><p>_config.yml</p><pre><code>#Sitetitle: Howie&apos;s blog // 標題subtitle: &quot;&quot; // 副標題description: &quot;&quot; // 描述keywords:author: Howie Chen // 作者language: entimezone: &quot;Asia/Taipei&quot; // 時區# URL## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;url: http://yoursite.comroot: /blog/  // 將此區改為github的位置# Deployment## Docs: https://hexo.io/docs/deployment.htmldeploy:type: git //使用方法repo: git@github.com:howie12207/blog.git //SSH連結branch: master //預設分支</code></pre><h4 id="新增分類功能"><a href="#新增分類功能" class="headerlink" title="新增分類功能"></a>新增分類功能</h4><p>在 scaffold/post.md 內新增</p><pre><code>categories:</code></pre><h4 id="顯示-categories-並實現功能"><a href="#顯示-categories-並實現功能" class="headerlink" title="顯示 categories 並實現功能"></a>顯示 categories 並實現功能</h4><p>新增頁面</p><pre><code>hexo new page &quot;categories&quot;</code></pre><p>顯示資料 sources/categories/index.md</p><pre><code>type: &quot;categories&quot;layout: &quot;categories&quot;comments: false</code></pre><p>打開 menu themes/next/_config.yml</p><pre><code>menu:categories: /categories/</code></pre><p>檢查對應連結 _config.yml</p><pre><code>#Directorycategory_dir: categories</code></pre><h3 id="Updated-by-2020-4-11"><a href="#Updated-by-2020-4-11" class="headerlink" title="Updated by 2020/4/11"></a>Updated by 2020/4/11</h3><h3 id="參考"><a href="#參考" class="headerlink" title="參考:"></a>參考:</h3><p><a href="https://ithelp.ithome.com.tw/articles/10207725" target="_blank" rel="noopener">IT 邦幫忙 前端工具百寶箱 - 六角學院</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> blog </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>PHP 環境建置</title>
+      <link href="/blog/2020/04/09/php-install/"/>
+      <url>/blog/2020/04/09/php-install/</url>
+      
+        <content type="html"><![CDATA[<h3 id="要在主機上運行-PHP-需要什麼"><a href="#要在主機上運行-PHP-需要什麼" class="headerlink" title="要在主機上運行 PHP 需要什麼?"></a>要在主機上運行 PHP 需要什麼?</h3><ul><li>web 服務器 (apache)</li><li>php</li><li>數據庫 (mysql)</li></ul><a id="more"></a><h4 id="安裝-Apache"><a href="#安裝-Apache" class="headerlink" title="安裝 Apache"></a>安裝 Apache</h4><p><a href="https://httpd.apache.org/download.cgi" target="_blank" rel="noopener">Apache</a><br>在資料磁區開立一個 server 資料夾，並將下載的 apache 解壓於此</p><h4 id="安裝-PHP"><a href="#安裝-PHP" class="headerlink" title="安裝 PHP"></a>安裝 PHP</h4><p><a href="https://www.php.net/downloads" target="_blank" rel="noopener">PHP</a> -&gt; 選擇 windows downloads -&gt; 選擇 Thread Safe 版本 -&gt; 放到 server 資料夾內</p><h4 id="安裝-mysql"><a href="#安裝-mysql" class="headerlink" title="安裝 mysql"></a>安裝 mysql</h4><p><a href="https://dev.mysql.com/downloads/" target="_blank" rel="noopener">mysql</a><br>安裝於 server 資料夾內</p><h4 id="此時-server-資料夾就會有三個資料夾"><a href="#此時-server-資料夾就會有三個資料夾" class="headerlink" title="此時 server 資料夾就會有三個資料夾"></a>此時 server 資料夾就會有三個資料夾</h4><h4 id="接著是改配置檔，-待下次重複操作補"><a href="#接著是改配置檔，-待下次重複操作補" class="headerlink" title="接著是改配置檔， 待下次重複操作補.."></a>接著是改配置檔， 待下次重複操作補..</h4><h3 id="4-11-補-PO-4-9-當日狀況"><a href="#4-11-補-PO-4-9-當日狀況" class="headerlink" title="4/11 補 PO 4/9 當日狀況"></a>4/11 補 PO 4/9 當日狀況</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> php </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> php </tag>
+            
+            <tag> mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>作品 - 口罩地圖</title>
+      <link href="/blog/2020/04/05/works-maskmap/"/>
+      <url>/blog/2020/04/05/works-maskmap/</url>
+      
+        <content type="html"><![CDATA[<h3 id="為什麼會有這個作品"><a href="#為什麼會有這個作品" class="headerlink" title="為什麼會有這個作品?"></a>為什麼會有這個作品?</h3><p>之前就有看到別人 PO 供大家查詢，使用過幾次覺得很方便，偶然看到六角學院有統整出以下各資源，所以就嘗試做一個看看。</p><a id="more"></a><ul><li>設計圖</li><li>口罩數量 API</li><li>leaflet + OSM 教學</li></ul><h3 id="開始製作"><a href="#開始製作" class="headerlink" title="開始製作"></a>開始製作</h3><h4 id="以-Vue-Cli-起了專案"><a href="#以-Vue-Cli-起了專案" class="headerlink" title="以 Vue Cli 起了專案"></a>以 Vue Cli 起了專案</h4><h5 id="使用套件"><a href="#使用套件" class="headerlink" title="使用套件"></a>使用套件</h5><ul><li>axios &amp; vue-axios</li><li>element-ui</li><li>leaflet</li></ul><h4 id="製作側欄"><a href="#製作側欄" class="headerlink" title="製作側欄"></a>製作側欄</h4><p>需要台灣城市區的資料，於是網路抓了對應 JSON 檔放入，並以 element-ui 呈現選擇框，在選擇後下方才會出現對應的藥局及數量(此地方需要串口罩 API)</p><h4 id="製作地圖"><a href="#製作地圖" class="headerlink" title="製作地圖"></a>製作地圖</h4><p>看了 leaflet + OSM 教學影片及相關文件，載入地圖，再透過側欄選取區域，在地圖上畫上對應區域的藥局座標。</p><h4 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h4><p>花了兩天做出大概的樣子</p><h3 id="4-11-補-PO-4-5"><a href="#4-11-補-PO-4-5" class="headerlink" title="4/11 補 PO 4/5"></a>4/11 補 PO 4/5</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> works </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> works </tag>
+            
+            <tag> maskmap </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>結束兩個禮拜又一天的工作</title>
+      <link href="/blog/2020/03/30/working-001/"/>
+      <url>/blog/2020/03/30/working-001/</url>
+      
+        <content type="html"><![CDATA[<p>是的，轉職後的第一份工作，做了兩個禮拜又一天離職了，先來說說這兩個禮拜的內容吧。</p><a id="more"></a><h4 id="第一天-3-16"><a href="#第一天-3-16" class="headerlink" title="第一天 3/16"></a>第一天 3/16</h4><p>由 HR 帶到會議室簽一些契約、填寫資料，當天報到的人共 4 位，3 位前端、1 位 MIS。<br>接著參觀環境並帶到自己的工作位置，做了電腦環境配置，接著將公司正在做的專案 clone 下來看看架構，並了解公司使用的 git flow 與一些規範，第一天就這樣過了，19:00 離開。</p><h4 id="第二天開始"><a href="#第二天開始" class="headerlink" title="第二天開始"></a>第二天開始</h4><p>開始拿到各類 issues，與實現一些功能</p><ul><li><p>輸入框的錯誤提示</p></li><li><p>將數字改用 NumberKeyboard 輸入</p></li><li><p>串 API 做密碼驗證</p></li><li><p>van-keyboard 的相關限制</p></li><li><p>picker 的置中</p></li><li><p>Matomo API 串接與資料呈現</p></li><li><p>element-UI 製作表格</p></li><li><p>echart 的圖表呈現</p></li><li><p>…等等</p></li></ul><p>可以看到大部分都是操作套件的相關東西，也因此都要去網路查找各類文件，除了 matomo 部分，其他看起來都似乎都不難，但也是遇到很多問題，像是對套件的不熟悉，不曉得如何去操作，call api 時資料較慢取得，對 async await 與 promise 的不熟悉，以及 matomo 的 API 串接。</p><p>所以這兩周偶爾 8 點下班，但大部分都 10 點才走，到家也都 11 點了，大家留的都還比我晚，在挫折感與工時的不適應下，提出了離職。</p><p>第一次接觸軟體業，讓我有大大的震撼感，也開始對自己產生懷疑，我真的適合這類工作嗎?這是我想要的嗎?想想寫 code 還是我的興趣，能夠解決問題實現功能會讓我有充實的成就感，雖然常常會碰壁有挫折，但我想這就是新手起步的必經過程吧。</p><h3 id="4-11-補-PO-3-16-3-30-工作紀錄"><a href="#4-11-補-PO-3-16-3-30-工作紀錄" class="headerlink" title="4/11 補 PO 3/16 ~ 3/30 工作紀錄"></a>4/11 補 PO 3/16 ~ 3/30 工作紀錄</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> working </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> working </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>面試 - 鼎羿</title>
+      <link href="/blog/2020/03/03/interview-002/"/>
+      <url>/blog/2020/03/03/interview-002/</url>
+      
+        <content type="html"><![CDATA[<h3 id="公司名稱"><a href="#公司名稱" class="headerlink" title="公司名稱"></a>公司名稱</h3><p>鼎羿科技有限公司</p><a id="more"></a><h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p>台北市內湖區瑞光路 298 號 8 樓</p><h3 id="應徵職位"><a href="#應徵職位" class="headerlink" title="應徵職位"></a>應徵職位</h3><p>前端工程師</p><h3 id="面試日期"><a href="#面試日期" class="headerlink" title="面試日期"></a>面試日期</h3><p>2020/03/03 10:00</p><h3 id="攜帶"><a href="#攜帶" class="headerlink" title="攜帶"></a>攜帶</h3><p>帶履歷表、筆電、作品</p><h3 id="面試流程"><a href="#面試流程" class="headerlink" title="面試流程"></a>面試流程</h3><p>先由櫃台帶到會議室，並給了一份專業技能試卷 20 分鐘作答。</p><h4 id="專業技能考題大概如下"><a href="#專業技能考題大概如下" class="headerlink" title="專業技能考題大概如下"></a>專業技能考題大概如下</h4><h5 id="let-與-var"><a href="#let-與-var" class="headerlink" title="let 與 var"></a>let 與 var</h5><pre><code>(1)for (var i = 1; i &lt;= 5; i++) {  setTimeout(() =&gt; {    console.log(i);  }, 0);}console.log(i);// 6// 6// 6// 6// 6// 6(2)for (let i = 1; i &lt;= 5; i++) {  setTimeout(() =&gt; {    console.log(i);  }, 0);}console.log(i);// i is not defined// 1// 2// 3// 4// 5</code></pre><h5 id="請寫出三種讓子元素於父元素裡置中的方法"><a href="#請寫出三種讓子元素於父元素裡置中的方法" class="headerlink" title="請寫出三種讓子元素於父元素裡置中的方法"></a>請寫出三種讓子元素於父元素裡置中的方法</h5><p>Ans:</p><pre><code>(1) flex  .parent{    display:flex;    justify-content:center;  }   .child{}(2) position.parent{  position: relative;}.child{  position: absolute;  top: 0;  left: 50%;  transform: translateX(-50%);}(3) margin.parent{}.child{  margin: 0 auto;}</code></pre><h5 id="用-async-await-寫出延遲一秒輸出-console-log-1"><a href="#用-async-await-寫出延遲一秒輸出-console-log-1" class="headerlink" title="用 async await 寫出延遲一秒輸出 console.log(1)"></a>用 async await 寫出延遲一秒輸出 console.log(1)</h5><p>Ans:</p><pre><code>function delay(t) {  return new Promise((resolve, reject) =&gt; {    setTimeout(() =&gt; {      resolve();    }, t);  });}(async function() {  await delay(1000);  console.log(&apos;1&apos;);})();</code></pre><h5 id="ary-1-2-3-…N-使用-ary-方法算出總和"><a href="#ary-1-2-3-…N-使用-ary-方法算出總和" class="headerlink" title="ary=[1,2,3,…N] 使用 ary 方法算出總和"></a>ary=[1,2,3,…N] 使用 ary 方法算出總和</h5><p>(1) reduce</p><pre><code>let ary = [1, 2, 3, 4];let total = ary.reduce((prev, next) =&gt; prev + next, 0);console.log(total);</code></pre><p>(2) foreach</p><pre><code>let ary = [1, 2, 3, 4];let total = 0;ary.forEach(item =&gt; (total += item));console.log(total);</code></pre><h5 id="還有一些題目忘記了"><a href="#還有一些題目忘記了" class="headerlink" title="還有一些題目忘記了"></a>還有一些題目忘記了</h5><h4 id="接著與技術長面談"><a href="#接著與技術長面談" class="headerlink" title="接著與技術長面談"></a>接著與技術長面談</h4><p>根據剛才的試卷作答探討，也請我自我介紹，展示自己的作品並做簡單的介紹，技術長也分享了自己的一些觀點。</p><h4 id="再來與-HR-面談"><a href="#再來與-HR-面談" class="headerlink" title="再來與 HR 面談"></a>再來與 HR 面談</h4><p>HR 介紹了一下公司及環境，並了解為何離開前一間公司。</p><h4 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h4><p>總時長約花 1.5 小時，是間博弈公司，公司強調工作環境的氣氛，上班期間都有音樂聽，大家也都會訂便當一起吃，也有懶骨頭中午可以睡，公司環境、氣氛不錯，與面試官也都聊得很開心。</p><p>最後 offer get，也接受，至於後面的工作狀況又是另一個故事了。</p><h3 id="4-11-補-PO-3-3-當天紀錄"><a href="#4-11-補-PO-3-3-當天紀錄" class="headerlink" title="4/11 補 PO 3/3 當天紀錄"></a>4/11 補 PO 3/3 當天紀錄</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> interview </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> interview </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>面試 - 鳳之梧</title>
+      <link href="/blog/2020/02/25/interview-001/"/>
+      <url>/blog/2020/02/25/interview-001/</url>
+      
+        <content type="html"><![CDATA[<h3 id="公司名稱"><a href="#公司名稱" class="headerlink" title="公司名稱"></a>公司名稱</h3><p>薩摩亞商鳳之梧數位科技有限公司</p><a id="more"></a><h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p>台北市內湖區堤頂大道二段 297 號 3 樓(台北內湖科技園區)</p><h3 id="應徵職位"><a href="#應徵職位" class="headerlink" title="應徵職位"></a>應徵職位</h3><p>前端工程師</p><h3 id="面試日期"><a href="#面試日期" class="headerlink" title="面試日期"></a>面試日期</h3><p>2020/02/25 10:30</p><h3 id="攜帶"><a href="#攜帶" class="headerlink" title="攜帶"></a>攜帶</h3><p>帶履歷表及一支筆</p><h3 id="面試流程"><a href="#面試流程" class="headerlink" title="面試流程"></a>面試流程</h3><p>先由 HR 帶到會議室給了兩份試卷，一份是關於性格分析，一份是專業技能考題，總時長給 1 小時。</p><h4 id="專業技能考題大概如下"><a href="#專業技能考題大概如下" class="headerlink" title="專業技能考題大概如下"></a>專業技能考題大概如下</h4><h5 id="let-var-與-settimeout-選擇題"><a href="#let-var-與-settimeout-選擇題" class="headerlink" title="let, var 與 settimeout (選擇題)"></a>let, var 與 settimeout (選擇題)</h5><pre><code>// let 與 var 在if,else,for,while會有差 let,const =&gt; block scope ; var =&gt; function scopefunction b() {  for (var i = 1; i &lt;= 3; i++) {    setTimeout(() =&gt; {      console.log(&quot;settimeout裡面&quot;, i);    }, 0);    console.log(&quot;settimeout外面&quot;, i);  }}function c() {  for (let i = 1; i &lt;= 3; i++) {    setTimeout(() =&gt; {      console.log(i);    }, 0);  }}b(); // 內4,4,4 外1,2,3c(); // 1,2,3</code></pre><h5 id="obj-選擇題"><a href="#obj-選擇題" class="headerlink" title="obj {} (選擇題)"></a>obj {} (選擇題)</h5><pre><code>function c(obj) {  if (obj === { name: &quot;Howie&quot; }) {    console.log(&quot;a&quot;);  } else if (obj == { name: &quot;Howie&quot; }) {    console.log(&quot;b&quot;);  } else {    console.log(&quot;c&quot;);  }}c({ name: &quot;Howie&quot; }); // undefined</code></pre><h5 id="settimeout-非同步會放後面執行-選擇題"><a href="#settimeout-非同步會放後面執行-選擇題" class="headerlink" title="settimeout 非同步會放後面執行 (選擇題)"></a>settimeout 非同步會放後面執行 (選擇題)</h5><pre><code>function a() {  console.log(&quot;first&quot;);}function b() {  setTimeout(() =&gt; {    console.log(&quot;second&quot;);  }, 0);}function c() {  console.log(&quot;third&quot;);}b();a();c();// first// third// second</code></pre><h5 id="CSS-為何有時設定-width，實際的-width-卻與設定不同，如何解決"><a href="#CSS-為何有時設定-width，實際的-width-卻與設定不同，如何解決" class="headerlink" title="CSS 為何有時設定 width，實際的 width 卻與設定不同，如何解決?"></a>CSS 為何有時設定 width，實際的 width 卻與設定不同，如何解決?</h5><h5 id="簡述-CSS-box-model"><a href="#簡述-CSS-box-model" class="headerlink" title="簡述 CSS box model"></a>簡述 CSS box model</h5><h5 id="使用-for-迴圈創建一個物件有以下功能"><a href="#使用-for-迴圈創建一個物件有以下功能" class="headerlink" title="使用 for 迴圈創建一個物件有以下功能"></a>使用 for 迴圈創建一個物件有以下功能</h5><p>obj.fn1() -&gt; alert(1);<br>obj.fn2() -&gt; alert(2);<br>.<br>.<br>obj.fn10() -&gt; alert(10);</p><pre><code>let obj = {};for (let i = 1; i &lt;= 10; i++) {  obj[`fn${i}`] = function() {    alert(i);  };}</code></pre><h5 id="簡述-SPA"><a href="#簡述-SPA" class="headerlink" title="簡述 SPA"></a>簡述 SPA</h5><h5 id="Vue-父子如何傳值"><a href="#Vue-父子如何傳值" class="headerlink" title="Vue 父子如何傳值"></a>Vue 父子如何傳值</h5><p>Ans:</p><p>父 -&gt; 子<br>(1) 子元件在 props 中建立一個屬性，用以接收父元件傳過來的值<br>(2) 父元件中註冊子元件<br>(3) 在子元件標籤中新增子元件 props 中建立的屬性<br>(4) 把需要傳給子元件的值賦給該屬性</p><p>子 -&gt; 父<br>(1) 子元件中需要以某種方式例如點選事件的方法來觸發一個自定義事件<br>(2) 將需要傳的值作為$emit 的第二個引數，該值將作為實參傳給響應自定義事件的方法<br>(3) 在父元件中註冊子元件並在子元件標籤上繫結對自定義事件的監聽</p><h5 id="簡述-Vue-生命週期"><a href="#簡述-Vue-生命週期" class="headerlink" title="簡述 Vue 生命週期"></a>簡述 Vue 生命週期</h5><p>Ans:</p><p>beforeCreate：初始化<br>created: 建立完成。資料 $data 已可取得，但 $el 屬性尚未被建立。<br>beforeMount：執行元素掛載之前，代表 $el 尚未被建立<br>mounted：元素已掛載， $el 被建立<br>beforeUpdate：當資料改變被呼叫使用，還不會渲染 View<br>updated：當資料更新完成，則驅動 DOM 元素重新渲染畫面 View<br>beforeDestroy：Vue 還可使用<br>destroyed：Vue 銷毀，所有的 DOM 元素綁定被解除、移除偵聽事件、Vue child 也被一併銷毀</p><h5 id="簡述-git-版控，優缺點"><a href="#簡述-git-版控，優缺點" class="headerlink" title="簡述 git 版控，優缺點"></a>簡述 git 版控，優缺點</h5><h5 id="簡述-API-串接方法"><a href="#簡述-API-串接方法" class="headerlink" title="簡述 API 串接方法"></a>簡述 API 串接方法</h5><h5 id="還有一些題目忘記了"><a href="#還有一些題目忘記了" class="headerlink" title="還有一些題目忘記了"></a>還有一些題目忘記了</h5><h4 id="接著與-HR-面談"><a href="#接著與-HR-面談" class="headerlink" title="接著與 HR 面談"></a>接著與 HR 面談</h4><p>HR 介紹了一下公司及環境，也請我自我介紹並了解為何離開前一間公司</p><h4 id="再來與技術長面談"><a href="#再來與技術長面談" class="headerlink" title="再來與技術長面談"></a>再來與技術長面談</h4><p>因技術長人在臺中，所以是透過遠端視訊，根據寫的試卷與我簡單的探討。</p><h4 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h4><p>總時長約花 1.5 小時，是間博弈公司，辦公室當天只看到 3 個人，HR 表示此公司是在台中，近期在台北擴大。但在台北人數還這麼少，且主管也不在台北，感覺工作起來也會蠻無助的。最後是無聲卡，不過有國外職缺的面試邀約，但我推掉了。</p><h3 id="4-11-補-PO-2-25-當天紀錄"><a href="#4-11-補-PO-2-25-當天紀錄" class="headerlink" title="4/11 補 PO 2/25 當天紀錄"></a>4/11 補 PO 2/25 當天紀錄</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> interview </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> interview </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
