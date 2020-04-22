@@ -28,7 +28,7 @@
 <meta property="og:description" content="面試常常會被問到 Vue 的生命週期，知道大概但今天被詢問到 computed 與 watch 是在何時被調用的?回答不出來所以特別再深入了解一下。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-04-22T14:57:19.000Z">
-<meta property="article:modified_time" content="2020-04-22T15:20:21.867Z">
+<meta property="article:modified_time" content="2020-04-22T15:24:03.353Z">
 <meta property="article:author" content="Howie Chen">
 <meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
@@ -217,7 +217,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2020-04-22 22:57:19 / 修改時間：23:20:21" itemprop="dateCreated datePublished" datetime="2020-04-22T22:57:19+08:00">2020-04-22</time>
+              <time title="創建時間：2020-04-22 22:57:19 / 修改時間：23:24:03" itemprop="dateCreated datePublished" datetime="2020-04-22T22:57:19+08:00">2020-04-22</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -301,10 +301,7 @@ let vm = new Vue({
     console.log(&quot;調用了updated鉤子函數&quot;);
   },
 });</code></pre><p>出現如下 console</p>
-<p>調用了 beforeCreat 鉤子函數<br>調用了 created 鉤子函數<br>undefined<br>Vue {_uid: 0, _isVue: true, $options: {…}, _renderProxy: Proxy, _self: Vue, …}<br>調用了 beforeMount 鉤子函數<br>computed 監聽到了 fullchange1,undefined<br>調用了 mounted 鉤子函數</p>
-<div id=​"app">​…​</div>​
-Vue {_uid: 0, _isVue: true, $options: {…}, \_renderProxy: Proxy, \_self: Vue, …}
-
+<p>調用了 beforeCreat 鉤子函數<br>調用了 created 鉤子函數<br>undefined<br>Vue {_uid: 0, _isVue: true, $options: {…}, _renderProxy: Proxy, _self: Vue, …}<br>調用了 beforeMount 鉤子函數<br>computed 監聽到了 fullchange1,undefined<br>調用了 mounted 鉤子函數<br>&lt; div id=​”app”&gt;​…​&lt; /div&gt;​<br>Vue {_uid: 0, _isVue: true, $options: {…}, _renderProxy: Proxy, _self: Vue, …}</p>
 <p>beforeCreat<br>created<br>在 created hook 內還未綁定 el 所以回傳 undefined<br>Vue 實例在 created 已建立，所以返回 Vue<br>beforeMount<br>在 beforeMount 與 mounted 間執行 computed<br>mounted<br>已經掛載，返回綁定元素<br>已經建立，返回 Vue</p>
 <p>接著改變值<br>watch<br>beforeUpdate<br>已經掛載，返回綁定元素<br>已經建立，返回 Vue<br>computed<br>updated</p>
 <h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://www.itread01.com/content/1516881488.html" target="_blank" rel="noopener">vue 生命周期鉤子的理解 watch computed</a></p>
