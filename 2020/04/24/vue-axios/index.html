@@ -20,20 +20,21 @@
     var CONFIG = {"hostname":"howie12207.github.io","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":"enable","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="公司名稱天盛遊戲股份有限公司">
+  <meta name="description" content="有用 Vue call api 基本上應該就會知道 axios 這個套件，我是從六角學院的「Vue 出一個電商網站」學 Vue 時，知道這個套件的，而且在這之前我也沒使用過 httprequest call api，所以並不知道差異，只知道 Vue 是使用它來 call api。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="面試 - 天盛遊戲">
-<meta property="og:url" content="http://howie12207.github.io/2020/04/22/interview-003/index.html">
+<meta property="og:title" content="Axios的封裝">
+<meta property="og:url" content="http://howie12207.github.io/2020/04/24/vue-axios/index.html">
 <meta property="og:site_name" content="Howie&#39;s blog">
-<meta property="og:description" content="公司名稱天盛遊戲股份有限公司">
+<meta property="og:description" content="有用 Vue call api 基本上應該就會知道 axios 這個套件，我是從六角學院的「Vue 出一個電商網站」學 Vue 時，知道這個套件的，而且在這之前我也沒使用過 httprequest call api，所以並不知道差異，只知道 Vue 是使用它來 call api。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-04-22T09:42:19.000Z">
-<meta property="article:modified_time" content="2020-04-22T14:03:19.092Z">
+<meta property="article:published_time" content="2020-04-24T13:07:48.000Z">
+<meta property="article:modified_time" content="2020-04-24T14:23:59.045Z">
 <meta property="article:author" content="Howie Chen">
-<meta property="article:tag" content="interview">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="axios">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://howie12207.github.io/2020/04/22/interview-003/">
+<link rel="canonical" href="http://howie12207.github.io/2020/04/24/vue-axios/">
 
 
 <script id="page-configurations">
@@ -46,7 +47,7 @@
   };
 </script>
 
-  <title>面試 - 天盛遊戲 | Howie's blog</title>
+  <title>Axios的封裝 | Howie's blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163289150-1"></script>
     <script>
@@ -193,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="http://howie12207.github.io/2020/04/22/interview-003/">
+    <link itemprop="mainEntityOfPage" href="http://howie12207.github.io/2020/04/24/vue-axios/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/images/me.jpg">
@@ -206,7 +207,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          面試 - 天盛遊戲
+          Axios的封裝
         </h1>
 
         <div class="post-meta">
@@ -217,7 +218,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2020-04-22 17:42:19 / 修改時間：22:03:19" itemprop="dateCreated datePublished" datetime="2020-04-22T17:42:19+08:00">2020-04-22</time>
+              <time title="創建時間：2020-04-24 21:07:48 / 修改時間：22:23:59" itemprop="dateCreated datePublished" datetime="2020-04-24T21:07:48+08:00">2020-04-24</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -225,7 +226,7 @@
               </span>
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/interview/" itemprop="url" rel="index"><span itemprop="name">interview</span></a>
+                  <a href="/blog/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
                 </span>
             </span>
 
@@ -240,19 +241,148 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="公司名稱"><a href="#公司名稱" class="headerlink" title="公司名稱"></a>公司名稱</h3><p>天盛遊戲股份有限公司</p>
+        <p>有用 Vue call api 基本上應該就會知道 axios 這個套件，我是從六角學院的「Vue 出一個電商網站」學 Vue 時，知道這個套件的，而且在這之前我也沒使用過 httprequest call api，所以並不知道差異，只知道 Vue 是使用它來 call api。</p>
 <a id="more"></a>
 
-<h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p>台北市信義區東興路 51 號 5 樓</p>
-<h3 id="應徵職位"><a href="#應徵職位" class="headerlink" title="應徵職位"></a>應徵職位</h3><p>Web 前端工程師</p>
-<h3 id="面試日期"><a href="#面試日期" class="headerlink" title="面試日期"></a>面試日期</h3><p>2020/04/22 15:00</p>
-<h3 id="攜帶"><a href="#攜帶" class="headerlink" title="攜帶"></a>攜帶</h3><p>無</p>
-<h3 id="面試流程"><a href="#面試流程" class="headerlink" title="面試流程"></a>面試流程</h3><p>到會議室，並給了一份專業技能試卷與人事資料填寫，專業技能都是有關 Vue 的，寫了一陣子後人資進來表示沒寫完沒關係，就先把專業技能試卷收走，接著繼續寫人事資料，接著也收走人事資料。</p>
-<h4 id="專業技能考題大概如下"><a href="#專業技能考題大概如下" class="headerlink" title="專業技能考題大概如下"></a>專業技能考題大概如下</h4><h5 id="簡述-SPA-優缺點"><a href="#簡述-SPA-優缺點" class="headerlink" title="簡述 SPA 優缺點"></a>簡述 SPA 優缺點</h5><h5 id="v-if-與-v-show-差別"><a href="#v-if-與-v-show-差別" class="headerlink" title="v-if 與 v-show 差別"></a>v-if 與 v-show 差別</h5><h5 id="Class-與-Style-如何動態綁定"><a href="#Class-與-Style-如何動態綁定" class="headerlink" title="Class 與 Style 如何動態綁定"></a>Class 與 Style 如何動態綁定</h5><h5 id="Computed-與-Watched-用途"><a href="#Computed-與-Watched-用途" class="headerlink" title="Computed 與 Watched 用途"></a>Computed 與 Watched 用途</h5><h5 id="的作用"><a href="#的作用" class="headerlink" title="的作用"></a><keep-alive>的作用</h5><h5 id="hash-與-history-差異"><a href="#hash-與-history-差異" class="headerlink" title="hash 與 history 差異"></a>hash 與 history 差異</h5><h5 id="共-6-7-題-或許還有-1-題忘記了"><a href="#共-6-7-題-或許還有-1-題忘記了" class="headerlink" title="共 6,7 題 或許還有 1 題忘記了"></a>共 6,7 題 或許還有 1 題忘記了</h5><h4 id="接著與技術人員面談"><a href="#接著與技術人員面談" class="headerlink" title="接著與技術人員面談"></a>接著與技術人員面談</h4><p>開頭先表明了是博弈，若不接受就不用繼續談了，主要是遊戲平台部分，已經上線，目前需要前端繼續維護，可能就是製作不同的畫面讓後台套用，並依客戶新要求開發新功能。接著問是否有什麼想了解</p>
-<p>Q: 前端人員共有幾位? 打算招聘到幾位<br>A: 目前共 2 位，再多找一個，共三個</p>
-<p>Q: 前端人員大概都幾點下班?<br>A: 東西有按表操課，規定時間內有做完滿八小時就下班，但也是責任制。</p>
-<p>結束後表示若有複試會再通知，並且在那時才會談薪。</p>
-<h4 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h4><p>位置在南京三民站走路五到十分鐘，一開始到辦公室外面，沒看到招牌之類的，櫃檯也沒有人，好險剛好有人走出來，詢問才確定是在這。公司主要是開發平台，串接外面的遊戲，透過儲值讓用戶能使用，因產品已上線，目前大多為維護平台，看起來業務量比較不大，但聽到責任制還是會怕怕的。</p>
+<p>一直以來都是透過全局註冊 axios 與 Vueaxios，然後個別寫出 call api，甚至連 promise 怎麼使用都不知道，只知道後面寫個 then 接參數，不知道使用 catch 接錯誤。</p>
+<p>直到上份工作，看到其他同事封裝出來的 axios，才知道統一管理 axios 與 api 在大型專案上是必備的，而最近面試時也被詢問到 axios 是如何使用攔截器，當時也是不知道該如何應答，所以今天就翻了文章看看。</p>
+<p>@/utils/request.js</p>
+<pre><code>import axios from &quot;axios&quot;;
+// import { Loading, Message } from &quot;element-ui&quot;;
+// import router from &apos;@/router&apos;
+// let loadingInstance = null; // 加载全局的loading
+
+const instance = axios.create({
+  // 創建實例
+  // timeout: 10000, // 設置超時時間
+  // baseURL: process.env.NODE_ENV === &apos;production&apos; ? &apos;&apos; : &apos;/api&apos;   //根據自己的設定配置
+});
+
+// instance.defaults.headers.post[&quot;Content-Type&quot;] =
+//   &quot;application/x-www-form-urlencoded&quot;;
+
+// let httpCode = {
+//   400: &quot;請求參數錯誤&quot;,
+//   401: &quot;權限不足，請重新登陸&quot;,
+//   403: &quot;伺服器拒絕本次訪問&quot;,
+//   404: &quot;請求資源未找到&quot;,
+//   500: &quot;伺服器錯誤&quot;,
+//   501: &quot;伺服器不支持該請求中使用的方法&quot;,
+//   502: &quot;網關錯誤&quot;,
+//   504: &quot;網關超時&quot;,
+// };
+
+/** 請求攔截器 **/
+instance.interceptors.request.use(
+  (config) =&gt; {
+    // config.headers[&quot;token&quot;] = sessionStorage.getItem(&quot;token&quot;) || &quot;&quot;;
+    // loadingInstance = Loading.service({
+    //   // 發起請求時加載全局loading，請求失敗或有響應時會關閉
+    //   spinner: &quot;fa fa-spinner fa-spin fa-3x fa-fw&quot;,
+    //   text: &quot;加載中...&quot;,
+    // });
+    // // 這裡可根據業務需求在發送請求前做些什麼;
+    // if(xxx){}
+    return config;
+  },
+  (error) =&gt; {
+    // 如果請求錯誤，做這邊
+    return Promise.reject(error);
+  }
+);
+
+/** 響應攔截器 **/
+instance.interceptors.response.use(
+  (response) =&gt; {
+    // loadingInstance.close();
+    // 響應結果的狀態根據實際給予
+    if (response.status === 200) {
+      return Promise.resolve(response.data);
+    } else {
+      // Message({
+      //   message: response.data.message,
+      //   type: &quot;error&quot;,
+      // });
+      return Promise.reject(response.data.message);
+    }
+  },
+  (error) =&gt; {
+    loadingInstance.close();
+    if (error.response) {
+      //   根據請求失敗的狀態碼給用戶提示;
+      // let tips =
+      //   error.response.status in httpCode
+      //     ? httpCode[error.response.status]
+      //     : error.response.data.message;
+      // Message({
+      //   message: tips,
+      //   type: &quot;error&quot;,
+      // });
+      // 若status 為 401 則跳轉到login頁
+      //   if (error.response.status === 401) {
+      //     router.push({
+      //       path: `/login`,
+      //     });
+      // }
+      return Promise.reject(error);
+    } else {
+      // Message({
+      //   message: &quot;請求超時，請刷新頁面重試&quot;,
+      //   type: &quot;error&quot;,
+      // });
+      return Promise.reject(new Error(&quot;請求超時，請刷新頁面重試&quot;));
+    }
+  }
+);
+
+// 封裝get請求
+export const get = (url, params, config = {}) =&gt; {
+  return instance({
+    method: &quot;get&quot;,
+    url,
+    params,
+    ...config,
+  })
+    .then((res) =&gt; {
+      return Promise.resolve(res);
+    })
+    .catch((error) =&gt; {
+      return Promise.reject(error);
+    });
+};
+
+// 封裝post請求
+export const post = (url, data, config = {}) =&gt; {
+  return instance({
+    method: &quot;post&quot;,
+    url,
+    data,
+    ...config,
+  })
+    .then((response) =&gt; {
+      return Promise.resolve(response);
+    })
+    .catch((error) =&gt; {
+      return Promise.reject(error);
+    });
+};</code></pre><p>@/api/index.js</p>
+<pre><code>import { get } from &quot;@/utils/request.js&quot;;
+
+export const apiAbc = () =&gt;
+  get(
+    &quot;abc.com&quot;
+  );</code></pre><p>@/views/home.vue</p>
+<pre><code>import { apiAbc } from &quot;@/api/index.js&quot;;
+
+async getApi(){
+  const vm = this;
+  await apiAbc()
+    .then(res =&gt; {
+      vm.apiData = res.data;
+    })
+    .catch(err =&gt; console.log(err));
+}</code></pre><p>這是目前先寫的，未來有更好的會再更新~</p>
+<h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://juejin.im/post/5d2f1c54e51d454f6f16eca9" target="_blank" rel="noopener">Vue 中统一封装 Axios 请求</a><br><a href="https://medium.com/i-am-mike/%E4%BD%BF%E7%94%A8axios%E6%99%82%E4%BD%A0%E7%9A%84api%E9%83%BD%E6%80%8E%E9%BA%BC%E7%AE%A1%E7%90%86-557d88365619" target="_blank" rel="noopener">使用 Axios 你的 API 都怎麼管理？</a></p>
 
     </div>
 
@@ -262,7 +392,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/blog/tags/interview/" rel="tag"># interview</a>
+              <a href="/blog/tags/vue/" rel="tag"># vue</a>
+              <a href="/blog/tags/axios/" rel="tag"># axios</a>
           </div>
 
         
@@ -271,13 +402,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/blog/2020/04/17/vue-provide-inject/" rel="prev" title="Vue 的 provide & inject">
-      <i class="fa fa-chevron-left"></i> Vue 的 provide & inject
+    <a href="/blog/2020/04/22/vue-lifecycle/" rel="prev" title="Vue的生命週期">
+      <i class="fa fa-chevron-left"></i> Vue的生命週期
     </a></div>
-      <div class="post-nav-item">
-    <a href="/blog/2020/04/22/interview-004/" rel="next" title="面試 - 萬聯">
-      面試 - 萬聯 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -336,7 +464,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#公司名稱"><span class="nav-number">1.</span> <span class="nav-text">公司名稱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址"><span class="nav-number">2.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#應徵職位"><span class="nav-number">3.</span> <span class="nav-text">應徵職位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面試日期"><span class="nav-number">4.</span> <span class="nav-text">面試日期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#攜帶"><span class="nav-number">5.</span> <span class="nav-text">攜帶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面試流程"><span class="nav-number">6.</span> <span class="nav-text">面試流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#專業技能考題大概如下"><span class="nav-number">6.1.</span> <span class="nav-text">專業技能考題大概如下</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#簡述-SPA-優缺點"><span class="nav-number">6.1.1.</span> <span class="nav-text">簡述 SPA 優缺點</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#v-if-與-v-show-差別"><span class="nav-number">6.1.2.</span> <span class="nav-text">v-if 與 v-show 差別</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Class-與-Style-如何動態綁定"><span class="nav-number">6.1.3.</span> <span class="nav-text">Class 與 Style 如何動態綁定</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Computed-與-Watched-用途"><span class="nav-number">6.1.4.</span> <span class="nav-text">Computed 與 Watched 用途</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#的作用"><span class="nav-number">6.1.5.</span> <span class="nav-text">的作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#hash-與-history-差異"><span class="nav-number">6.1.6.</span> <span class="nav-text">hash 與 history 差異</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#共-6-7-題-或許還有-1-題忘記了"><span class="nav-number">6.1.7.</span> <span class="nav-text">共 6,7 題 或許還有 1 題忘記了</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接著與技術人員面談"><span class="nav-number">6.2.</span> <span class="nav-text">接著與技術人員面談</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小結"><span class="nav-number">6.3.</span> <span class="nav-text">小結</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#參考"><span class="nav-number">1.</span> <span class="nav-text">參考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
