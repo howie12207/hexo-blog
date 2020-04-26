@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>作品 - 口罩地圖 (Google Map版)</title>
+      <link href="/blog/2020/04/26/works-maskmap-googlemap/"/>
+      <url>/blog/2020/04/26/works-maskmap-googlemap/</url>
+      
+        <content type="html"><![CDATA[<h3 id="為什麼會再做一個口罩地圖"><a href="#為什麼會再做一個口罩地圖" class="headerlink" title="為什麼會再做一個口罩地圖?"></a>為什麼會再做一個口罩地圖?</h3><p>上次是使用 Leaflet+OSM 做地圖的呈現，但普遍使用的是 Google Map，之前是因為怕收費的緣故沒有使用，今天利用了一些時間，爬了一下文了解收費機制，並看了一些製作教學的文章，所以就拿上次做的作品來改版囉!</p><a id="more"></a><h4 id="開始修改"><a href="#開始修改" class="headerlink" title="開始修改"></a>開始修改</h4><h5 id="使用套件"><a href="#使用套件" class="headerlink" title="使用套件"></a>使用套件</h5><ul><li>axios</li><li>element-ui</li><li>GoogleMap</li></ul><h5 id="移除掉之前有關的-Leaflet-OSM-資料"><a href="#移除掉之前有關的-Leaflet-OSM-資料" class="headerlink" title="移除掉之前有關的 Leaflet + OSM 資料"></a>移除掉之前有關的 Leaflet + OSM 資料</h5><h5 id="將-Google-Map-放入"><a href="#將-Google-Map-放入" class="headerlink" title="將 Google Map 放入"></a>將 Google Map 放入</h5><p>在這遇到了引入 script 確不能及時取得 google，因此使用了<font color="red">window.onload</font>，待載入完全才去初始化地圖。</p><h5 id="資料畫面呈現"><a href="#資料畫面呈現" class="headerlink" title="資料畫面呈現"></a>資料畫面呈現</h5><p>上次是使用當選擇框內的所選區域值改變時，去子組件內做重新繪製地標的動作。<br>這次改用 <font color="red">watch</font>，子組件觀察父組件傳進來的藥局資料改變時，做重新繪製地標的動作。</p><h5 id="彈窗部分"><a href="#彈窗部分" class="headerlink" title="彈窗部分"></a>彈窗部分</h5><p>彈窗部分在點選座標圖示時，是可以正常彈出，但想要做到點選右側欄藥局對應彈窗出現，出現了些問題。<br>因為彈窗事件是寫在繪製地標的 function 內，所以不清楚如何在外面只調用這一小段，因此又重寫了一段類似的代碼，這部分待以後再優化。</p><h4 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h4><p>因為是做小修改，所以不用一天就完成了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> works </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> works </tag>
+            
+            <tag> maskmap </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Google Map API</title>
       <link href="/blog/2020/04/26/google-map/"/>
       <url>/blog/2020/04/26/google-map/</url>
