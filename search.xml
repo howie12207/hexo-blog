@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Google Map API</title>
+      <link href="/blog/2020/04/26/google-map/"/>
+      <url>/blog/2020/04/26/google-map/</url>
+      
+        <content type="html"><![CDATA[<p>之前是以 Leaflet + OSM 呈現地圖，但最被廣泛人知的還是 Google Map，未來工作上會使用到的應該也都會是 Google Map，因此就會些時間研究看看。</p><a id="more"></a><h4 id="建立-Google-專案"><a href="#建立-Google-專案" class="headerlink" title="建立 Google 專案"></a>建立 Google 專案</h4><pre><code>https://console.developers.google.com/cloud-resource-manager</code></pre><h4 id="啟用-API-和服務"><a href="#啟用-API-和服務" class="headerlink" title="啟用 API 和服務"></a>啟用 API 和服務</h4><p>啟用 Maps JavaScript API</p><h4 id="建立憑證"><a href="#建立憑證" class="headerlink" title="建立憑證"></a>建立憑證</h4><p>建立 API 金鑰</p><h4 id="添加限制"><a href="#添加限制" class="headerlink" title="添加限制"></a>添加限制</h4><p>將網址添加進去做限制</p><h4 id="綁定扣款"><a href="#綁定扣款" class="headerlink" title="綁定扣款"></a>綁定扣款</h4><p>導覽選單 -&gt; 帳單</p><h4 id="將-API-放入專案"><a href="#將-API-放入專案" class="headerlink" title="將 API 放入專案"></a>將 API 放入專案</h4><p>這次是用之前作品 - 口罩地圖 做替換(Vue Cli)<br>先在 index.html 新增</p><pre><code>&lt;script src=&quot;http://maps.googleapis.com/maps/api/js?key=MY_KEY&quot;&gt;&lt;/script&gt;</code></pre><h4 id="建立地圖"><a href="#建立地圖" class="headerlink" title="建立地圖"></a>建立地圖</h4><p>在需要呈現 component 內建立</p><pre><code>&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;data() {  return {    map: null,    // 預設經緯度在信義區附近    lat: 25.0325917,    lng: 121.5624999  };},mounted() {  this.initMap();}methods: {  // 初始化地圖  initMap() {    // 因為會找不到window.google所以待loading完才執行    window.onload = () =&gt; {      // 透過 Map 物件建構子建立新地圖 map 物件實例，並將地圖呈現在 id 為 map 的元素中      this.map = new window.google.maps.Map(document.getElementById(&quot;map&quot;), {        // 設定地圖的中心點經緯度位置        center: this.center,        // 設定地圖縮放比例 0-20        zoom: this.zoom,        // 限制使用者能縮放地圖的最大比例        maxZoom: 20,        // 限制使用者能縮放地圖的最小比例        minZoom: 3,        // 設定是否呈現右下角街景小人        streetViewControl: this.streetViewControl,        // 設定是否讓使用者可以切換地圖樣式：一般、衛星圖等        mapTypeControl: this.mapTypeControl,        fullscreenControl: this.fullscreenControl,        zoomControl: this.zoomControl      });    };  },},&lt;style&gt;  #map {    height: 100vh;    width: 100%;  }&lt;/style&gt;</code></pre><p><font color="#dd0000">使用時遇到的問題是，載入 script 後沒辦法馬上拿到 google，所以使用 window.onload 判斷是否 load 完才執行。</font></p><p>這樣就有一個基本地圖的樣貌，接下來再來新增不同功能</p><p>重置中央座標</p><pre><code>resetCenter(y = this.center.lat, x = this.center.lng) {  // 移動座標  this.map.panTo({ lat: y, lng: x });},</code></pre><p>清除地標</p><pre><code>clearMarkers() {  this.markers.forEach(marker =&gt; marker.setMap(null));  this.markers = [];},</code></pre><p>建立新地標</p><pre><code>setMarker() {  this.pharmacies.forEach(location =&gt; {    const marker = new window.google.maps.Marker({      // 設定地標的座標      position: {        lat: location.geometry.coordinates[1],        lng: location.geometry.coordinates[0]      },      // 設定地標要放在哪一個地圖      map: this.map    });    // 將地標放上    this.markers.push(marker);    // 製作彈窗訊息    const infowindow = new window.google.maps.InfoWindow({    content: `      &lt;h3&gt;${name}&lt;/h3&gt;      &lt;p&gt;${phone}&lt;/p&gt;      `,      maxWidth: 200    });    // 點擊地標事件    marker.addListener(&quot;click&quot;, () =&gt; {      if (this.infowindow) this.infowindow.close();      infowindow.open(this.map, marker);      this.infowindow = infowindow;      });    });  }}</code></pre><h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://ithelp.ithome.com.tw/articles/10190840" target="_blank" rel="noopener">[day3]-創造自己的地圖服務應用，Google Maps API 申請流程</a><br><a href="https://shian420.pixnet.net/blog/post/349630897-%5Bgoogle%5D-create-google-api-project" target="_blank" rel="noopener">create google api project</a><br><a href="https://medium.com/%E9%BA%A5%E5%85%8B%E7%9A%84%E5%8D%8A%E8%B7%AF%E5%87%BA%E5%AE%B6%E7%AD%86%E8%A8%98/%E7%AD%86%E8%A8%98-%E5%BE%9E%E9%9B%B6%E6%8E%A5%E8%A7%B8-google-map-api-%E5%9C%A8-vue-js-%E4%B8%AD%E5%AF%A6%E4%BD%9C%E5%9C%B0%E5%9C%96-%E5%9C%B0%E6%A8%99-%E8%A8%8A%E6%81%AF%E8%A6%96%E7%AA%97-8eed860637d6" target="_blank" rel="noopener">[筆記] 從零接觸 Google Map API：在 Vue.js 中實作地圖、地標、訊息視窗</a><br><a href="https://developers.google.com/maps/documentation/javascript/adding-a-google-map" target="_blank" rel="noopener">Google Maps Platform</a><br><a href="https://medium.com/free-code-camp/how-to-change-javascript-google-map-marker-color-8a72131d1207" target="_blank" rel="noopener">How to change the color of Google Maps markers with JavaScript</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> google-map </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> google-map </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Axios的封裝</title>
       <link href="/blog/2020/04/24/vue-axios/"/>
       <url>/blog/2020/04/24/vue-axios/</url>

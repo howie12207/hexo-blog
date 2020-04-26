@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"howie12207.github.io","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":"enable","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="是的，轉職後的第一份工作，做了兩個禮拜又一天離職了，先來說說這兩個禮拜的內容吧。">
+  <meta name="description" content="之前是以 Leaflet + OSM 呈現地圖，但最被廣泛人知的還是 Google Map，未來工作上會使用到的應該也都會是 Google Map，因此就會些時間研究看看。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="結束兩個禮拜又一天的工作">
-<meta property="og:url" content="http://howie12207.github.io/2020/03/30/working-001/index.html">
+<meta property="og:title" content="Google Map API">
+<meta property="og:url" content="http://howie12207.github.io/2020/04/26/google-map/index.html">
 <meta property="og:site_name" content="Howie&#39;s blog">
-<meta property="og:description" content="是的，轉職後的第一份工作，做了兩個禮拜又一天離職了，先來說說這兩個禮拜的內容吧。">
+<meta property="og:description" content="之前是以 Leaflet + OSM 呈現地圖，但最被廣泛人知的還是 Google Map，未來工作上會使用到的應該也都會是 Google Map，因此就會些時間研究看看。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-03-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-04-11T06:36:16.303Z">
+<meta property="article:published_time" content="2020-04-26T02:07:27.000Z">
+<meta property="article:modified_time" content="2020-04-26T11:42:14.746Z">
 <meta property="article:author" content="Howie Chen">
-<meta property="article:tag" content="working">
+<meta property="article:tag" content="google-map">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://howie12207.github.io/2020/03/30/working-001/">
+<link rel="canonical" href="http://howie12207.github.io/2020/04/26/google-map/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>結束兩個禮拜又一天的工作 | Howie's blog</title>
+  <title>Google Map API | Howie's blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163289150-1"></script>
     <script>
@@ -193,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="http://howie12207.github.io/2020/03/30/working-001/">
+    <link itemprop="mainEntityOfPage" href="http://howie12207.github.io/2020/04/26/google-map/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/images/me.jpg">
@@ -206,7 +206,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          結束兩個禮拜又一天的工作
+          Google Map API
         </h1>
 
         <div class="post-meta">
@@ -215,23 +215,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
+              
 
-              <time title="創建時間：2020-03-30 00:00:00" itemprop="dateCreated datePublished" datetime="2020-03-30T00:00:00+08:00">2020-03-30</time>
+              <time title="創建時間：2020-04-26 10:07:27 / 修改時間：19:42:14" itemprop="dateCreated datePublished" datetime="2020-04-26T10:07:27+08:00">2020-04-26</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-11 14:36:16" itemprop="dateModified" datetime="2020-04-11T14:36:16+08:00">2020-04-11</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/working/" itemprop="url" rel="index"><span itemprop="name">working</span></a>
+                  <a href="/blog/categories/google-map/" itemprop="url" rel="index"><span itemprop="name">google-map</span></a>
                 </span>
             </span>
 
@@ -246,35 +240,106 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>是的，轉職後的第一份工作，做了兩個禮拜又一天離職了，先來說說這兩個禮拜的內容吧。</p>
+        <p>之前是以 Leaflet + OSM 呈現地圖，但最被廣泛人知的還是 Google Map，未來工作上會使用到的應該也都會是 Google Map，因此就會些時間研究看看。</p>
 <a id="more"></a>
 
-<h4 id="第一天-3-16"><a href="#第一天-3-16" class="headerlink" title="第一天 3/16"></a>第一天 3/16</h4><p>由 HR 帶到會議室簽一些契約、填寫資料，當天報到的人共 4 位，3 位前端、1 位 MIS。<br>接著參觀環境並帶到自己的工作位置，做了電腦環境配置，接著將公司正在做的專案 clone 下來看看架構，並了解公司使用的 git flow 與一些規範，第一天就這樣過了，19:00 離開。</p>
-<h4 id="第二天開始"><a href="#第二天開始" class="headerlink" title="第二天開始"></a>第二天開始</h4><p>開始拿到各類 issues，與實現一些功能</p>
-<ul>
-<li><p>輸入框的錯誤提示</p>
-</li>
-<li><p>將數字改用 NumberKeyboard 輸入</p>
-</li>
-<li><p>串 API 做密碼驗證</p>
-</li>
-<li><p>van-keyboard 的相關限制</p>
-</li>
-<li><p>picker 的置中</p>
-</li>
-<li><p>Matomo API 串接與資料呈現</p>
-</li>
-<li><p>element-UI 製作表格</p>
-</li>
-<li><p>echart 的圖表呈現</p>
-</li>
-<li><p>…等等</p>
-</li>
-</ul>
-<p>可以看到大部分都是操作套件的相關東西，也因此都要去網路查找各類文件，除了 matomo 部分，其他看起來都似乎都不難，但也是遇到很多問題，像是對套件的不熟悉，不曉得如何去操作，call api 時資料較慢取得，對 async await 與 promise 的不熟悉，以及 matomo 的 API 串接。</p>
-<p>所以這兩周偶爾 8 點下班，但大部分都 10 點才走，到家也都 11 點了，大家留的都還比我晚，在挫折感與工時的不適應下，提出了離職。</p>
-<p>第一次接觸軟體業，讓我有大大的震撼感，也開始對自己產生懷疑，我真的適合這類工作嗎?這是我想要的嗎?想想寫 code 還是我的興趣，能夠解決問題實現功能會讓我有充實的成就感，雖然常常會碰壁有挫折，但我想這就是新手起步的必經過程吧。</p>
-<h3 id="4-11-補-PO-3-16-3-30-工作紀錄"><a href="#4-11-補-PO-3-16-3-30-工作紀錄" class="headerlink" title="4/11 補 PO 3/16 ~ 3/30 工作紀錄"></a>4/11 補 PO 3/16 ~ 3/30 工作紀錄</h3>
+<h4 id="建立-Google-專案"><a href="#建立-Google-專案" class="headerlink" title="建立 Google 專案"></a>建立 Google 專案</h4><pre><code>https://console.developers.google.com/cloud-resource-manager</code></pre><h4 id="啟用-API-和服務"><a href="#啟用-API-和服務" class="headerlink" title="啟用 API 和服務"></a>啟用 API 和服務</h4><p>啟用 Maps JavaScript API</p>
+<h4 id="建立憑證"><a href="#建立憑證" class="headerlink" title="建立憑證"></a>建立憑證</h4><p>建立 API 金鑰</p>
+<h4 id="添加限制"><a href="#添加限制" class="headerlink" title="添加限制"></a>添加限制</h4><p>將網址添加進去做限制</p>
+<h4 id="綁定扣款"><a href="#綁定扣款" class="headerlink" title="綁定扣款"></a>綁定扣款</h4><p>導覽選單 -&gt; 帳單</p>
+<h4 id="將-API-放入專案"><a href="#將-API-放入專案" class="headerlink" title="將 API 放入專案"></a>將 API 放入專案</h4><p>這次是用之前作品 - 口罩地圖 做替換(Vue Cli)<br>先在 index.html 新增</p>
+<pre><code>&lt;script src=&quot;http://maps.googleapis.com/maps/api/js?key=MY_KEY&quot;&gt;&lt;/script&gt;</code></pre><h4 id="建立地圖"><a href="#建立地圖" class="headerlink" title="建立地圖"></a>建立地圖</h4><p>在需要呈現 component 內建立</p>
+<pre><code>&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+
+data() {
+  return {
+    map: null,
+    // 預設經緯度在信義區附近
+    lat: 25.0325917,
+    lng: 121.5624999
+  };
+},
+
+mounted() {
+  this.initMap();
+}
+
+methods: {
+  // 初始化地圖
+  initMap() {
+    // 因為會找不到window.google所以待loading完才執行
+    window.onload = () =&gt; {
+      // 透過 Map 物件建構子建立新地圖 map 物件實例，並將地圖呈現在 id 為 map 的元素中
+      this.map = new window.google.maps.Map(document.getElementById(&quot;map&quot;), {
+        // 設定地圖的中心點經緯度位置
+        center: this.center,
+        // 設定地圖縮放比例 0-20
+        zoom: this.zoom,
+        // 限制使用者能縮放地圖的最大比例
+        maxZoom: 20,
+        // 限制使用者能縮放地圖的最小比例
+        minZoom: 3,
+        // 設定是否呈現右下角街景小人
+        streetViewControl: this.streetViewControl,
+        // 設定是否讓使用者可以切換地圖樣式：一般、衛星圖等
+        mapTypeControl: this.mapTypeControl,
+        fullscreenControl: this.fullscreenControl,
+        zoomControl: this.zoomControl
+      });
+    };
+  },
+},
+
+&lt;style&gt;
+  #map {
+    height: 100vh;
+    width: 100%;
+  }
+&lt;/style&gt;</code></pre><p><font color="#dd0000">使用時遇到的問題是，載入 script 後沒辦法馬上拿到 google，所以使用 window.onload 判斷是否 load 完才執行。</font></p>
+<p>這樣就有一個基本地圖的樣貌，接下來再來新增不同功能</p>
+<p>重置中央座標</p>
+<pre><code>resetCenter(y = this.center.lat, x = this.center.lng) {
+  // 移動座標
+  this.map.panTo({ lat: y, lng: x });
+},</code></pre><p>清除地標</p>
+<pre><code>clearMarkers() {
+  this.markers.forEach(marker =&gt; marker.setMap(null));
+  this.markers = [];
+},</code></pre><p>建立新地標</p>
+<pre><code>setMarker() {
+  this.pharmacies.forEach(location =&gt; {
+    const marker = new window.google.maps.Marker({
+      // 設定地標的座標
+      position: {
+        lat: location.geometry.coordinates[1],
+        lng: location.geometry.coordinates[0]
+      },
+      // 設定地標要放在哪一個地圖
+      map: this.map
+    });
+
+    // 將地標放上
+    this.markers.push(marker);
+
+    // 製作彈窗訊息
+    const infowindow = new window.google.maps.InfoWindow({
+    content: `
+      &lt;h3&gt;${name}&lt;/h3&gt;
+      &lt;p&gt;${phone}&lt;/p&gt;
+      `,
+      maxWidth: 200
+    });
+
+    // 點擊地標事件
+    marker.addListener(&quot;click&quot;, () =&gt; {
+      if (this.infowindow) this.infowindow.close();
+      infowindow.open(this.map, marker);
+      this.infowindow = infowindow;
+      });
+    });
+  }
+}</code></pre><h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://ithelp.ithome.com.tw/articles/10190840" target="_blank" rel="noopener">[day3]-創造自己的地圖服務應用，Google Maps API 申請流程</a><br><a href="https://shian420.pixnet.net/blog/post/349630897-%5Bgoogle%5D-create-google-api-project" target="_blank" rel="noopener">create google api project</a><br><a href="https://medium.com/%E9%BA%A5%E5%85%8B%E7%9A%84%E5%8D%8A%E8%B7%AF%E5%87%BA%E5%AE%B6%E7%AD%86%E8%A8%98/%E7%AD%86%E8%A8%98-%E5%BE%9E%E9%9B%B6%E6%8E%A5%E8%A7%B8-google-map-api-%E5%9C%A8-vue-js-%E4%B8%AD%E5%AF%A6%E4%BD%9C%E5%9C%B0%E5%9C%96-%E5%9C%B0%E6%A8%99-%E8%A8%8A%E6%81%AF%E8%A6%96%E7%AA%97-8eed860637d6" target="_blank" rel="noopener">[筆記] 從零接觸 Google Map API：在 Vue.js 中實作地圖、地標、訊息視窗</a><br><a href="https://developers.google.com/maps/documentation/javascript/adding-a-google-map" target="_blank" rel="noopener">Google Maps Platform</a><br><a href="https://medium.com/free-code-camp/how-to-change-javascript-google-map-marker-color-8a72131d1207" target="_blank" rel="noopener">How to change the color of Google Maps markers with JavaScript</a></p>
+
     </div>
 
     
@@ -283,7 +348,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/blog/tags/working/" rel="tag"># working</a>
+              <a href="/blog/tags/google-map/" rel="tag"># google-map</a>
           </div>
 
         
@@ -292,13 +357,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/blog/2020/03/03/interview-002/" rel="prev" title="面試 - 鼎羿">
-      <i class="fa fa-chevron-left"></i> 面試 - 鼎羿
+    <a href="/blog/2020/04/24/vue-axios/" rel="prev" title="Axios的封裝">
+      <i class="fa fa-chevron-left"></i> Axios的封裝
     </a></div>
-      <div class="post-nav-item">
-    <a href="/blog/2020/04/05/works-maskmap/" rel="next" title="作品 - 口罩地圖">
-      作品 - 口罩地圖 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -357,7 +419,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一天-3-16"><span class="nav-number">1.</span> <span class="nav-text">第一天 3&#x2F;16</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二天開始"><span class="nav-number">2.</span> <span class="nav-text">第二天開始</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-11-補-PO-3-16-3-30-工作紀錄"><span class="nav-number"></span> <span class="nav-text">4&#x2F;11 補 PO 3&#x2F;16 ~ 3&#x2F;30 工作紀錄</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#建立-Google-專案"><span class="nav-number">1.</span> <span class="nav-text">建立 Google 專案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#啟用-API-和服務"><span class="nav-number">2.</span> <span class="nav-text">啟用 API 和服務</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#建立憑證"><span class="nav-number">3.</span> <span class="nav-text">建立憑證</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加限制"><span class="nav-number">4.</span> <span class="nav-text">添加限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#綁定扣款"><span class="nav-number">5.</span> <span class="nav-text">綁定扣款</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#將-API-放入專案"><span class="nav-number">6.</span> <span class="nav-text">將 API 放入專案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#建立地圖"><span class="nav-number">7.</span> <span class="nav-text">建立地圖</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考"><span class="nav-number"></span> <span class="nav-text">參考</span></a></div>
       </div>
       <!--/noindex-->
 
