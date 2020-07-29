@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>iMac</title>
+      <link href="/blog/2020/07/29/iMac/"/>
+      <url>/blog/2020/07/29/iMac/</url>
+      
+        <content type="html"><![CDATA[<p>在一些因緣際會下，將電腦從 Windows 換成 iMac，對於從未使用過 Apple 產品的我來說實在是個大挑戰阿!!</p><a id="more"></a><p>好在原先主人的環境大部分都有保留，來簡單做個整理</p><h4 id="快捷鍵"><a href="#快捷鍵" class="headerlink" title="快捷鍵"></a>快捷鍵</h4><p>關閉視窗/程式 ——&gt; Command + Q or W<br>切輸入法 —–&gt; 原大小寫位置按鍵 (需裝有其他輸入法)<br>滑鼠手勢設定 —–&gt; 可開啟右鍵、滾動等各種手勢<br>重做 —–&gt; Command + Shift + Z (Windows 為 Ctrl + Y)<br>切換視窗 —–&gt; Command + Tab<br>重整 —–&gt; Command + R<br>捲到最上方 —–&gt; Command + 箭頭上<br>截圖 —–&gt; Shift + 3 (尚未驗證)<br>放大顯示 —–&gt; Command + + (尚未驗證)<br>回預設 —–&gt; Command + 0 (尚未驗證)<br>改檔名 —–&gt; Enter (尚未驗證)<br>刪除檔案 —–&gt; Command + Delete (尚未驗證)<br>快速切換桌面 —–&gt; Fn + F11 (尚未驗證)</p><h4 id="VSCode"><a href="#VSCode" class="headerlink" title="VSCode"></a>VSCode</h4><p>常用的如下</p><pre><code>// 儲存後是否自動格式化&quot;editor.formatOnSave&quot;: true,// 編輯器換行&quot;editor.wordWrap&quot;: &quot;on&quot;// 是否改為單引號&quot;prettier.singleQuote&quot;: false,// 是否使用分號&quot;prettier.semi&quot;: true,// Tab的寬度&quot;prettier.tabWidth&quot;: 2,// 一行最大寬度&quot;prettier.printWidth&quot;: 80,// 放大等級&quot;window.zoomLevel&quot;: 1.5// HTML 屬性強制換行&quot;html.format.wrapAttributes&quot;: &quot;force-expand-multiline&quot;,// 自訂程式碼片段放最上面&quot;editor.snippetSuggestions&quot;: &quot;top&quot;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> working </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mac </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>工作兩個多月的一些紀錄</title>
       <link href="/blog/2020/07/23/0723Work/"/>
       <url>/blog/2020/07/23/0723Work/</url>
